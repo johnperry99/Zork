@@ -17,7 +17,7 @@ class CommandWords
         "go", "quit", "help", "eat", "move", "look", "shine",
         "eat", "jump", "sit down", "stand up", "talk", "attack", 
         "shoot", "kill", "turn on", "open", "close", "take", "pick up",
-        "lift"
+        "lift", "inventory"
     };
     private static final String validNouns[] = {"car", "gun", "desk", "chair", "table", "door",
     		"window", "sign", "food", "book", "person", "sword", "bat", ""};
@@ -60,6 +60,11 @@ class CommandWords
         for(int i = 0; i < validCommands.length; i++)
         {
             System.out.print(validCommands[i] + "  ");
+        }
+        System.out.println();
+        
+        for(int i  =0; i < validNouns.length; i++) {
+        	System.out.println(validNouns[i] + " ");
         }
         System.out.println();
     }
