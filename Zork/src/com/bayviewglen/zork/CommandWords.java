@@ -20,7 +20,7 @@ class CommandWords
         "lift", "inventory"
     };
     private static final String validNouns[] = {"car", "gun", "desk", "chair", "table", "door",
-    		"window", "sign", "food", "book", "person", "sword", "bat", ""};
+    		"window", "sign", "food", "book", "person", "sword", "bat", "inventory"};
 
     /**
      * Constructor - initialise the command words.
