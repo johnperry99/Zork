@@ -18,6 +18,7 @@ class CommandWords
         "eat", "jump", "sit down", "stand up", "talk", "attack", 
         "shoot", "kill", "turn on", "open", "close", "take", "pick up"
     };
+    private static final String validNouns[] = {"car", "gun"};
 
     /**
      * Constructor - initialise the command words.
@@ -40,6 +41,13 @@ class CommandWords
         }
         // if we get here, the string was not found in the commands
         return false;
+    }
+    public boolean isNoun(String str){
+    	for(int i = 0; i < validNouns.length; i++){
+    		if(validNouns[i].equals(str))
+    			return true;
+    	}
+    	return false;
     }
 
     /*
