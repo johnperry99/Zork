@@ -17,7 +17,7 @@ class CommandWords
         "go", "quit", "help", "eat", "move", "look", "shine",
         "eat", "jump", "sit down", "stand up", "talk", "attack", 
         "shoot", "kill", "turn on", "open", "close", "take", "pick up",
-        "lift", "inventory"
+        "lift", "inventory", "north", "south", "east", "west"
     };
     private static final String validNouns[] = {"car", "gun", "desk", "chair", "table", "door",
     		"window", "sign", "food", "book", "person", "sword", "bat", "inventory"};
