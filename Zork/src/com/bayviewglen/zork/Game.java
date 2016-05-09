@@ -28,6 +28,7 @@ class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Player user;
     // This is a MASTER object that contains all of the rooms and is easily accessible.
     // The key will be the name of the room -> no spaces (Use all caps and underscore -> Great Room would have a key of GREAT_ROOM
     // In a hashmap keys are case sensitive.
@@ -163,7 +164,8 @@ class Game
                 return true;  // signal that we want to quit
         }else if (commandWord.equals("eat")){
         	System.out.println("Do you really think you should be eating at a time like this?");
-        }
+        }else if (commandWord.equals("inventory"))
+        	user.displayInventory();
         return false;
     }
 
