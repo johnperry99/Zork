@@ -102,6 +102,7 @@ class Game
 			e.printStackTrace();
 		}
         parser = new Parser();
+        user = new Player();
     }
 
     
@@ -139,35 +140,37 @@ class Game
     }
 
     /**
-     * Given a command, process (that is: execute) the command.
-     * If this command ends the game, true is returned, otherwise false is
-     * returned.
-     */
-    private boolean processCommand(Command command) 
-    {
-        if(command.isUnknown())
-        {
-            System.out.println("I don't know what you mean...");
-            return false;
-        }
+	 * Given a command, process (that is: execute) the command.
+	 * If this command ends the game, true is returned, otherwise false is
+	 * returned.
+	 */
+	private boolean processCommand(Command command) 
+	{
+	    if(command.isUnknown())
+	    {
+	        System.out.println("I don't know what you mean...");
+	        return false;
+	    }
+	
+	    String commandWord = command.getCommandWord();
+	    if (commandWord.equals("help"))
+	        printHelp();
+	    else if (commandWord.equals("go"))
+	        goRoom(command);
+	    else if (commandWord.equals("quit"))
+	    {
+	        if(command.hasSecondWord())
+	            System.out.println("Quit what?");
+	        else
+	            return true;  // signal that we want to quit
+	    }else if (commandWord.equals("eat")){
+	    	System.out.println("Do you really think you should be eating at a time like this?");
+	    }else if (commandWord.equals("inventory"))
+	    	user.displayInventory();
+	    return false;
+	}
 
-        String commandWord = command.getCommandWord();
-        if (commandWord.equals("help"))
-            printHelp();
-        else if (commandWord.equals("go"))
-            goRoom(command);
-        else if (commandWord.equals("quit"))
-        {
-            if(command.hasSecondWord())
-                System.out.println("Quit what?");
-            else
-                return true;  // signal that we want to quit
-        }else if (commandWord.equals("eat")){
-        	System.out.println("Do you really think you should be eating at a time like this?");
-        }else if (commandWord.equals("inventory"))
-        	user.displayInventory();
-        return false;
-    }
+	
 
     // implementations of user commands:
 

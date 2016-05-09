@@ -38,7 +38,7 @@ class CommandWords
     {
         for(int i = 0; i < validCommands.length; i++)
         {
-            if(validCommands[i].equals(aString))
+            if(validCommands[i].equalsIgnoreCase(aString))
                 return true;
         }
         // if we get here, the string was not found in the commands
@@ -46,7 +46,7 @@ class CommandWords
     }
     public boolean isNoun(String str){
     	for(int i = 0; i < validNouns.length; i++){
-    		if(validNouns[i].equals(str))
+    		if(validNouns[i].equalsIgnoreCase(str))
     			return true;
     	}
     	return false;
@@ -63,9 +63,6 @@ class CommandWords
         }
         System.out.println();
         
-        for(int i  =0; i < validNouns.length; i++) {
-        	System.out.println(validNouns[i] + " ");
-        }
-        System.out.println();
+        
     }
 }
