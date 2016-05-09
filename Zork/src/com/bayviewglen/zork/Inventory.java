@@ -27,7 +27,7 @@ public class Inventory {
 		for (String s : itemsInInventory) {
 			items += " " + s;
 		}
-		return items;
+		return "Inventory:\n" + items;
 	}
 	public void add(String item){
 		itemsInInventory.add(item);
