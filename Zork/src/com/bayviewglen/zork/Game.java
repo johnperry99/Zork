@@ -49,6 +49,7 @@ class Game
 				// Read the Description
 				String roomDescription = roomScanner.nextLine();
 				room.setDescription(roomDescription.split(":")[1].replaceAll("<br>", "\n").trim());
+				
 				// Read the Exits
 				String roomExits = roomScanner.nextLine();
 				// An array of strings in the format E-RoomName
@@ -59,6 +60,16 @@ class Game
 				}
 				
 				exits.put(roomName.substring(10).trim().toUpperCase().replaceAll(" ",  "_"), temp);
+				
+				// handleitems
+				String itemString = roomScanner.nextLine();
+				// An array of strings in the format E-RoomName
+				String[] items = itemString.split(":")[1].split(",");
+				
+				Inventory inv = new Inventory();  
+				for (String s : items){
+					inv.add(new Item(s.split("-")[0].trim(), Integer.parseInt(s.split("-")[1])));
+				}
 				
 				// This puts the room we created (Without the exits in the masterMap)
 				masterRoomMap.put(roomName.toUpperCase().substring(10).trim().replaceAll(" ",  "_"), room);

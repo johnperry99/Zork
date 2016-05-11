@@ -4,33 +4,34 @@ import java.util.ArrayList;
 
 public class Inventory {
 
-	private ArrayList<String> itemsInInventory;
+	private ArrayList<Item> itemsInInventory;
 
 	public Inventory() {
-		itemsInInventory = new ArrayList<String>();
+		itemsInInventory = new ArrayList<Item>();
 
 	}
 
-	public Inventory(ArrayList<String> list) {
-		itemsInInventory = new ArrayList<String>();
-		for (String s : list) {
+	public Inventory(ArrayList<Item> list) {
+		itemsInInventory = new ArrayList<Item>();
+		for (Item s : list) {
 			itemsInInventory.add(s);
 		}
 	}
 
-	public ArrayList<String> getInventory() {
+	public ArrayList<Item> getInventory() {
 		return itemsInInventory;
 	}
 
+	
 	public String toString() {
 		String items = "";
-		for (String s : itemsInInventory) {
-			items += " " + s;
+		for (Item s : itemsInInventory) {
+			items += " " + s.getName();
 		}
 		return "Inventory:\n" + items;
 	}
 
-	public void add(String item) {
+	public void add(Item item) {
 		itemsInInventory.add(item);
 	}
 }

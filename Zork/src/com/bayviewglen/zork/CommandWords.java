@@ -15,7 +15,7 @@ class CommandWords {
 	private static final String validCommands[] = { "go", "quit", "help", "eat", "move", "look", "shine", "jump",
 			"sit down", "stand up", "talk", "attack", "shoot", "kill", "turn on", "open", "close", "take", "pick up",
 			"lift", "inventory", "north", "east", "west", "south", "up", "down" };
-	private static final String validNouns[] = { "car", "gun", "desk", "chair", "table", "door", "window", "sign",
+	private static final String validNouns[] = { "car", "gun", "desk", "chair", "table", "door", "sign",
 			"food", "book", "person", "sword", "bat", "inventory" };
 
 	/**

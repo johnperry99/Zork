@@ -33,7 +33,7 @@ class Room
         this.description = description;
         exits = new HashMap<String, Room>();
         inv = new Inventory();
-        addInv();
+        //addInv();
     }
 
     public Room() {
