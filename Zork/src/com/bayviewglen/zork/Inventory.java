@@ -8,7 +8,7 @@ public class Inventory {
 
 	public Inventory() {
 		itemsInInventory = new ArrayList<String>();
-		
+
 	}
 
 	public Inventory(ArrayList<String> list) {
@@ -29,7 +29,8 @@ public class Inventory {
 		}
 		return "Inventory:\n" + items;
 	}
-	public void add(String item){
+
+	public void add(String item) {
 		itemsInInventory.add(item);
 	}
 }

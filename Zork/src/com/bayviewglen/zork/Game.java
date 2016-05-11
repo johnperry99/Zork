@@ -153,28 +153,44 @@ class Game
 	    }
 	
 	    String commandWord = command.getCommandWord();
-	    if (commandWord.equals("help"))
+	    if (commandWord.equalsIgnoreCase("help"))
 	        printHelp();
-	    else if (commandWord.equals("go"))
+	    else if (commandWord.equalsIgnoreCase("go"))
 	        goRoom(command);
-	    else if (commandWord.equals("quit"))
+	    else if (commandWord.equalsIgnoreCase("quit"))
 	    {
 	        if(command.hasSecondWord())
 	            System.out.println("Quit what?");
 	        else
 	            return true;  // signal that we want to quit
-	    }else if (commandWord.equals("eat")){
+	    }else if (commandWord.equalsIgnoreCase("eat")){
 	    	System.out.println("Do you really think you should be eating at a time like this?");
-	    }else if (commandWord.equals("inventory"))
+	    }else if (commandWord.equalsIgnoreCase("inventory"))
 	    	user.displayInventory();
+	    else if (commandWord.equalsIgnoreCase("look"))
+	    	System.out.println(currentRoom.getDescription());
+	    else if (commandWord.equalsIgnoreCase("kill"))
+	    	validAttackCommand(command);
 	    return false;
+	    
 	}
 
 	
 
     // implementations of user commands:
 
-    /**
+    private void validAttackCommand(Command command) {
+		if(!command.hasSecondWord()){
+			System.out.println("What do you want to attack, bud?");
+		}else if(!command.hasFourthWord()){
+			System.out.println("What do you want to attack the " + command.getSecondWord() + "with?");
+		}else{
+			
+		}
+		
+	}
+
+	/**
      * Print out some help information.
      * Here we print some stupid, cryptic message and a list of the 
      * command words.
