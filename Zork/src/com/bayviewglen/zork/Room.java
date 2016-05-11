@@ -24,6 +24,7 @@ class Room
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
     private Inventory inv;
+    private boolean firstTime = true;
     /**
      * Create a room described "description". Initially, it has no exits.
      * "description" is something like "a kitchen" or "an open court yard".
@@ -137,5 +138,8 @@ class Room
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public void removeFirstTime(){
+		firstTime = false;
 	}
 }
