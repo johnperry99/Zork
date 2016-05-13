@@ -1,9 +1,55 @@
-Room Name: Room 1
-Room Description:  This is room<br>1
-Exit Rooms: E-Room 2
-Room Name: Room 2
-Room Description:  This is Room 2
-Exit Rooms: W-Room 1, U-Room 3
-Room Name: Room 3
-Room Description:  You are upstairs.
-Exit Rooms: D-Room 2
+Room Name: Bedroom
+Room Description:  You are in the bedroom. There is a bag on your tableside.
+Exit Rooms: D-Kitchen
+Items: bag-0
+Room Name: Kitchen
+Room Description:  You are in the kitchen. You see some food and a knife.<br>Realizing they will be of use to you,<br>you take them both.
+Exit Rooms: E-Armory, U-Bedroom, S-Living Room
+Items: food-5, knife-5
+Room Name: Armory
+Room Description: You are in the armory.<br>There are a wide range of weapons you can take.<br>Unfortunately, you can't take all of them.<br>Your eyes rest on a handgun, sword and crossbow.<br>You can take a maximum of two weapons.
+Exit Rooms: W-Kitchen
+Items: gun-10, sword-20, crossbow-20
+Room Name: Living Room
+Room Description: You are in the living room. <br> There is a door at the south end of the room. <br> It leads outside.
+Exit Rooms: W-Kitchen
+Items:
+Room Name: Front of House
+Room Description: You have left your house and are now at the front. You see Alexandria's farm and the street within the compound in the distant.
+Exit Rooms: W-Farm, E-Street
+Items:
+Room Name:Farm
+Room Description:
+Exit Rooms:
+Items:
+Room Name: Entrance to Alexandria
+Room Description:
+Exit Rooms:
+Items: car-1000
+Room Name: 
+Room Description:
+Exit Rooms:
+Room Name:
+Room Description:
+Exit Rooms:
+Room Name:
+Room Description:
+Exit Rooms:
+Room Name:
+Room Description
+Exit Rooms:
+Room Name:
+Room Description:
+Exit Rooms:
+Room Name:
+Room Description:
+Exit Rooms:
+Room Name:
+Room Description:
+Exit Rooms:
+Room Name:
+Room Description:
+Exit Rooms:
+Room Name:
+Room Description:
+Exit Rooms: 
