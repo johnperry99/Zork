@@ -1,6 +1,6 @@
 package com.bayviewglen.zork;
 
-public class Gun {
+public class Gun extends Item{
 	private int ammo;
 
 	public Gun() {
