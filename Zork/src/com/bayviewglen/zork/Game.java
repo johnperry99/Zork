@@ -63,14 +63,13 @@ class Game
 				
 				// handleitems
 				String itemString = roomScanner.nextLine();
-				// An array of strings in the format E-RoomName
+				// An array of strings in the format ObjectName-weight
 				String[] items = itemString.split(":")[1].split(",");
-				
-				Inventory inv = new Inventory();  
-				for (String s : items){
-					inv.add(new Item(s.split("-")[0].trim(), Integer.parseInt(s.split("-")[1])));
+				if (items[0].indexOf("-")!=-1){
+					for (String s : items){
+						room.getInventory().add(new Item(s.split("-")[0].trim(), Integer.parseInt(s.split("-")[1])));
+					}
 				}
-				
 				// This puts the room we created (Without the exits in the masterMap)
 				masterRoomMap.put(roomName.toUpperCase().substring(10).trim().replaceAll(" ",  "_"), room);
 				
@@ -180,8 +179,13 @@ class Game
 	    	user.displayInventory();
 	    else if (commandWord.equalsIgnoreCase("look"))
 	    	System.out.println(currentRoom.getDescription());
-	    else if (commandWord.equalsIgnoreCase("kill"))
+	    else if (commandWord.equalsIgnoreCase("kill")||commandWord.equalsIgnoreCase("attack"))
 	    	validAttackCommand(command);
+	    else if (commandWord.equalsIgnoreCase("shoot"))
+	    	if(user.hasItem("gun"))
+	    		validAttackCommand(command);
+	    	else
+	    		System.out.println("You don't have a gun!");
 	    return false;
 	    
 	}

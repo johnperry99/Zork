@@ -34,4 +34,10 @@ public class Inventory {
 	public void add(Item item) {
 		itemsInInventory.add(item);
 	}
+	public boolean hasItem(String x){
+		if(itemsInInventory.contains(x)){
+			return true;
+		}
+		return false;
+	}
 }

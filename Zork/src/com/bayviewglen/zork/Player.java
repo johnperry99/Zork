@@ -24,5 +24,11 @@ public class Player {
     public void removeHealth(int x){
     	health -= x;
     }
+    public boolean hasItem(String x){
+    	if(inv.hasItem(x)){
+    		return true;
+    	}
+    	return false;
+    }
 	
 }
