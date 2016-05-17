@@ -5,15 +5,15 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Zombie {
 	private int numZombies;
 	
-	public Zombie (int numZombies){
+	public Zombie (int numZombies){ //constructs the zombie class
 		this.numZombies = numZombies;
 	}
 	
-	public int getNumZombies() {
+	public int getNumZombies() { //returns current number of zombies
 		return numZombies;
 	}
 	
-	public int zombieMovement() {
+	public int zombieMovement() { //returns number of steps each zombie takes per round
 		final int MIN_MOVEMENT_ZOMBIE = 2;
 		final int MAX_MOVEMENT_ZOMBIE = 4;
 
@@ -21,7 +21,7 @@ public class Zombie {
 		return zRandMovement;
 	}
 
-	public int zombieDamage() throws InterruptedException {
+	public int zombieDamage() throws InterruptedException { //returns amount of dmg dealt by zombie(s)
 		final int MIN_DAMAGE = 10;
 		final int MAX_DAMAGE = 15;
 		boolean takeDamage = runAway(0, 0, getNumZombies());
@@ -36,14 +36,15 @@ public class Zombie {
 		}
 	}
 
-	public int playerMovement() {
+	public int playerMovement() { //returns number of steps the player takes per round
 		final int MIN_MOVEMENT_PLAYER = 1;
 		final int MAX_MOVEMENT_PLAYER = 6;
 
 		int pRandMovement = ThreadLocalRandom.current().nextInt(MIN_MOVEMENT_PLAYER, MAX_MOVEMENT_PLAYER);
 		return pRandMovement;
 	}
-
+	
+	//returns false if you escaped and true if you didn't
 	public boolean runAway(int zombieMovement, int playerMovement, int numZomb) throws InterruptedException {
 		int raceLength = 30;
 		int totalPMovement = 0;
@@ -94,8 +95,7 @@ public class Zombie {
 								.println("--------------------------------------------------------------------------");
 						int position = totalZMovement[l] + 1;
 						System.out.printf("%-20s %" + position + "d %n", raceParticipants[l], (l + 1));
-						System.out
-								.println("--------------------------------------------------------------------------");
+						System.out.println("--------------------------------------------------------------------------");
 					}
 					lose = true;
 					// prints out stuff in zombie damage so it can say "You took
