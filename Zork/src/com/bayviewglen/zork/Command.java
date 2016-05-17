@@ -90,4 +90,7 @@ class Command {
 	public boolean hasFourthWord() {
 		return (fourthWord != null);
 	}
+	public boolean isNoun(String word){
+		return isNoun(word);
+	}
 }

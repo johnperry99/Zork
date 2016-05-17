@@ -12,6 +12,9 @@ public class Player {
     public void displayInventory(){
     	System.out.println(inv);
     }
+    public Inventory getInventory(){
+    	return inv;
+    }
     public void addToInventoryCapacity(int x){
     	inventoryCapacity += x;
     }
