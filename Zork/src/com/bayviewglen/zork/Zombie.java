@@ -3,7 +3,16 @@ package com.bayviewglen.zork;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Zombie {
-
+	private int numZombies;
+	
+	public Zombie (int numZombies){
+		this.numZombies = numZombies;
+	}
+	
+	public int getNumZombies() {
+		return numZombies;
+	}
+	
 	public int zombieMovement() {
 		final int MIN_MOVEMENT_ZOMBIE = 2;
 		final int MAX_MOVEMENT_ZOMBIE = 4;
@@ -13,14 +22,14 @@ public class Zombie {
 	}
 
 	public int zombieDamage() throws InterruptedException {
-		final int MIN_DAMAGE = 15;
-		final int MAX_DAMAGE = 20;
-		boolean takeDamage = runAway(0, 0, 4);
+		final int MIN_DAMAGE = 10;
+		final int MAX_DAMAGE = 15;
+		boolean takeDamage = runAway(0, 0, getNumZombies());
 
 		if (takeDamage) {
 			int damageTaken = ThreadLocalRandom.current().nextInt(MIN_DAMAGE, MAX_DAMAGE);
 			Thread.sleep(500);
-			System.out.println("The zombies caught up with you and attacked, dealing " + damageTaken + " damage");
+			System.out.println("The zombie(s) caught up with you and attacked, dealing " + damageTaken*getNumZombies() + " damage.");
 			return damageTaken;
 		} else {
 			return 0;
@@ -38,7 +47,7 @@ public class Zombie {
 	public boolean runAway(int zombieMovement, int playerMovement, int numZomb) throws InterruptedException {
 		int raceLength = 30;
 		int totalPMovement = 0;
-		boolean result = false;
+		boolean lose = false;
 		int[] totalZMovement = new int[numZomb];
 		String[] raceParticipants = new String[numZomb + 1];
 
@@ -76,9 +85,9 @@ public class Zombie {
 						System.out
 								.println("--------------------------------------------------------------------------");
 					}
-					result = false;
+					lose = false;
 					Thread.sleep(500);
-					System.out.println("You escaped from the zombies without harm");
+					System.out.println("You escaped from the zombies without harm.");
 				} else if (totalZMovement[k] >= raceLength) {
 					for (int l = 1; l < raceParticipants.length; l++) {
 						System.out
@@ -88,13 +97,23 @@ public class Zombie {
 						System.out
 								.println("--------------------------------------------------------------------------");
 					}
-					result = true;
+					lose = true;
 					// prints out stuff in zombie damage so it can say "You took
 					// ___ damage"
 				}
 			}
 		}
-		return result;
+		return lose;
+	}
+	
+	public String toString(){
+		if(getNumZombies()==1){
+			return "There is a zombie nearby, all alone...poor zombie. #ForeverAlone";
+		} else if(getNumZombies()>1){
+			return "There are " + getNumZombies() + "nearby. Watch out!";
+		}
+		return "";
+		
 	}
 
 }
