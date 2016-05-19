@@ -1,6 +1,7 @@
 package com.bayviewglen.zork;
 
-public interface Characters {
-	public void displayInventory();
+public abstract class Characters {
+	private boolean alive;
+
 	
 }
