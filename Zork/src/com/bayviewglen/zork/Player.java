@@ -7,9 +7,27 @@ public class Player {
 	private Inventory inv = new Inventory();
     private int health = 100;
     private int inventoryCapacity = 10;
+    private boolean flashlightShining;
     
     
-    public void displayInventory(){
+   
+	public Player(Inventory inv, int health, int inventoryCapacity, boolean flashlightShining) {
+		super();
+		this.inv = inv;
+		this.health = health;
+		this.inventoryCapacity = inventoryCapacity;
+		this.flashlightShining = flashlightShining;
+	}
+	public Player(){
+		boolean flashlightShining = false;
+	}
+	public boolean isFlashlightOn() {
+		return flashlightShining;
+	}
+	public void setFlashlightOn(boolean flashlightOn) {
+		this.flashlightShining = flashlightOn;
+	}
+	public void displayInventory(){
     	System.out.println(inv);
     }
     public Inventory getInventory(){
