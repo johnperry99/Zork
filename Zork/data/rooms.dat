@@ -35,23 +35,6 @@ Room Description: You are in the forest.<br>Your car has been parked nearby, cle
 Exit Rooms: W-Outside Gate, E-Forest4, N-Forest3, S-Forest2
 Items: sign-500
 Room Name: Forest2
-Room Name: Farm
-Room Description: You are in the farm of Alexandria.
-Exit Rooms: E-Front of House
-Items:
-Room Name: Alexandria Entrance
-Room Description: You are at the entrance to Alexandria.<br>A stationary car is parked nearby.
-Exit Rooms: W-Front of House, E-Outside Gate
-Items: car-1000
-Room Name: Outside Gate
-Room Description: You are outside of the gate for the entrance to Alexandria.<br>The forest is to the east.<br>There, you are likely to encounter a zombie.
-Exit Rooms: E-Forest1, W-Alexandria Entrance
-Items:
-Room Name: Forest1
-Room Description: You are in the forest.<br>Your car has been parked nearby, cleverly hidden.<br>
-Exit Rooms: W-Outside Gate, E-Forest4, N-Forest3, S-Forest2
-Items: sign-500
-Room Name: Forest2
 Room Description:
 Exit Rooms: N-Forest1, E-Forest5
 Items: 
