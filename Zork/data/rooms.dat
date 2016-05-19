@@ -18,7 +18,6 @@ Room Name: Front of House
 Room Description: You are in front of your house.<br>You see Alexandria's farm to the west and its entrance to the east.
 Exit Rooms: W-Farm, E-Street
 Items:
-
 Room Name: Farm
 Room Description: You are in the farm of Alexandria.
 Exit Rooms: E-Front of House
