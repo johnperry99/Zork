@@ -63,7 +63,7 @@ class Game {
 
 				// handleitems
 				String itemString = roomScanner.nextLine();
-				// An array of strings in the format ObjectName-weight
+				// An array of strings in the format ObjectName-Weight
 				String[] items = itemString.split(":")[1].split(",");
 				if (items[0].indexOf("-") != -1) {
 					for (String s : items) {
