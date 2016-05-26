@@ -189,7 +189,7 @@ class Game {
 			else
 				System.out.println("What?");
 		else
-			System.out.println("U wot m8?");
+			System.out.println("I don't understand.");
 			
 		return false;
 
