@@ -12,7 +12,7 @@ Exit Rooms: W-Kitchen
 Items: gun-10, sword-20, crossbow-20
 Room Name: Living Room
 Room Description: You are in the living room.<br>There is a door at the south end of the room.<br>It leads outside.
-Exit Rooms: W-Kitchen
+Exit Rooms: S-Front of House
 Items:
 Room Name: Front of House
 Room Description: You are in front of your house.<br>You see Alexandria's farm to the west and its entrance to the east.

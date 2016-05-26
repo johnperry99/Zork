@@ -64,8 +64,8 @@ class Game {
 				// handleitems
 				String itemString = roomScanner.nextLine();
 				// An array of strings in the format ObjectName-Weight
-				if(itemString.split(":").length == 2){
-				String[] items = itemString.split(":")[1].split(",");
+				if (itemString.split(":").length == 2) {
+					String[] items = itemString.split(":")[1].split(",");
 					if (items[0].indexOf("-") != -1) {
 						for (String s : items) {
 							room.getInventory()
@@ -109,7 +109,7 @@ class Game {
 			initRooms("data/Rooms.dat");
 			currentRoom = masterRoomMap.get("BEDROOM");
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 		}
 		parser = new Parser();
@@ -158,7 +158,10 @@ class Game {
 		String commandWord = command.getCommandWord();
 		if (commandWord.equalsIgnoreCase("help"))
 			printHelp();
-		else if (commandWord.equalsIgnoreCase("go"))
+		else if (commandWord.equalsIgnoreCase("go") || commandWord.equalsIgnoreCase("north")
+				|| commandWord.equalsIgnoreCase("south") || commandWord.equalsIgnoreCase("west")
+				|| commandWord.equalsIgnoreCase("east") || commandWord.equalsIgnoreCase("up")
+				|| commandWord.equalsIgnoreCase("down"))
 			goRoom(command);
 		else if (commandWord.equalsIgnoreCase("quit")) {
 			if (command.hasSecondWord())
@@ -217,14 +220,17 @@ class Game {
 	 * otherwise print an error message.
 	 */
 	private void goRoom(Command command) {
-		if (!command.hasSecondWord()) {
+		String direction;
+		if (!command.hasSecondWord() && command.getCommandWord().equalsIgnoreCase("go")) {
 			// if there is no second word, we don't know where to go...
 			System.out.println("Go where?");
 			return;
+		} else if (!command.hasSecondWord()) {
+			direction = command.getCommandWord();
+		} else {
+
+			direction = command.getSecondWord();
 		}
-
-		String direction = command.getSecondWord();
-
 		// Try to leave current room.
 		Room nextRoom = currentRoom.nextRoom(direction);
 
