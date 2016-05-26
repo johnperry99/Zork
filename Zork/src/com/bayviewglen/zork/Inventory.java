@@ -27,7 +27,7 @@ public class Inventory {
 	public String toString() {
 		String items = "";
 		for (Item s : itemsInInventory) {
-			items += " " + s.getName();
+			items += " " + s.getName() +"\n";
 		}
 		return "Inventory:\n" + items;
 	}

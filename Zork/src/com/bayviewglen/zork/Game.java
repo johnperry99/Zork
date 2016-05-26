@@ -178,7 +178,7 @@ class Game {
 		else if (commandWord.equalsIgnoreCase("kill") || commandWord.equalsIgnoreCase("attack"))
 			validAttackCommand(command);
 		else if (commandWord.equalsIgnoreCase("shoot"))
-			if (user.hasItem("gun"))
+			if (user.hasItem("gun") || user.hasItem("crossbow"))
 				validAttackCommand(command);
 			else
 				System.out.println("You don't have a gun!");
@@ -190,7 +190,7 @@ class Game {
 			else
 				System.out.println("There isn't an item of that sort here...");
 		else
-			System.out.println("That doesn't exist in this world.");
+			System.out.println("I don't understand.");
 
 		return false;
 
