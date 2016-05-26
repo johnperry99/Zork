@@ -186,6 +186,11 @@ class Game {
 				System.out.println("Take what?");
 			else if (command.getSecondWord().equals(currentRoom.getInventory().hasItem(command.getSecondWord())))
 				takeItems(command, user.getInventory(), currentRoom.getInventory());
+			else
+				System.out.println("What?");
+		else
+			System.out.println("U wot m8?");
+			
 		return false;
 
 	}
