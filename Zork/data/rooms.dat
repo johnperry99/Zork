@@ -1,10 +1,10 @@
 Room Name: Bedroom
-Room Description:  You are in the bedroom. There is a bag on your tableside.
+Room Description:  You are in the bedroom. There is a stairway that leads downwards.
 Exit Rooms: D-Kitchen
 Items: bag-0
 Room Name: Kitchen
-Room Description:  You are in the kitchen. You see some food and a knife.<br>Realizing they will be of use to you,<br>you take them both.
-Exit Rooms: E-Armory, U-Bedroom, S-Living Room
+Room Description:  You are in the kitchen. You see some food and a knife.<br>Realizing they will be of use to you,<br>you take them both.<br>There are two doorways, one leading east and the other leading south. 
+Exit Rooms: E-Armory, S-Living Room
 Items: food-5, knife-5
 Room Name: Armory
 Room Description: You are in the armory.<br>There are a wide range of weapons you can take.<br>Unfortunately, you can't take all of them.<br>Your eyes rest on a handgun, sword and crossbow.<br>You can take a maximum of two weapons.
@@ -12,7 +12,7 @@ Exit Rooms: W-Kitchen
 Items: gun-10, sword-20, crossbow-20
 Room Name: Living Room
 Room Description: You are in the living room.<br>There is a door at the south end of the room.<br>It leads outside.
-Exit Rooms: W-Kitchen
+Exit Rooms: S-Front of House
 Items:
 Room Name: Front of House
 Room Description: You are in front of your house.<br>You see Alexandria's farm to the west and its entrance to the east.
@@ -27,7 +27,7 @@ Room Description: You are at the entrance to Alexandria.<br>A stationary car is 
 Exit Rooms: W-Front of House, E-Outside Gate
 Items: car-1000
 Room Name: Outside Gate
-Room Description: You are outside of the gate for the entrance to Alexandria.<br>The forest is to the east.<br>There, you are likely to encounter a zombie.
+Room Description: You are outside of the gate for the entrance to Alexandria.<br>The forest is to the east.<br>There, you are likely to encounter zombies.
 Exit Rooms: E-Forest1, W-Alexandria Entrance
 Items:
 Room Name: Forest1
@@ -35,11 +35,11 @@ Room Description: You are in the west section of the forest.<br>Your car has bee
 Exit Rooms: W-Outside Gate, E-Forest4, N-Forest3, S-Forest2
 Items: sign-500
 Room Name: Forest2
-Room Description: You are in the northwest section of the forest.<br>The Alexandria compound can be seen in the distance.
+Room Description: You are in the southwest section of the forest.<br>The Alexandria compound can be seen in the distance.
 Exit Rooms: N-Forest1, E-Forest5
 Items: 
 Room Name: Forest3
-Room Description: You are in the southwest section of the forest.<br>The Alexandria compound can be seen in the distance.
+Room Description: You are in the northwest section of the forest.<br>The Alexandria compound can be seen in the distance.
 Exit Rooms: S-Forest1, E-Forest6
 Items:
 Room Name: Forest4
@@ -47,46 +47,46 @@ Room Description: You are in the east section of the forest.<br>The forest conti
 Exit Rooms: W-Forest1, N-Forest6, S-Forest5, E-Clearing
 Items:
 Room Name: Forest5
-Room Description: You are in the southeast section of the forest.<br>The east center of the forest can be seen to the north.<br> A small house is barely visible to the east, as well.
+Room Description: You are in the southeast section of the forest.<br>The east center of the forest can be seen to the north.<br> A barn is barely visible to the east, as well.
 Exit Rooms: N-Forest4, W-Forest2, E-Barn Outside
 Items:
 Room Name: Forest6
-Room Description: You are in the southeast section of the forest.<br>The east center of the forest can be seen to the south.<br> A small house is barely visible to the east, as well.
-Exit Rooms: W-Forest2, E-House Outside, S-Forest4
+Room Description: You are in the northeast section of the forest.<br>The east center of the forest can be seen to the south.<br> A small house is barely visible to the east, as well.
+Exit Rooms: W-Forest3, E-House Outside, S-Forest4
 Items:
 Room Name: House Outside
-Room Description: You see a house ahead and decide to enter it.<br>Although this can be very risky and dangerous,<br>there are bound to valuable items to scavenge.<br>Just before entering you notice a sign to your left.
-Exit Rooms: W-Forest6, E-House Inside
+Room Description: You see a house nearby to the north, you notice a sign to your left.
+Exit Rooms: W-Forest6, E-Field1
 Items: sign-500
 Room Name: House Inside
-Room Description: Upon entering, you realize the lights don't work.<br>Uh-oh... Better watch out for the Boogeyman.
-Exit Rooms: W-House Outside, E-Field1
+Room Description: You enter the house, you realize the lights don't work.<br>Uh-oh... Better watch out for the Boogeyman.<br>Hope you brought a flashlight!
+Exit Rooms: S-House Outside
 Items:
 Room Name: Barn Outside
-Room Description: You see a barn nearby and consider entering.<br>You also consider the potential valuables you could find,<br> and potential dangers... A zombie horse?
-Exit Rooms: W-Forest5, E-Barn Inside
+Room Description: You see a barn nearby to the north and consider entering.<br>You also consider the potential valuables you could find,<br> and potential dangers... A zombie horse?
+Exit Rooms: W-Forest5, E-Field3, S-Barn Inside
 Items:
 Room Name: Barn Inside
-Room Description: Naturally, the barn is pitch black as there are no windows.<br>You sure better hope there isn't a zombie horse.
-Exit Rooms: W-Barn Inside, E-Field3
+Room Description: Naturally, the barn is pitch black as there are no windows.<br>You sure hope there isn't a zombie horse.
+Exit Rooms: N-Barn Outside
 Items:
 Room Name: Clearing
 Room Description: You have approached a clearing and don't see zombies for once.<br>The zombie-infested forest is to the west and a field to the east.
 Exit Rooms: W-Forest4, E-Field2
 Items:
 Room Name: Field1
-Room Description: You have approached the center of the field.<br>
+Room Description: You have entered the northern section of a field.<br>
 Exit Rooms: W-House1, S-Field2
 Items:
 Room Name: Field2
-Room Description:
-Exit Rooms: N-Field 1, W-Clearing, S-Field 3, E-Saviours Compound
+Room Description: You have entered the center of a field. To your east you see some sort of compound.
+Exit Rooms: N-Field1, W-Clearing, S-Field3, E-Saviours Compound
 Items:
 Room Name: Field3
-Room Description:
+Room Description: You have entered the southern section of a field. 
 Exit Rooms: W-House2, N-Field2
 Items:
 Room Name: Saviors Compound
-Room Description: W-Field2
-Exit Rooms:  
+Room Description: You have entered the Saviors' compound. A dangerous place where outsiders aren't welcome. 
+Exit Rooms: W-Field2
 Items:
