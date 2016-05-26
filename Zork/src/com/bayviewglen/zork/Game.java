@@ -63,11 +63,14 @@ class Game {
 
 				// handleitems
 				String itemString = roomScanner.nextLine();
-				// An array of strings in the format ObjectName-weight
+				// An array of strings in the format ObjectName-Weight
+				if(itemString.split(":").length == 2){
 				String[] items = itemString.split(":")[1].split(",");
-				if (items[0].indexOf("-") != -1) {
-					for (String s : items) {
-						room.getInventory().addItem(new Item(s.split("-")[0].trim(), Integer.parseInt(s.split("-")[1])));
+					if (items[0].indexOf("-") != -1) {
+						for (String s : items) {
+							room.getInventory()
+									.addItem(new Item(s.split("-")[0].trim(), Integer.parseInt(s.split("-")[1])));
+						}
 					}
 				}
 				// This puts the room we created (Without the exits in the
@@ -104,9 +107,9 @@ class Game {
 	public Game() {
 		try {
 			initRooms("data/Rooms.dat");
-			currentRoom = masterRoomMap.get("ROOM_1");
+			currentRoom = masterRoomMap.get("BEDROOM");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		parser = new Parser();
@@ -235,9 +238,9 @@ class Game {
 
 	private void takeItems(Command command, Inventory player, Inventory room) {
 		Item temp = room.getItem(command.getSecondWord());
-		if(room.hasItem(command.getSecondWord()))
+		if (room.hasItem(command.getSecondWord()))
 			player.addItem(temp);
-			room.removeItem(temp);
+		room.removeItem(temp);
 
 	}
 

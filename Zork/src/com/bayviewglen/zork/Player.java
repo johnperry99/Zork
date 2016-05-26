@@ -2,7 +2,7 @@ package com.bayviewglen.zork;
 
 import java.util.ArrayList;
 
-public class Player {
+public class Player extends Character{
 	
 	private Inventory inv = new Inventory();
     private int health = 100;

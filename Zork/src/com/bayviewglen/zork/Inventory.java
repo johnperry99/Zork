@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Inventory {
 
 	private ArrayList<Item> itemsInInventory;
-	private ArrayList<Characters> characters;
+	private ArrayList<Character> characters;
 
 	public Inventory() {
 		itemsInInventory = new ArrayList<Item>();
