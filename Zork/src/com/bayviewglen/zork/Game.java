@@ -143,6 +143,7 @@ class Game {
 		System.out.println("Type 'help' if you need help.");
 		System.out.println();
 		System.out.println(currentRoom.longDescription());
+		currentRoom.removeFirstTime();
 	}
 
 	/**
@@ -189,8 +190,8 @@ class Game {
 			else
 				System.out.println("There isn't an item of that sort here...");
 		else
-			System.out.println("I don't understand.");
-			
+			System.out.println("That doesn't exist in this world.");
+
 		return false;
 
 	}
@@ -199,7 +200,7 @@ class Game {
 
 	private void validAttackCommand(Command command) {
 		if (!command.hasSecondWord()) {
-			System.out.println("What do you want to attack, bud?");
+			System.out.println("What do you want to attack?");
 		} else if (!command.hasFourthWord()) {
 			System.out.println("What do you want to attack the " + command.getSecondWord() + "with?");
 		} else {
@@ -243,17 +244,22 @@ class Game {
 			System.out.println("There is no door!");
 		else {
 			currentRoom = nextRoom;
-			System.out.println(currentRoom.longDescription());
+			if (currentRoom.isFirstTime()) {
+				System.out.println(currentRoom.longDescription());
+			} else {
+				System.out.println(currentRoom.ultraShortDescription());
+			}
+			currentRoom.removeFirstTime();
 		}
 	}
 
 	private void takeItems(Command command, Inventory player, Inventory room) {
 		Item temp = room.getItem(command.getSecondWord());
-		if (room.hasItem(command.getSecondWord())){
+		if (room.hasItem(command.getSecondWord())) {
 			System.out.println("Taken.");
 			player.addItem(temp);
 			room.removeItem(temp);
-		}else{ 
+		} else {
 			System.out.println("No" + command.getSecondWord());
 		}
 	}

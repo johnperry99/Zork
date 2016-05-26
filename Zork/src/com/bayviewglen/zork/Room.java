@@ -26,7 +26,11 @@ class Room
     private Inventory inv;
     private boolean firstTime = true;
     
-    public Room(String description) 
+    public boolean isFirstTime() {
+		return firstTime;
+	}
+
+	public Room(String description) 
     {
         this.description = description;
         exits = new HashMap<String, Room>();
@@ -86,6 +90,9 @@ class Room
     public String shortDescription()
     {
         return roomName +"\n\n" + description;
+    }
+    public String ultraShortDescription(){
+    	return roomName;
     }
 
     /**
