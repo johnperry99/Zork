@@ -45,15 +45,17 @@ public class Inventory {
 	}
 
 	public boolean hasItem(Item x) {
-		if (itemsInInventory.contains(x)) {
-			return true;
+		for (int i = 0; i < itemsInInventory.size(); i++) {
+			if (itemsInInventory.get(i).equals(x)) {
+				return true;
+			}
 		}
 		return false;
 	}
 
 	public boolean hasItem(String x) {
 		for (int i = 0; i < itemsInInventory.size(); i++) {
-			if (itemsInInventory.get(i).getName().equals(x)) {
+			if (itemsInInventory.get(i).getName().equalsIgnoreCase(x)) {
 				return true;
 			}
 		}
@@ -62,10 +64,18 @@ public class Inventory {
 
 	public Item getItem(String word) {
 		for (Item x : itemsInInventory) {
-			if (x.getName().equals(word)) {
-
+			if (x.getName().equalsIgnoreCase(word)) {
+				return x;
 			}
-			return x;
+			
+		}
+		return null;
+	}
+	public String getItemString(String word){
+		for (Item x: itemsInInventory){
+			if(x.getName().equalsIgnoreCase(word)){
+				return x.getName();
+			}
 		}
 		return null;
 	}

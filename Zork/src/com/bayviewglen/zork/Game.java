@@ -184,10 +184,10 @@ class Game {
 		else if (commandWord.equalsIgnoreCase("take"))
 			if (!command.hasSecondWord() || !CommandWords.isNoun(command.getSecondWord()))
 				System.out.println("Take what?");
-			else if (command.getSecondWord().equals(currentRoom.getInventory().hasItem(command.getSecondWord())))
+			else if (command.getSecondWord().equals(currentRoom.getInventory().getItemString(command.getSecondWord())))
 				takeItems(command, user.getInventory(), currentRoom.getInventory());
 			else
-				System.out.println("What?");
+				System.out.println("There isn't an item of that sort here...");
 		else
 			System.out.println("I don't understand.");
 			
@@ -249,10 +249,13 @@ class Game {
 
 	private void takeItems(Command command, Inventory player, Inventory room) {
 		Item temp = room.getItem(command.getSecondWord());
-		if (room.hasItem(command.getSecondWord()))
+		if (room.hasItem(command.getSecondWord())){
+			System.out.println("Taken.");
 			player.addItem(temp);
-		room.removeItem(temp);
-
+			room.removeItem(temp);
+		}else{ 
+			System.out.println("No" + command.getSecondWord());
+		}
 	}
 
 }
