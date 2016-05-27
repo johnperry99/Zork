@@ -24,6 +24,7 @@ class Room
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
     private Inventory inv;
+    private CharacterRoster roster;
     private boolean firstTime = true;
     
     public boolean isFirstTime() {
@@ -35,6 +36,7 @@ class Room
         this.description = description;
         exits = new HashMap<String, Room>();
         inv = new Inventory();
+        roster = new CharacterRoster();
         //addInv();
     }
 
@@ -44,6 +46,7 @@ class Room
     	description = "DEFAULT DESCRIPTION";
     	exits = new HashMap<String, Room>();
     	inv = new Inventory();
+    	roster = new CharacterRoster();
 	}
 
     public void setExit(char direction, Room r) throws Exception{
@@ -148,5 +151,8 @@ class Room
 	}
 	public Inventory getInventory(){
 		return inv;
+	}
+	public CharacterRoster getRoster(){
+		return roster;
 	}
 }

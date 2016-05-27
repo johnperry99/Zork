@@ -204,9 +204,22 @@ class Game {
 		} else if (!command.hasFourthWord()) {
 			System.out.println("What do you want to attack the " + command.getSecondWord() + "with?");
 		} else {
-
+			attack(currentRoom.getRoster(), command);
 		}
 
+	}
+
+	private void attack(CharacterRoster roster, Command command) {
+		if(roster.hasCharacter(command.getSecondWord())){
+			if(command.getSecondWord().equalsIgnoreCase("Neagan")){
+				Assualt.attackNeagan();
+			}else if(command.getSecondWord().equalsIgnoreCase("Zombie") || command.getSecondWord().equalsIgnoreCase("Zombies")){
+				Assualt.attackZombie();
+			}else{
+				Assualt.attackHenchman();
+			}
+		}
+		
 	}
 
 	/**
@@ -247,7 +260,7 @@ class Game {
 			if (currentRoom.isFirstTime()) {
 				System.out.println(currentRoom.longDescription());
 			} else {
-				System.out.println(currentRoom.ultraShortDescription());
+				System.out.println(currentRoom.shortDescription());
 			}
 			currentRoom.removeFirstTime();
 		}
