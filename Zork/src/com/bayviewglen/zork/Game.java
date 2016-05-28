@@ -154,11 +154,11 @@ class Game {
 	private void printWelcome() throws InterruptedException {
 		System.out.println();
 		System.out.print("Welcome to ZORK:");
-		Thread.sleep(2000);
-		System.out.println(" THE WALKING DEAD");
-		Thread.sleep(2000);
-		System.out.println("This is a new take on the original Zork game, but set in the Walking dead universe!");
 		Thread.sleep(1000);
+		System.out.println(" THE WALKING DEAD");
+		Thread.sleep(1500);
+		System.out.println("This is a new take on the original Zork game, but set in The Walking Dead universe!");
+		Thread.sleep(2000);
 		System.out.println("Enter 'help' to see acceptable commands and your objective.");
 		Thread.sleep(2000);
 		System.out.println();
@@ -191,7 +191,7 @@ class Game {
 			else
 				return true; // signal that we want to quit
 		} else if (commandWord.equalsIgnoreCase("eat"))
-			System.out.println("Do you really think you should be eating at a time like this?");
+			eat(command);
 		else if (commandWord.equalsIgnoreCase("inventory") || commandWord.equalsIgnoreCase("i"))
 			user.displayInventory();
 		else if (commandWord.equalsIgnoreCase("look"))
@@ -258,13 +258,35 @@ class Game {
 		}
 
 	}
+	
+	private void eat(Command command) {
+		if(command.hasSecondWord() && command.getSecondWord().equalsIgnoreCase("food")
+		   && user.getInventory().hasItem("food") || currentRoom.getInventory().hasItem("food")){
+			if(user.getHealth()<=70){
+				user.addHealth(50);
+				System.out.println("You ate the food. It tasted delicious");
+			}else {
+				System.out.println("Do you really think you should be eating at a time like this?");
+				System.out.println("At least wait until you can heal health with it.\n(Food heals a lot of health.)");
+			}
+			
+		} else if(!command.hasSecondWord()){
+			System.out.println("Eat What?");
+		
+		}else {
+			System.out.println("Do you really think you should be eating at a time like this?");
+		}
+	}
 
 	/**
 	 * Print out some help information. Here we print some stupid, cryptic
 	 * message and a list of the command words.
 	 */
 	private void printHelp() {
-		System.out.println(""); // prints the objective of saving Maggie ONLY after you read note
+		System.out.println("Read the note for your objective.");
+		System.out.println("Max number of words per command: 4");
+		System.out.println("Avoid using words like 'the', 'a', 'this', 'your', 'my', etc...\n");
+		System.out.println("Enter i or inventory to display your inventory\n");
 		System.out.println("Your command words are:");
 		parser.showCommands();
 	}
@@ -276,8 +298,8 @@ class Game {
 	private void goRoom(Command command) {
 		String direction;
 		if (!command.hasSecondWord() && (command.getCommandWord().equalsIgnoreCase("go")
-				|| command.getCommandWord().equalsIgnoreCase("move") || command.getCommandWord().equalsIgnoreCase("run")
-				|| command.getCommandWord().equalsIgnoreCase("walk"))) {
+			|| command.getCommandWord().equalsIgnoreCase("move") || command.getCommandWord().equalsIgnoreCase("run")
+			|| command.getCommandWord().equalsIgnoreCase("walk"))) {
 			// if there is no second word, we don't know where to go...
 			System.out.println("Where would you like to go?");
 			return;

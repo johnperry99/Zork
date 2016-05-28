@@ -1,12 +1,12 @@
 Room Name: Bedroom
-Room Description:  You are in the bedroom. Sasha has just walked on and hands you a note.<br>There is also stairway that leads downwards.
+Room Description:  You are in the bedroom. Sasha has just walked in and places a note and bag on the table.<br>There is also a stairway that leads downstairs.
 Exits: D-Kitchen
 Items: bag-0, note-0
 Characters: sasha-
 Room Name: Kitchen
 Room Description:  You are in the kitchen. You see some food and a knife.<br>Realizing they will be of use to you, you take them both.<br>There are two doorways, one leading east and the other leading south. 
 Exits: E-Armory, S-Living Room, U-Bedroom
-Items: food-5, knife-5
+Items: food-0, knife-5
 Characters:
 Room Name: Armory
 Room Description: You are in the armory.<br>There is a wide range of weapons you can take.<br>Unfortunately, you can't take all of them.<br>Your eyes rest on a handgun, sword and crossbow.<br>You can take a maximum of two weapons.
