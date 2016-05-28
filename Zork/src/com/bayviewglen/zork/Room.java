@@ -96,7 +96,7 @@ class Room
         return roomName +"\n\n" + description;
     }
     public String ultraShortDescription(){
-    	return roomName;
+    	return roomName + "/n" + exits;
     }
 
     /**

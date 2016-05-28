@@ -295,7 +295,7 @@ class Game {
 			if (currentRoom.isFirstTime()) {
 				System.out.println(currentRoom.longDescription());
 			} else {
-				System.out.println(currentRoom.shortDescription());
+				System.out.println(currentRoom.ultraShortDescription());
 			}
 			currentRoom.removeFirstTime();
 		}
