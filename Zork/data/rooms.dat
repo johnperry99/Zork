@@ -1,5 +1,5 @@
 Room Name: Bedroom
-Room Description:  You are in the bedroom. There is a stairway that leads downwards.
+Room Description:  You are in the bedroom. Sasha has just walked on and hands you a note.<br>There is also stairway that leads downwards.
 Exits: D-Kitchen
 Items: bag-0, note-0
 Characters: sasha-
@@ -59,17 +59,17 @@ Exits: W-Forest1, N-Forest6, S-Forest5, E-Clearing
 Items:
 Characters: zombie-
 Room Name: Forest5
-Room Description: You are in the southeast section of the forest.<br>The center of the forest is to the north.<br> Also, a barn is barely visible to the east.
+Room Description: You are in the southeast section of the forest.<br>The center of the forest is to the north.<br>Also, a barn is barely visible to the east.
 Exits: N-Forest4, W-Forest2, E-Barn Outside
 Items:
 Characters: zombie-
 Room Name: Forest6
-Room Description: You are in the northeast section of the forest.<br>The center of the forest is to the south.<br> A small house is barely visible to the east.
+Room Description: You are in the northeast section of the forest.<br>The center of the forest is to the south.<br>A small house is barely visible to the east.
 Exits: W-Forest3, E-House Outside, S-Forest4
 Items:
 Characters: zombie-
 Room Name: House Outside
-Room Description: You see a house nearby to the north and you notice a sign to your left.
+Room Description: You see a house nearby to the north and notice a sign in front of it.
 Exits: W-Forest6, E-Field1
 Items: sign-500
 Characters:
