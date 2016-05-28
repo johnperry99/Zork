@@ -93,11 +93,11 @@ class Room
      */
     public String shortDescription()
     {
-        return roomName +"\n\n" + description;
+        return roomName +"\n\n" + exits;
     }
-    public String ultraShortDescription(){
-    	return roomName + "/n" + exits;
-    }
+    /*public String ultraShortDescription(){
+    	return roomName + "\n\n" + exits;
+    }*/
 
     /**
      * Return a long description of this room, on the form:

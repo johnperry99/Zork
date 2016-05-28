@@ -295,7 +295,7 @@ class Game {
 			if (currentRoom.isFirstTime()) {
 				System.out.println(currentRoom.longDescription());
 			} else {
-				System.out.println(currentRoom.ultraShortDescription());
+				System.out.println(currentRoom.shortDescription());
 			}
 			currentRoom.removeFirstTime();
 		}
@@ -317,7 +317,7 @@ class Game {
 		} else if (x > user.capacity()) {
 			System.out.println("You can't carry that much!");
 		} else {
-			System.out.println("No" + command.getSecondWord() + " here...");
+			System.out.println("There is no " + command.getSecondWord() + " here...");
 		}
 	}
 	public void quit(){
