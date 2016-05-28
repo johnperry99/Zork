@@ -1,6 +1,6 @@
 package com.bayviewglen.zork;
 
-public abstract class Assualt {
+public abstract class Assault {
 
 	public static void attackZombie(){
 		

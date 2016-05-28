@@ -76,5 +76,12 @@ public class Inventory {
 		}
 		return null;
 	}
+	public int calculateWeight(){
+		int weight = 0;
+		for(Item x: itemsInInventory){
+			weight += x.getWeight();
+		}
+		return weight;
+	}
 
 }

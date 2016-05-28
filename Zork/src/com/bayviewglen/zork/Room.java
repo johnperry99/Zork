@@ -26,6 +26,7 @@ class Room
     private Inventory inv;
     private CharacterRoster roster;
     private boolean firstTime = true;
+    private int inventoryCapacity = 9999999;
     
     public boolean isFirstTime() {
 		return firstTime;

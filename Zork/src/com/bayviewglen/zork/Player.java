@@ -8,18 +8,21 @@ public class Player extends Character{
     private int health = 100;
     private int inventoryCapacity = 10;
     private boolean flashlightShining;
+    private int currentWeight;
     
     
    
-	public Player(Inventory inv, int health, int inventoryCapacity, boolean flashlightShining) {
+	public Player(Inventory inv, int health, int inventoryCapacity, boolean flashlightShining, int currentWeight) {
 		super();
 		this.inv = inv;
 		this.health = health;
 		this.inventoryCapacity = inventoryCapacity;
 		this.flashlightShining = flashlightShining;
+		this.currentWeight = currentWeight;
 	}
 	public Player(){
-		boolean flashlightShining = false;
+		 flashlightShining = false;
+		 currentWeight = 0;
 	}
 	public boolean isFlashlightOn() {
 		return flashlightShining;
@@ -56,6 +59,9 @@ public class Player extends Character{
     		return true;
     	}
     	return false;
+    }
+    public int capacity(){
+    	return inventoryCapacity;
     }
 	
 }

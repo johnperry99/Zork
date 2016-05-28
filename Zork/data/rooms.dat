@@ -1,96 +1,120 @@
 Room Name: Bedroom
 Room Description:  You are in the bedroom. There is a stairway that leads downwards.
 Exits: D-Kitchen
-Items: bag--40, note-0
+Items: bag-0, note-0
+Characters: Sasha
 Room Name: Kitchen
 Room Description:  You are in the kitchen. You see some food and a knife.<br>Realizing they will be of use to you, you take them both.<br>There are two doorways, one leading east and the other leading south. 
 Exits: E-Armory, S-Living Room, U-Bedroom
 Items: food-5, knife-5
+Characters:
 Room Name: Armory
 Room Description: You are in the armory.<br>There is a wide range of weapons you can take.<br>Unfortunately, you can't take all of them.<br>Your eyes rest on a handgun, sword and crossbow.<br>You can take a maximum of two weapons.
 Exits: W-Kitchen
 Items: gun-10, sword-20, crossbow-20
+Characters:
 Room Name: Living Room
 Room Description: You are in the living room.<br>There is a door at the south end of the room.<br>It leads outside.
 Exits: N-Kitchen, S-Front of House
 Items:
+Characters:
 Room Name: Front of House
 Room Description: You are in front of your house.<br>You see Alexandria's farm to the west and its entrance to the east.
 Exits: W-Farm, E-Alexandria Entrance
 Items: 
+Characters:
 Room Name: Farm
 Room Description: You are in the farm of Alexandria.
 Exits: E-Front of House
 Items:
+Characters:
 Room Name: Alexandria Entrance
 Room Description: You are at the entrance to Alexandria.<br>A stationary car is parked nearby.
 Exits: W-Front of House, E-Outside Gate
 Items: car-1000
+Characters:
 Room Name: Outside Gate
 Room Description: You are outside of the gate for the entrance to Alexandria.<br>The forest is to the east.<br>There, you are likely to encounter zombies.
 Exits: E-Forest1, W-Alexandria Entrance
 Items:
+Characters:
 Room Name: Forest1
 Room Description: You are in the west section of the forest.<br>Your car has been parked nearby, cleverly hidden.<br>Time to go on an adventure!
 Exits: W-Outside Gate, E-Forest4, N-Forest3, S-Forest2
 Items: sign-500
+Characters:
 Room Name: Forest2
 Room Description: You are in the southwest section of the forest.<br>The Alexandria compound can be seen in the distance.
 Exits: N-Forest1, E-Forest5
 Items: 
+Characters:
 Room Name: Forest3
 Room Description: You are in the northwest section of the forest.<br>The Alexandria compound can be seen in the distance.
 Exits: S-Forest1, E-Forest6
 Items:
+Characters: zombies
 Room Name: Forest4
 Room Description: You are in the east section of the forest.<br>The forest continues to the north and south.<br>A clearing can also be seen to the east.
 Exits: W-Forest1, N-Forest6, S-Forest5, E-Clearing
 Items:
+Characters:
 Room Name: Forest5
 Room Description: You are in the southeast section of the forest.<br>The east center of the forest can be seen to the north.<br> A barn is barely visible to the east, as well.
 Exits: N-Forest4, W-Forest2, E-Barn Outside
 Items:
+Characters:
 Room Name: Forest6
 Room Description: You are in the northeast section of the forest.<br>The east center of the forest can be seen to the south.<br> A small house is barely visible to the east, as well.
 Exits: W-Forest3, E-House Outside, S-Forest4
 Items:
+Characters:
 Room Name: House Outside
 Room Description: You see a house nearby to the north, you notice a sign to your left.
 Exits: W-Forest6, E-Field1
 Items: sign-500
+Characters:
 Room Name: House Inside
 Room Description: You enter the house, you realize the lights don't work.<br>Uh-oh... Better watch out for the Boogeyman.<br>Hope you brought a flashlight!
 Exits: S-House Outside
 Items:
+Characters:
 Room Name: Barn Outside
 Room Description: You see a barn nearby to the north and consider entering.<br>You also consider the potential valuables you could find,<br> and potential dangers... A zombie horse?
 Exits: W-Forest5, E-Field3, S-Barn Inside
 Items:
+Characters:
 Room Name: Barn Inside
 Room Description: Naturally, the barn is pitch black as there are no windows.<br>You sure hope there isn't a zombie horse.
 Exits: N-Barn Outside
 Items:
+Characters:
 Room Name: Clearing
 Room Description: You have approached a clearing and don't see zombies for once.<br>The zombie-infested forest is to the west and a field to the east.
 Exits: W-Forest4, E-Field2
 Items:
+Characters:
 Room Name: Field1
 Room Description: You have entered the northern section of a field.<br>You notice the field continues to the south.<br>A house is also visible to the west.
 Exits: W-House1, S-Field2
 Items:
+Characters:
 Room Name: Field2
 Room Description: You have entered the center of a field.<br>The field continues to the north and south.<br>To the east you see some sort of compound.<br>Your heart starts as the realization hits you...<br>It's the Saviours Compound.
 Exits: N-Field1, W-Clearing, S-Field3, E-Saviours Compound
 Items:
+Characters:
 Room Name: Field3
 Room Description: You have entered the southern section of a field.<br>You notice the field continues to the north.<br>A house is also visible to the west.
 Exits: W-House2, N-Field2
 Items:
+Characters:
 Room Name: Outside Saviours Compound
 Room Description: You have made the difficult decision of infiltrating the Saviours's compound.<br>You know everyone else is counting on you to save Maggy.<br>You are suddenly conscious of the map of the Saviour's compound. 
 Exits: W-Field2, E-Inside Saviours Compound
 Items:
+Characters:
 Room Name: Inside Saviours Compound
 Room Description: You successfully snuck past the guards in the watchtower.<br>You have now entered the compound, currently undetected.
 Exits: W-Outside Saviours Compound
 Items:
+Characters:

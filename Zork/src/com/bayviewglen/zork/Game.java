@@ -68,8 +68,19 @@ class Game {
 					String[] items = itemString.split(":")[1].split(",");
 					if (items[0].indexOf("-") != -1) {
 						for (String s : items) {
-							room.getInventory().addItem(new Item(s.split("-")[0].trim(), 
-							Integer.parseInt(s.split("-")[1])));
+							room.getInventory()
+									.addItem(new Item(s.split("-")[0].trim(), Integer.parseInt(s.split("-")[1])));
+						}
+					}
+				}
+				// handlecharacters
+				String characterString = roomScanner.nextLine();
+				// An array of strings in the format characterName
+				if (characterString.split(":").length == 2) {
+					String[] characters = characterString.split(":")[1].split(",");
+					if (characters[0].indexOf("-") != -1) {
+						for (String s : characters) {
+							room.getRoster().addCharacter(new Character(s.split("-")[0].trim()));
 						}
 					}
 				}
@@ -131,6 +142,11 @@ class Game {
 			finished = processCommand(command);
 		}
 		System.out.println("Thank you for playing.  Good bye.");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -159,12 +175,11 @@ class Game {
 		String commandWord = command.getCommandWord();
 		if (commandWord.equalsIgnoreCase("help"))
 			printHelp();
-		else if (commandWord.equalsIgnoreCase("go") || commandWord.equalsIgnoreCase("move") 
-				|| commandWord.equalsIgnoreCase("walk")
-				|| commandWord.equalsIgnoreCase("run")	|| commandWord.equalsIgnoreCase("north")
-				|| commandWord.equalsIgnoreCase("south") || commandWord.equalsIgnoreCase("west")
-				|| commandWord.equalsIgnoreCase("east") || commandWord.equalsIgnoreCase("up")
-				|| commandWord.equalsIgnoreCase("down"))
+		else if (commandWord.equalsIgnoreCase("go") || commandWord.equalsIgnoreCase("move")
+				|| commandWord.equalsIgnoreCase("walk") || commandWord.equalsIgnoreCase("run")
+				|| commandWord.equalsIgnoreCase("north") || commandWord.equalsIgnoreCase("south")
+				|| commandWord.equalsIgnoreCase("west") || commandWord.equalsIgnoreCase("east")
+				|| commandWord.equalsIgnoreCase("up") || commandWord.equalsIgnoreCase("down"))
 			goRoom(command);
 		else if (commandWord.equalsIgnoreCase("quit")) {
 			if (command.hasSecondWord())
@@ -179,12 +194,12 @@ class Game {
 			System.out.println(currentRoom.getDescription());
 		else if (commandWord.equalsIgnoreCase("kill") || commandWord.equalsIgnoreCase("attack"))
 			validAttackCommand(command);
-		else if (commandWord.equalsIgnoreCase("shoot")){
+		else if (commandWord.equalsIgnoreCase("shoot")) {
 			if (user.hasItem("gun") || user.hasItem("crossbow"))
 				validAttackCommand(command);
 			else
 				System.out.println("You don't have a gun!");
-		} else if (commandWord.equalsIgnoreCase("take")){
+		} else if (commandWord.equalsIgnoreCase("take")) {
 			if (!command.hasSecondWord() || !CommandWords.isNoun(command.getSecondWord()))
 				System.out.println("Take what?");
 			else if (command.getSecondWord().equals(currentRoom.getInventory().getItemString(command.getSecondWord())))
@@ -212,16 +227,27 @@ class Game {
 	}
 
 	private void attack(CharacterRoster roster, Command command) {
-		if(roster.hasCharacter(command.getSecondWord())){
-			if(command.getSecondWord().equalsIgnoreCase("Negan")){
-				Assualt.attackNegan();
-			}else if(command.getSecondWord().equalsIgnoreCase("Zombie") || command.getSecondWord().equalsIgnoreCase("Zombies")){
-				Assualt.attackZombie();
-			}else{
-				Assualt.attackHenchman();
+		if (roster.hasCharacter(command.getSecondWord())) {
+
+			if (command.getSecondWord().equalsIgnoreCase("Zombie")
+					|| command.getSecondWord().equalsIgnoreCase("Zombies")) {
+				Assault.attackZombie();
+			} else if (command.getSecondWord().equalsIgnoreCase("Henchman")
+					|| command.getSecondWord().equalsIgnoreCase("Henchmen")) {
+				Assault.attackHenchman();
+			} else if (command.getSecondWord().equalsIgnoreCase("It") || command.getSecondWord().equalsIgnoreCase("Him")
+					|| command.getSecondWord().equalsIgnoreCase("Her")) {
+				if (currentRoom.getRoster().hasCharacter("zombie")) {
+					Assault.attackZombie();
+				} else if (currentRoom.getRoster().hasCharacter("henchman")) {
+					Assault.attackHenchman();
+				} else {
+					System.out.println("You can't attack an ally!");
+				}
 			}
+
 		}
-		
+
 	}
 
 	/**
@@ -243,8 +269,8 @@ class Game {
 	private void goRoom(Command command) {
 		String direction;
 		if (!command.hasSecondWord() && (command.getCommandWord().equalsIgnoreCase("go")
-			|| command.getCommandWord().equalsIgnoreCase("move") || command.getCommandWord().equalsIgnoreCase("run")
-			|| command.getCommandWord().equalsIgnoreCase("walk"))) {
+				|| command.getCommandWord().equalsIgnoreCase("move") || command.getCommandWord().equalsIgnoreCase("run")
+				|| command.getCommandWord().equalsIgnoreCase("walk"))) {
 			// if there is no second word, we don't know where to go...
 			System.out.println("Where would you like to go?");
 			return;
@@ -271,12 +297,21 @@ class Game {
 
 	private void takeItems(Command command, Inventory player, Inventory room) {
 		Item temp = room.getItem(command.getSecondWord());
-		if (room.hasItem(command.getSecondWord())) {
+		if (currentRoom.getInventory().hasItem("bag")) {
+			if (temp.equals(currentRoom.getInventory().getItem("bag"))) {
+				user.addToInventoryCapacity(40);
+			}
+		}
+		int x = temp.getWeight() + player.calculateWeight();
+		if (room.hasItem(command.getSecondWord()) && x < user.capacity()) {
 			System.out.println("Taken.");
 			player.addItem(temp);
 			room.removeItem(temp);
+
+		} else if (x > user.capacity()) {
+			System.out.println("You can't carry that much!");
 		} else {
-			System.out.println("No" + command.getSecondWord());
+			System.out.println("No" + command.getSecondWord() + " here...");
 		}
 	}
 
