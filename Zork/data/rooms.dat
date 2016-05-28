@@ -4,15 +4,15 @@ Exit Rooms: D-Kitchen
 Items: bag-0
 Room Name: Kitchen
 Room Description:  You are in the kitchen. You see some food and a knife.<br>Realizing they will be of use to you,<br>you take them both.<br>There are two doorways, one leading east and the other leading south. 
-Exit Rooms: E-Armory, S-Living Room, U-Bedroom
+Exit Rooms: E-Armory, S-Living Room
 Items: food-5, knife-5
 Room Name: Armory
-Room Description: You are in the armory.<br>There are a wide range of weapons you can take.<br>Unfortunately, you can't take all of them.<br>Your eyes rest on a handgun, sword and crossbow.<br>You can take a maximum of two weapons.
+Room Description: You are in the armory.<br>There is a wide range of weapons you can take.<br>Unfortunately, you can't take all of them.<br>Your eyes rest on a handgun, sword and crossbow.<br>You can take a maximum of two weapons.
 Exit Rooms: W-Kitchen
 Items: gun-10, sword-20, crossbow-20
 Room Name: Living Room
 Room Description: You are in the living room.<br>There is a door at the south end of the room.<br>It leads outside.
-Exit Rooms: S-Front of House, N-Kitchen
+Exit Rooms: N-Kitchen, S-Front of House
 Items:
 Room Name: Front of House
 Room Description: You are in front of your house.<br>You see Alexandria's farm to the west and its entrance to the east.
@@ -56,14 +56,14 @@ Exit Rooms: W-Forest3, E-House Outside, S-Forest4
 Items:
 Room Name: House Outside
 Room Description: You see a house nearby to the north, you notice a sign to your left.
-Exit Rooms: W-Forest6, E-Field1, N-House Inside
+Exit Rooms: W-Forest6, E-Field1
 Items: sign-500
 Room Name: House Inside
 Room Description: You enter the house, you realize the lights don't work.<br>Uh-oh... Better watch out for the Boogeyman.<br>Hope you brought a flashlight!
 Exit Rooms: S-House Outside
 Items:
 Room Name: Barn Outside
-Room Description: You see a barn nearby to the south and consider entering.<br>You also consider the potential valuables you could find,<br> and potential dangers... A zombie horse?
+Room Description: You see a barn nearby to the north and consider entering.<br>You also consider the potential valuables you could find,<br> and potential dangers... A zombie horse?
 Exit Rooms: W-Forest5, E-Field3, S-Barn Inside
 Items:
 Room Name: Barn Inside
@@ -75,18 +75,22 @@ Room Description: You have approached a clearing and don't see zombies for once.
 Exit Rooms: W-Forest4, E-Field2
 Items:
 Room Name: Field1
-Room Description: You have entered the northern section of a field.<br>
+Room Description: You have entered the northern section of a field.<br>You notice the field continues to the south.<br>A house is also visible to the west.
 Exit Rooms: W-House1, S-Field2
 Items:
 Room Name: Field2
-Room Description: You have entered the center of a field. To your east you see some sort of compound.
+Room Description: You have entered the center of a field.<br>The field continues to the north and south.<br>To the east you see some sort of compound.<br>Your heart starts as the realization hits you...<br>It's the Saviours Compound.
 Exit Rooms: N-Field1, W-Clearing, S-Field3, E-Saviours Compound
 Items:
 Room Name: Field3
-Room Description: You have entered the southern section of a field. 
+Room Description: You have entered the southern section of a field.<br>You notice the field continues to the north.<br>A house is also visible to the west.
 Exit Rooms: W-House2, N-Field2
 Items:
-Room Name: Saviors Compound
-Room Description: You have entered the Saviors' compound. A dangerous place where outsiders aren't welcome. 
-Exit Rooms: W-Field2
+Room Name: Outside Saviours Compound
+Room Description: You have made the difficult decision of infiltrating the Saviours's compound.<br>You know everyone else is counting on you to save Maggy.<br>You are suddenly conscious of the map of the Saviour's compound. 
+Exit Rooms: W-Field2, E-Inside Saviours Compound
+Items:
+Room Name: Inside Saviours Compound
+Room Description: You successfully snuck past the guards in the watchtower.<br>You have now entered the compound, currently undetected.
+Exit Rooms: W-Outside Saviours Compound
 Items:
