@@ -254,7 +254,7 @@ class Game {
 		Room nextRoom = currentRoom.nextRoom(direction);
 
 		if (nextRoom == null)
-			System.out.println("There is no door!");
+			System.out.println("You can't go that way!");
 		else {
 			currentRoom = nextRoom;
 			if (currentRoom.isFirstTime()) {
