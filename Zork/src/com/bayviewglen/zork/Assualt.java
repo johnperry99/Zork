@@ -8,7 +8,7 @@ public abstract class Assualt {
 	public static void attackHenchman(){
 		
 	}
-	public static void attackNeagan(){
+	public static void attackNegan(){
 		
 	}
 }

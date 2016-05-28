@@ -51,6 +51,9 @@ class CommandWords {
 	 */
 	public void showAll() {
 		for (int i = 0; i < validCommands.length; i++) {
+			if(i%7==0){
+				System.out.println("");
+			}
 			System.out.print(validCommands[i] + "  ");
 		}
 		System.out.println();
