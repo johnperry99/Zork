@@ -45,10 +45,10 @@ public class Player extends Character{
     public void setHealth(int x){
     	health = x;
     }
-    public void removeHealth(int x){
+    public void removeHealth(int x){ //from zombies
     	health -= x;
     }
-    public void addHealth(int x){
+    public void addHealth(int x){ //from food
     	health += x;
     }
     public boolean hasItem(String x){
