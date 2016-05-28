@@ -26,6 +26,7 @@ class Game {
 	private Parser parser;
 	private Room currentRoom;
 	private Player user;
+	private boolean finished = false;
 	// This is a MASTER object that contains all of the rooms and is easily
 	// accessible.
 	// The key will be the name of the room -> no spaces (Use all caps and
@@ -136,7 +137,7 @@ class Game {
 		// Enter the main command loop. Here we repeatedly read commands and
 		// execute them until the game is over.
 
-		boolean finished = false;
+		
 		while (!finished) {
 			Command command = parser.getCommand();
 			finished = processCommand(command);
@@ -318,6 +319,9 @@ class Game {
 		} else {
 			System.out.println("No" + command.getSecondWord() + " here...");
 		}
+	}
+	public void quit(){
+		finished = true;
 	}
 
 }
