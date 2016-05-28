@@ -16,7 +16,7 @@ class CommandWords {
 			"sit down", "stand up", "talk", "attack", "shoot", "kill", "open", "close", "take", "take all",
 			"inventory", "i", "north", "east", "west", "south", "up", "down" };
 	private static final String validNouns[] = { "bag", "note", "car", "gun", "handgun", "knife", "crossbow", "desk", "chair", "table", "door", "sign",
-			"food", "book", "person", "sword", "inventory", "flashlight" };
+			"food", "book", "person", "sword", "inventory", "flashlight", "zombies", "zombie", "Rick", "Daryl", "Sasha", "Carol", "Carl", "Maggie" };
 
 	/**
 	 * Constructor - initialise the command words.

@@ -219,7 +219,7 @@ class Game {
 		if (!command.hasSecondWord()) {
 			System.out.println("What do you want to attack?");
 		} else if (!command.hasFourthWord()) {
-			System.out.println("What do you want to attack the " + command.getSecondWord() + "with?");
+			System.out.println("What do you want to attack " + command.getSecondWord() + " with?");
 		} else {
 			attack(currentRoom.getRoster(), command);
 		}
@@ -231,21 +231,26 @@ class Game {
 
 			if (command.getSecondWord().equalsIgnoreCase("Zombie")
 					|| command.getSecondWord().equalsIgnoreCase("Zombies")) {
-				Assault.attackZombie();
+				Assault.attackZombie(currentRoom, user, command);
 			} else if (command.getSecondWord().equalsIgnoreCase("Henchman")
 					|| command.getSecondWord().equalsIgnoreCase("Henchmen")) {
-				Assault.attackHenchman();
+				Assault.attackHenchman(currentRoom, user, command);
 			} else if (command.getSecondWord().equalsIgnoreCase("It") || command.getSecondWord().equalsIgnoreCase("Him")
 					|| command.getSecondWord().equalsIgnoreCase("Her")) {
 				if (currentRoom.getRoster().hasCharacter("zombie")) {
-					Assault.attackZombie();
+					Assault.attackZombie(currentRoom, user, command);
 				} else if (currentRoom.getRoster().hasCharacter("henchman")) {
-					Assault.attackHenchman();
+					Assault.attackHenchman(currentRoom, user, command);
 				} else {
 					System.out.println("You can't attack an ally!");
 				}
+				
+			}else{
+				System.out.println("You can't attack an ally!");
 			}
 
+		}else{
+			System.out.println("That character is not here!");
 		}
 
 	}

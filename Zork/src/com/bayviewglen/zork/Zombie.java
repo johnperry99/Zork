@@ -2,7 +2,7 @@ package com.bayviewglen.zork;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Zombie {
+public class Zombie extends Character{
 	private int numZombies;
 	
 	public Zombie (int numZombies){ //constructs the zombie class

@@ -2,7 +2,7 @@ Room Name: Bedroom
 Room Description:  You are in the bedroom. There is a stairway that leads downwards.
 Exits: D-Kitchen
 Items: bag-0, note-0
-Characters: Sasha
+Characters: sasha-
 Room Name: Kitchen
 Room Description:  You are in the kitchen. You see some food and a knife.<br>Realizing they will be of use to you, you take them both.<br>There are two doorways, one leading east and the other leading south. 
 Exits: E-Armory, S-Living Room, U-Bedroom

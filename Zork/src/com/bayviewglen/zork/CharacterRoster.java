@@ -38,7 +38,7 @@ public class CharacterRoster {
 	}
 	public boolean hasCharacter(String x){
 		for(Character s: roster){
-			if(s.getName().equals(x)){
+			if(s.getName().equalsIgnoreCase(x)){
 				return true;
 			}
 		}
@@ -53,7 +53,7 @@ public class CharacterRoster {
 	}
 	public Character getCharacterString(String x){
 		for(Character s: roster){
-			if(s.getName().equals(x)){
+			if(s.getName().equalsIgnoreCase(x)){
 				return s;
 			}
 		}
