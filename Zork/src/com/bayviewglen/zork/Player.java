@@ -39,11 +39,17 @@ public class Player extends Character{
     public void removeFromInventoryCapacity(int x){
     	inventoryCapacity -= x;
     }
+    public int getHealth(){
+    	return health;
+    }
     public void setHealth(int x){
     	health = x;
     }
     public void removeHealth(int x){
     	health -= x;
+    }
+    public void addHealth(int x){
+    	health += x;
     }
     public boolean hasItem(String x){
     	if(inv.hasItem(x)){

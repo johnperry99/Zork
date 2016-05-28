@@ -35,6 +35,10 @@ public class Zombie {
 			return 0;
 		}
 	}
+	
+	public void reduceNumZombies(){
+		numZombies--;
+	}
 
 	public int playerMovement() { //returns number of steps the player takes per round
 		final int MIN_MOVEMENT_PLAYER = 1;

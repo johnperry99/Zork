@@ -68,8 +68,8 @@ class Game {
 					String[] items = itemString.split(":")[1].split(",");
 					if (items[0].indexOf("-") != -1) {
 						for (String s : items) {
-							room.getInventory()
-									.addItem(new Item(s.split("-")[0].trim(), Integer.parseInt(s.split("-")[1])));
+							room.getInventory().addItem(new Item(s.split("-")[0].trim(), 
+							Integer.parseInt(s.split("-")[1])));
 						}
 					}
 				}
@@ -159,7 +159,9 @@ class Game {
 		String commandWord = command.getCommandWord();
 		if (commandWord.equalsIgnoreCase("help"))
 			printHelp();
-		else if (commandWord.equalsIgnoreCase("go") || commandWord.equalsIgnoreCase("north")
+		else if (commandWord.equalsIgnoreCase("go") || commandWord.equalsIgnoreCase("move") 
+				|| commandWord.equalsIgnoreCase("walk")
+				|| commandWord.equalsIgnoreCase("run")	|| commandWord.equalsIgnoreCase("north")
 				|| commandWord.equalsIgnoreCase("south") || commandWord.equalsIgnoreCase("west")
 				|| commandWord.equalsIgnoreCase("east") || commandWord.equalsIgnoreCase("up")
 				|| commandWord.equalsIgnoreCase("down"))
@@ -169,27 +171,27 @@ class Game {
 				System.out.println("Quit what?");
 			else
 				return true; // signal that we want to quit
-		} else if (commandWord.equalsIgnoreCase("eat")) {
+		} else if (commandWord.equalsIgnoreCase("eat"))
 			System.out.println("Do you really think you should be eating at a time like this?");
-		} else if (commandWord.equalsIgnoreCase("inventory"))
+		else if (commandWord.equalsIgnoreCase("inventory") || commandWord.equalsIgnoreCase("i"))
 			user.displayInventory();
 		else if (commandWord.equalsIgnoreCase("look"))
 			System.out.println(currentRoom.getDescription());
 		else if (commandWord.equalsIgnoreCase("kill") || commandWord.equalsIgnoreCase("attack"))
 			validAttackCommand(command);
-		else if (commandWord.equalsIgnoreCase("shoot"))
+		else if (commandWord.equalsIgnoreCase("shoot")){
 			if (user.hasItem("gun") || user.hasItem("crossbow"))
 				validAttackCommand(command);
 			else
 				System.out.println("You don't have a gun!");
-		else if (commandWord.equalsIgnoreCase("take"))
+		} else if (commandWord.equalsIgnoreCase("take")){
 			if (!command.hasSecondWord() || !CommandWords.isNoun(command.getSecondWord()))
 				System.out.println("Take what?");
 			else if (command.getSecondWord().equals(currentRoom.getInventory().getItemString(command.getSecondWord())))
 				takeItems(command, user.getInventory(), currentRoom.getInventory());
 			else
 				System.out.println("There isn't an item of that sort here...");
-		else
+		} else
 			System.out.println("I don't understand.");
 
 		return false;
@@ -211,8 +213,8 @@ class Game {
 
 	private void attack(CharacterRoster roster, Command command) {
 		if(roster.hasCharacter(command.getSecondWord())){
-			if(command.getSecondWord().equalsIgnoreCase("Neagan")){
-				Assualt.attackNeagan();
+			if(command.getSecondWord().equalsIgnoreCase("Negan")){
+				Assualt.attackNegan();
 			}else if(command.getSecondWord().equalsIgnoreCase("Zombie") || command.getSecondWord().equalsIgnoreCase("Zombies")){
 				Assualt.attackZombie();
 			}else{
@@ -240,14 +242,15 @@ class Game {
 	 */
 	private void goRoom(Command command) {
 		String direction;
-		if (!command.hasSecondWord() && command.getCommandWord().equalsIgnoreCase("go")) {
+		if (!command.hasSecondWord() && (command.getCommandWord().equalsIgnoreCase("go")
+			|| command.getCommandWord().equalsIgnoreCase("move") || command.getCommandWord().equalsIgnoreCase("run")
+			|| command.getCommandWord().equalsIgnoreCase("walk"))) {
 			// if there is no second word, we don't know where to go...
-			System.out.println("Go where?");
+			System.out.println("Where would you like to go?");
 			return;
 		} else if (!command.hasSecondWord()) {
 			direction = command.getCommandWord();
 		} else {
-
 			direction = command.getSecondWord();
 		}
 		// Try to leave current room.

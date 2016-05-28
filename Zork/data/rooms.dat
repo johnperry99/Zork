@@ -1,7 +1,7 @@
 Room Name: Bedroom
 Room Description:  You are in the bedroom. There is a stairway that leads downwards.
 Exits: D-Kitchen
-Items: bag-0
+Items: bag--40, note-0
 Room Name: Kitchen
 Room Description:  You are in the kitchen. You see some food and a knife.<br>Realizing they will be of use to you, you take them both.<br>There are two doorways, one leading east and the other leading south. 
 Exits: E-Armory, S-Living Room, U-Bedroom
@@ -17,7 +17,7 @@ Items:
 Room Name: Front of House
 Room Description: You are in front of your house.<br>You see Alexandria's farm to the west and its entrance to the east.
 Exits: W-Farm, E-Alexandria Entrance
-Items:
+Items: 
 Room Name: Farm
 Room Description: You are in the farm of Alexandria.
 Exits: E-Front of House
