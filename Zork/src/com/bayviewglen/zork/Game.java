@@ -141,7 +141,6 @@ class Game {
 
 		
 		while (!finished) {
-			System.out.println("Current Health:  " + user.getHealth());
 			Command command = parser.getCommand();
 			finished = processCommand(command);
 			
@@ -300,10 +299,10 @@ class Game {
 	private void read(Command command) throws InterruptedException {
 		if(command.getSecondWord().equalsIgnoreCase("note")){
 			if(firstTime==false){
-				System.out.println("There's something very important that you need to know.");
+				System.out.println("\"There's something very important that you need to know.");
 				System.out.println("We're all very sorry to say this but... Glenn... Your wife, Maggy, has been kidnapped.");
 				System.out.println("We know you are going to go look for her, but we strongly advise against it.");
-				System.out.println("If anything you should wait a few days for us to plan out how we are going to find her.");
+				System.out.println("If anything you should wait a few days for us to plan out how we are going to find her.\"");
 			} else {
 				System.out.println("There's some very important that you need to know.");
 				System.out.println("We're all very sorry to say this but... Glenn... Your wife, Maggy, has been kidnapped.");
@@ -404,6 +403,7 @@ class Game {
 			currentRoom = nextRoom;
 			if (currentRoom.isFirstTime()) {
 				System.out.println(currentRoom.longDescription());
+				System.out.println("Current Health:  " + user.getHealth());
 			} else {
 				System.out.println(currentRoom.shortDescription());
 			}

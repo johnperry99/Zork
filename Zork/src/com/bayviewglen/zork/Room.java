@@ -104,7 +104,7 @@ class Room
     public String longDescription()
     {
     	
-        return roomName +"\n\n" + description + "\n" + exitString();
+        return roomName +"\n\n" + description + "\n\n" + exitString();
     }
 
     /**
