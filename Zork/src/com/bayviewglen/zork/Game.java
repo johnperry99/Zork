@@ -26,7 +26,7 @@ class Game {
 	private Parser parser;
 	private Room currentRoom;
 	private Player user;
-	private boolean finished = false;
+	private static boolean finished = false;
 	private boolean firstTime = true;
 	// This is a MASTER object that contains all of the rooms and is easily
 	// accessible.
@@ -200,7 +200,7 @@ class Game {
 		else if (commandWord.equalsIgnoreCase("inventory") || commandWord.equalsIgnoreCase("i"))
 			user.displayInventory();
 		else if (commandWord.equalsIgnoreCase("look"))
-			System.out.println(currentRoom.getDescription());
+			System.out.println(currentRoom.longDescription());
 		else if (commandWord.equalsIgnoreCase("kill") || commandWord.equalsIgnoreCase("attack"))
 			validAttackCommand(command);
 		else if (commandWord.equalsIgnoreCase("shoot")) {
@@ -406,6 +406,9 @@ class Game {
 				System.out.println(currentRoom.shortDescription());
 			}
 			currentRoom.removeFirstTime();
+			if(currentRoom.getRoomName().equals("Inside Saviours Compound")){
+				Ending.ending(user);
+			}
 		}
 	}
 
@@ -428,7 +431,7 @@ class Game {
 			System.out.println("There is no " + command.getSecondWord() + " here...");
 		}
 	}
-	public void quit(){
+	public static void quit(){
 		finished = true;
 	}
 
