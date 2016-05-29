@@ -26,7 +26,6 @@ class Room
     private Inventory inv;
     private CharacterRoster roster;
     private boolean firstTime = true;
-    private int inventoryCapacity = 9999999;
     
     public boolean isFirstTime() {
 		return firstTime;
@@ -35,8 +34,6 @@ class Room
 	public Room(String description) 
     {
         this.description = description;
-        exits = new HashMap<String, Room>();
-        inv = new Inventory();
         roster = new CharacterRoster();
         //addInv();
     }
