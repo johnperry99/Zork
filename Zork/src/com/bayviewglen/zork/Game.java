@@ -296,7 +296,7 @@ class Game {
 	}
 	
 	private void read(Command command) throws InterruptedException {
-		if(user.getInventory().hasItem("note") || currentRoom.getInventory().hasItem("note")){
+		if(command.getSecondWord().equalsIgnoreCase("note")){
 			if(firstTime==false){
 				System.out.println("There's something very important that you need to know.");
 				System.out.println("We're all very sorry to say this but... Glenn... Your wife, Maggy, has been kidnapped.");
@@ -313,7 +313,7 @@ class Game {
 				System.out.println("You immediately decide to leave the safety of your home, Alexandria, and search for your wife.");
 				firstTime = false;
 			}
-		} else if (currentRoom.getInventory().hasItem("sign")){
+		} else if (command.getSecondWord().equalsIgnoreCase("sign")){
 			if(currentRoom.getRoomName().equals("Forest Section 1")){
 				System.out.println("Beware... Zombies and enemies are everwhere.");
 				System.out.println("If you ever happen to encounter the Saviour Compound, immediately turn back...");

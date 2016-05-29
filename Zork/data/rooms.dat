@@ -65,7 +65,7 @@ Items:
 Characters: zombie-
 Room Name: Forest Section 6
 Room Description: You are in the northeast section of the forest.<br>The center of the forest is to the south.<br>A small house is barely visible to the east.
-Exits: W-Forest Section 3, E-House Outside, S-Forest Section 4
+Exits: W-Forest Section 3, E-House (Outside), S-Forest Section 4
 Items:
 Characters: zombie-
 Room Name: House (Outside)
@@ -75,17 +75,17 @@ Items: sign-500
 Characters:
 Room Name: House (Inside)
 Room Description: You enter the house and notice that the lights don't work.<br>Uh-oh...Hope you brought a flashlight!
-Exits: S-House Outside
+Exits: S-House (Outside)
 Items:
 Characters: henchman-
-Room Name: Barn Outside
+Room Name: Barn (Outside)
 Room Description: You see a barn nearby to the south and consider entering.<br>You also consider the potential valuables you could find,<br> and potential dangers... A zombie horse?
-Exits: W-Forest Section 5, E-Field Section 3, S-Barn Inside
+Exits: W-Forest Section 5, E-Field Section 3, S-Barn (Inside)
 Items:
 Characters:
-Room Name: Barn Inside
+Room Name: Barn (Inside)
 Room Description: Naturally, the barn is pitch black as there are no windows.<br>You sure hope there isn't a zombie horse.
-Exits: N-Barn Outside
+Exits: N-Barn (Outside)
 Items:
 Characters: zombie-
 Room Name: Clearing
@@ -95,7 +95,7 @@ Items:
 Characters: henchman-
 Room Name: Field1
 Room Description: You have entered the northern section of the field.<br>The field continues to the south.<br>A house is also visible to the west.
-Exits: W-House1, S-Field Section 2
+Exits: W-House (Outside), S-Field Section 2
 Items:
 Characters: zombie-
 Room Name: Field2
@@ -109,10 +109,10 @@ Exits: W-House2, N-Field Section 2
 Items:
 Characters: zombie-
 Room Name: Outside Saviours Compound
-Room Description: You have made the difficult decision of infiltrating the Saviours's compound.<br>You know everyone else is counting on you to save Maggy.<br>You are suddenly conscious of the map of the Saviour's compound. 
+Room Description: You have made the difficult decision of infiltrating the Saviours's compound.<br>You know that there is not way you are going back without Maggie. 
 Exits: W-Field Section 2, E-Inside Saviours Compound
-Items:
-Characters:
+Items: 
+Characters: henchman-
 Room Name: Inside Saviours Compound
 Room Description: You successfully snuck past the guards in the watchtower.<br>You have now entered the compound, currently undetected.
 Exits: W-Outside Saviours Compound
