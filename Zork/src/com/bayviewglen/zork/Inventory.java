@@ -47,8 +47,8 @@ public class Inventory {
 	}
 
 	public void removeItem(String item) {
-		for (Item i : itemsInInventory) {
-			if (i.getName().equals(item)){
+		for (int i = 0; i < itemsInInventory.size(); i++) {
+			if (itemsInInventory.get(i).getName().equals(item)){
 				itemsInInventory.remove(i);
 			}
 		}

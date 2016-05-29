@@ -126,7 +126,7 @@ public class Ending {
 			user.getInventory().removeItem(choice);
 			theShowDownPartThree(user, originalInv);
 		} else {
-			System.out.println("Even with the shoulder injury he still manages to evade yout attack."
+			System.out.println("Even with the shoulder injury he still manages to evade your attack."
 					+ "\nyou hear a loud bang...complete darkness. "
 					+ "\nWhen you wake up he has disappeared and Maggie is nowhere to be found.\nGAME OVER");
 			user.getInventory().setInventory(originalInv);
@@ -143,10 +143,12 @@ public class Ending {
 			System.out.println("You decide that sparing him will teach him a lesson in messing with you.\n"
 					+ "That day you prove that being human is still possible.");
 			playing = false;
+			
 		} else {
 			System.out.println("You dangle the knife by your side. This is for all of the lives you've ruined. "
 					+ "\nAnd now I want you to die knowing you failed to ruin mine.");
 			playing = false;
+			
 		}
 
 	}
