@@ -32,6 +32,8 @@ public class Player extends Character{
 	}
 	public void displayInventory(){
     	System.out.println(inv);
+    	System.out.println("Current Capacity: " + inventoryCapacity);
+    	System.out.println("Current Weight: " + currentWeight);
     }
     public Inventory getInventory(){
     	return inv;
@@ -62,6 +64,12 @@ public class Player extends Character{
     }
     public int capacity(){
     	return inventoryCapacity;
+    }
+    public void addWeight(int x){
+    	currentWeight += x;
+    }
+    public void removeWeight(int x){
+    	currentWeight -= x;
     }
 	
 }

@@ -1,12 +1,12 @@
 Room Name: Bedroom
 Room Description:  You are in the bedroom. Sasha has just walked in and places a note and bag on the table.<br>There is also a stairway that leads downstairs.
 Exits: D-Kitchen
-Items: bag-0, note-0
+Items: note-0
 Characters: sasha-
 Room Name: Kitchen
-Room Description:  You are in the kitchen. You see some food and a knife.<br>Realizing they will be of use to you, you take them both.<br>There are two doorways, one leading east and the other leading south. 
+Room Description:  You are in the kitchen. You see some food, a knife, and a bag.<br>Realizing they will be of use to you, you take them.<br>There are two doorways, one leading east and the other leading south. 
 Exits: E-Armory, S-Living Room, U-Bedroom
-Items: food-2, knife-2
+Items: food-2, knife-2, bag-0
 Characters: Carol-
 Room Name: Armory
 Room Description: You are in the armory.<br>There is a wide range of weapons you can take.<br>Unfortunately, you can't take all of them.<br>Your eyes rest on a particular gun, sword and crossbow.<br>You can take a maximum of two weapons, or challenge yourself and only take one.
@@ -93,17 +93,17 @@ Room Description: You have approached a clearing and don't see zombies for once.
 Exits: W-Forest Section 4, E-Field Section 2
 Items:
 Characters: henchman-
-Room Name: Field1
+Room Name: Field Section 1
 Room Description: You have entered the northern section of the field.<br>The field continues to the south.<br>A house is also visible to the west.
 Exits: W-House (Outside), S-Field Section 2
 Items:
 Characters: zombie-
-Room Name: Field2
+Room Name: Field Section 2
 Room Description: You have entered the center of the field.<br>The field goes to the north and south.<br>To the east you see some sort of compound.<br>Your heart starts beating fast as you realize...<br>It's the Saviours Compound.
-Exits: N-Field Section 1, W-Clearing, S-Field Section 3, E-Saviours Compound
+Exits: N-Field Section 1, W-Clearing, S-Field Section 3, E-Outside Saviours Compound
 Items:
 Characters: henchman-, henchman-
-Room Name: Field3
+Room Name: Field Section 3
 Room Description: You have entered the southern section of the field.<br>The field continues to the north.<br>A house is also visible to the west.
 Exits: W-House2, N-Field Section 2
 Items:

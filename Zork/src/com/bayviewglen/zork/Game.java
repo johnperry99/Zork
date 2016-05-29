@@ -141,11 +141,13 @@ class Game {
 
 		
 		while (!finished) {
+			System.out.println("Current Health:  " + user.getHealth());
 			Command command = parser.getCommand();
 			finished = processCommand(command);
+			
 		}
 		System.out.println("Thank you for playing.  Good bye.");
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 	}
 
 	/**
@@ -236,7 +238,7 @@ class Game {
 
 	// implementations of user commands:
 
-	private void validAttackCommand(Command command) {
+	private void validAttackCommand(Command command) throws InterruptedException {
 		if (!command.hasSecondWord()) {
 			System.out.println("What do you want to attack?");
 		} else if (!command.hasFourthWord()) {
@@ -247,7 +249,7 @@ class Game {
 
 	}
 
-	private void attack(CharacterRoster roster, Command command) {
+	private void attack(CharacterRoster roster, Command command) throws InterruptedException {
 		if (roster.hasCharacter(command.getSecondWord())) {
 
 			if (command.getSecondWord().equalsIgnoreCase("Zombie")
@@ -409,20 +411,38 @@ class Game {
 			if(currentRoom.getRoomName().equals("Inside Saviours Compound")){
 				Ending.ending(user);
 			}
+			if(currentRoom.getRoomName().equals("Kitchen") && !user.getInventory().hasItem("bag")){
+				user.addToInventoryCapacity(40);
+				Item x = currentRoom.getInventory().getItem("bag");
+				user.getInventory().addItem(x);
+				currentRoom.getInventory().removeItem(x);
+			}
+			if(currentRoom.getRoomName().equals("Kitchen") && !user.getInventory().hasItem("knife") && !user.getInventory().hasItem("food")){
+				Item k = currentRoom.getInventory().getItem("food");
+				Item y = currentRoom.getInventory().getItem("knife");
+				user.getInventory().addItem(k);
+				user.getInventory().addItem(y);
+				currentRoom.getInventory().removeItem(k);
+				currentRoom.getInventory().removeItem(y);
+			}
+			if(currentRoom.getRoster().hasCharacter("henchman")){
+				System.out.println("There's a henchman here, he hasn't noticed you yet...");
+			}
+			if(currentRoom.getRoster().hasCharacter("zombie")){
+				System.out.println("There are zombies in here, luckily they haven't noticied you yet. "
+						+ "\nThey probably will though if you try to exit...");
+			}
 		}
 	}
 
 	private void takeItems(Command command, Inventory player, Inventory room) {
 		Item temp = room.getItem(command.getSecondWord());
-		if (currentRoom.getInventory().hasItem("bag")) {
-			if (temp.equals(currentRoom.getInventory().getItem("bag"))) {
-				user.addToInventoryCapacity(40);
-			}
-		}
+		
 		int x = temp.getWeight() + player.calculateWeight();
 		if (room.hasItem(command.getSecondWord()) && x <= user.capacity()) {
 			System.out.println("Taken.");
 			player.addItem(temp);
+			user.addWeight(temp.getWeight());
 			room.removeItem(temp);
 
 		} else if (x > user.capacity()) {
