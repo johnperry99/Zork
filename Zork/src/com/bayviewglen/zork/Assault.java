@@ -35,6 +35,7 @@ public abstract class Assault {
                                         user.removeHealth(damageDone);
                                         currentRoom.getRoster().removeCharacter(x);
                                         System.out.println("You missed and the zombie dealt " + damageDone + " damage before you finally killed it.");
+                                        System.out.println("Your current health is :  " + user.getHealth());
                                         zombie.reduceNumZombies();
                                         if(zombie.getNumZombies()==0){
                                         	zombie.kill();
@@ -65,6 +66,7 @@ public abstract class Assault {
                                         user.removeHealth(damageDone);
                                         currentRoom.getRoster().removeCharacter(x);
                                         System.out.println("You missed and the zombie dealt " + damageDone + " damage before you finally killed it.");
+                                        System.out.println("Your current health is:  " + user.getHealth());
                                         zombie.reduceNumZombies();
                                         if(zombie.getNumZombies()==0){
                                         	zombie.kill();
@@ -124,6 +126,7 @@ public abstract class Assault {
                                         user.removeHealth(damageDone);
                                         currentRoom.getRoster().removeCharacter(x);
                                         System.out.println("You killed the henchman, but took " + damageDone + " damage.");
+                                        System.out.println("Your current health is:  " + user.getHealth());
                                         henchman.reduceNumHenchman();
                                         if(henchman.getNumHenchman()==0){
                                         	henchman.kill();
@@ -178,6 +181,7 @@ public abstract class Assault {
                                         currentRoom.getRoster().removeCharacter(x);
                                         System.out.println("You missed and the henchman did " + damageDone + " damage before you could kill him.");
                                         user.removeHealth(damageDone);
+                                        System.out.println("Your current health is:  " + user.getHealth());
                                         henchman.reduceNumHenchman();
                                         if(henchman.getNumHenchman()==0){
                                         	henchman.kill();
