@@ -16,7 +16,7 @@ Characters:
 Room Name: Living Room
 Room Description: You are in the living room.<br>There is a door at the south end of the room.<br>It leads outside.<br>
 Exits: N-Kitchen, S-Front of House
-Items:
+Items: 
 Characters:
 Room Name: Front of House
 Room Description: You are in front of your house.<br>You see Alexandria's farm to the west and its entrance to the east.<br>
@@ -56,7 +56,7 @@ Characters: henchman-
 Room Name: Forest Section 4
 Room Description: You are in the center of the forest.<br>The forest continues to the north and south.<br>A clearing can also be seen to the east.<br>
 Exits: W-Forest Section 1, N-Forest Section 6, S-Forest Section 5, E-Clearing
-Items:
+Items: flashlight-5
 Characters: zombie-, zombie-, zombie-
 Room Name: Forest Section 5
 Room Description: You are in the southeast section of the forest.<br>The center of the forest is to the north.<br>Also, a barn is barely visible to the east.<br>
