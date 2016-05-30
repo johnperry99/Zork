@@ -30,7 +30,7 @@ class Game {
 	private Henchman henchman;
 	private static boolean finished = false;
 	private boolean firstTime = true;
-	private boolean won = false;
+	private boolean gameDone = false;
 	// This is a MASTER object that contains all of the rooms and is easily
 	// accessible.
 	// The key will be the name of the room -> no spaces (Use all caps and
@@ -146,10 +146,14 @@ class Game {
 		while (!finished && user.isAlive()) {
 			Command command = parser.getCommand();
 			finished = processCommand(command);
+			if(gameDone){
+				quit();
+			}
 			
 		}
-		if(won){
-			System.out.println("Congratulations! You have completed the game!");
+		if(gameDone){
+			System.out.println("\nWell well well, look at you. Finished the game. Was it hard?\n"
+					+ "Do you know that there are multiple endings? Play again and try to find them!");
 		} else{
 			System.out.println("You are dead: GAME OVER.");
 		}
@@ -422,6 +426,7 @@ class Game {
 			}
 			currentRoom.removeFirstTime();
 			if(currentRoom.getRoomName().equals("Inside Saviours Compound")){
+				gameDone = true;
 				Ending.ending(user);
 			}
 			if(currentRoom.getRoomName().equals("Kitchen") && !user.getInventory().hasItem("bag")){
