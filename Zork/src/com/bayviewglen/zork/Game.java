@@ -26,8 +26,11 @@ class Game {
 	private Parser parser;
 	private Room currentRoom;
 	private Player user;
+	private Zombie zombie;
+	private Henchman henchman;
 	private static boolean finished = false;
 	private boolean firstTime = true;
+	private boolean won = false;
 	// This is a MASTER object that contains all of the rooms and is easily
 	// accessible.
 	// The key will be the name of the room -> no spaces (Use all caps and
@@ -140,12 +143,16 @@ class Game {
 		// execute them until the game is over.
 
 		
-		while (!finished) {
+		while (!finished && user.isAlive()) {
 			Command command = parser.getCommand();
 			finished = processCommand(command);
 			
 		}
-		System.out.println("Thank you for playing.  Good bye.");
+		if(won){
+			System.out.println("Congratulations! You have completed the game!");
+		} else{
+			System.out.println("You are dead: GAME OVER.");
+		}
 			Thread.sleep(2000);
 	}
 
@@ -208,7 +215,7 @@ class Game {
 			if (user.hasItem("gun") || user.hasItem("crossbow"))
 				validAttackCommand(command);
 			else
-				System.out.println("You don't have a gun!");
+				System.out.println("You don't have a gun or crossbow!");
 		} else if (commandWord.equalsIgnoreCase("take")) {
 			if (!command.hasSecondWord())
 				System.out.println("Take what?");
@@ -241,7 +248,7 @@ class Game {
 		if (!command.hasSecondWord()) {
 			System.out.println("What do you want to attack?");
 		} else if (!command.hasFourthWord()) {
-			System.out.println("What do you want to attack " + command.getSecondWord() + " with?");
+				System.out.println("What do you want to attack a '" + command.getSecondWord() + "' with?");
 		} else {
 			attack(currentRoom.getRoster(), command);
 		}
@@ -249,20 +256,25 @@ class Game {
 	}
 
 	private void attack(CharacterRoster roster, Command command) throws InterruptedException {
-		if (roster.hasCharacter(command.getSecondWord())) {
+		if (roster.hasCharacter(command.getSecondWord()) || roster.hasCharacter("zombie")
+			|| roster.hasCharacter("henchman")) {
 
-			if (command.getSecondWord().equalsIgnoreCase("Zombie")
-					|| command.getSecondWord().equalsIgnoreCase("Zombies")) {
-				Assault.attackZombie(currentRoom, user, command);
-			} else if (command.getSecondWord().equalsIgnoreCase("Henchman")
-					|| command.getSecondWord().equalsIgnoreCase("Henchmen")) {
-				Assault.attackHenchman(currentRoom, user, command);
+			if (command.getSecondWord().equalsIgnoreCase("zombie")
+					|| command.getSecondWord().equalsIgnoreCase("zombies")) {
+				Assault.attackZombie(currentRoom, user, command, zombie);
+			} else if (command.getSecondWord().equalsIgnoreCase("henchman")
+					|| command.getSecondWord().equalsIgnoreCase("henchmen")
+					|| command.getSecondWord().equalsIgnoreCase("saviour henchman")
+					|| command.getSecondWord().equalsIgnoreCase("saviour henchmen")
+					|| command.getSecondWord().equalsIgnoreCase("saviour")
+					|| command.getSecondWord().equalsIgnoreCase("saviours")) {
+				Assault.attackHenchman(currentRoom, user, command, henchman);
 			} else if (command.getSecondWord().equalsIgnoreCase("It") || command.getSecondWord().equalsIgnoreCase("Him")
 					|| command.getSecondWord().equalsIgnoreCase("Her")) {
 				if (currentRoom.getRoster().hasCharacter("zombie")) {
-					Assault.attackZombie(currentRoom, user, command);
+					Assault.attackZombie(currentRoom, user, command, zombie);
 				} else if (currentRoom.getRoster().hasCharacter("henchman")) {
-					Assault.attackHenchman(currentRoom, user, command);
+					Assault.attackHenchman(currentRoom, user, command, henchman);
 				} else {
 					System.out.println("You can't attack an ally!");
 				}
@@ -280,7 +292,7 @@ class Game {
 	private void eat(Command command) {
 		if(command.hasSecondWord() && command.getSecondWord().equalsIgnoreCase("food")
 		   && user.getInventory().hasItem("food") || currentRoom.getInventory().hasItem("food")){
-			if(user.getHealth()<=70){
+			if(user.getHealth()<=50){
 				user.addHealth(50);
 				System.out.println("You ate the food. It tasted delicious");
 			}else {
@@ -349,8 +361,9 @@ class Game {
 	/**
 	 * Try to go to one direction. If there is an exit, enter the new room,
 	 * otherwise print an error message.
+	 * @throws InterruptedException 
 	 */
-	private void goRoom(Command command) {
+	private void goRoom(Command command) throws InterruptedException {
 		String direction;
 		if (!command.hasSecondWord() && (command.getCommandWord().equalsIgnoreCase("go")
 			|| command.getCommandWord().equalsIgnoreCase("move") || command.getCommandWord().equalsIgnoreCase("run")
@@ -412,7 +425,7 @@ class Game {
 				Ending.ending(user);
 			}
 			if(currentRoom.getRoomName().equals("Kitchen") && !user.getInventory().hasItem("bag")){
-				user.addToInventoryCapacity(40);
+				user.addToInventoryCapacity(39);
 				Item x = currentRoom.getInventory().getItem("bag");
 				user.getInventory().addItem(x);
 				currentRoom.getInventory().removeItem(x);
@@ -426,16 +439,25 @@ class Game {
 				currentRoom.getInventory().removeItem(y);
 			}
 			if(currentRoom.getRoster().hasCharacter("henchman")){
-				System.out.println("There's a henchman here, he hasn't noticed you yet...");
+				henchman = new Henchman(currentRoom.getRoster().getSize());
+				if(currentRoom.getRoomName().equals("Outside Saviours Compound")){
+					henchman.lastPhrase();
+				} else {
+					henchman.randomPhrase();
+				}
 			}
 			if(currentRoom.getRoster().hasCharacter("zombie")){
-				System.out.println("There are zombies in here, luckily they haven't noticied you yet. "
-						+ "\nThey probably will though if you try to exit...");
+				zombie = new Zombie(currentRoom.getRoster().getSize());
+				zombie.zombiePhrase();
 			}
 		}
 	}
 
 	private void takeItems(Command command, Inventory player, Inventory room) {
+		if(command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("and")){
+			System.out.println("Please take one item at a time.");
+			return;
+		}
 		Item temp = room.getItem(command.getSecondWord());
 		
 		int x = temp.getWeight() + player.calculateWeight();

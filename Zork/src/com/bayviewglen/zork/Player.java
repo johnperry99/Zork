@@ -34,6 +34,7 @@ public class Player extends Character{
     	System.out.println(inv);
     	System.out.println("Current Capacity: " + inventoryCapacity);
     	System.out.println("Current Weight: " + currentWeight);
+    	System.out.println("Current Health:  " + health);
     }
     public Inventory getInventory(){
     	return inv;

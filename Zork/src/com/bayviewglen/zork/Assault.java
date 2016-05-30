@@ -1,4 +1,7 @@
 package com.bayviewglen.zork;
+
+import java.util.concurrent.ThreadLocalRandom;
+
 public abstract class Assault {
        
        public static int maxPercent = 100;
@@ -8,61 +11,93 @@ public abstract class Assault {
        public static int crossbowHitRate;
  
        //this method is assuming that the player has already typed "attack zombie with ___"
-       public static void attackZombie(Room currentRoom, Player user, Command command) throws InterruptedException {
+       public static void attackZombie(Room currentRoom, Player user, Command command, Zombie zomb) throws InterruptedException {
              Character x = currentRoom.getRoster().getCharacterString("zombie");
-             if (currentRoom.getRoster().hasCharacter(x)) {
-                    if (command.getFourthWord() == "knife") {
+             Zombie zombie = zomb;
+             
+             if (currentRoom.getRoster().hasCharacter(x)) { 
+                    if (command.getFourthWord().equalsIgnoreCase("knife")) {
                            if (user.getInventory().hasItem("knife")) {
-                                 knifeHitRate = 40;
-                                 int sucessHit = (int) Math.random() * maxPercent;
+                                 knifeHitRate = 35;
+                                 int sucessHit = ThreadLocalRandom.current().nextInt(0,maxPercent);
                                  if (sucessHit <= knifeHitRate) {
                                         currentRoom.getRoster().removeCharacter(x);
                                         System.out.println("You killed the zombie.");
+                                        zombie.reduceNumZombies();
+                                        if(zombie.getNumZombies()==0){
+                                        	zombie.kill();
+                                        } else {
+                                        	System.out.println("There are/is " + zombie.getNumZombies() + " left.");
+                                        }
                                  }else {
-                                        int damageDone = ((Zombie) x).zombieDamage();
+                                        int damageDone = zomb.zombieDamage();
                                         user.removeHealth(damageDone);
-                                        System.out.println("You missed and the zombie dealt " + damageDone + " damage");
+                                        currentRoom.getRoster().removeCharacter(x);
+                                        System.out.println("You missed and the zombie dealt " + damageDone + " damage before you finally killed it.");
+                                        zombie.reduceNumZombies();
+                                        if(zombie.getNumZombies()==0){
+                                        	zombie.kill();
+                                        } else {
+                                        	System.out.println("There are/is " + zombie.getNumZombies() + " left.");
+                                        }
                                  }
                            }else {
                                  System.out.println("You don't have a knife...");
-                                 //should you take damage here if you attack with something you don't have?
-                                 System.out.println("What would you like to do now?");
                            }
-                    }else if (command.getFourthWord() == "sword") {
+                    }else if (command.getFourthWord().equalsIgnoreCase("sword")) {
                            if (user.getInventory().hasItem("sword")) {
-                                 swordHitRate = 60;
-                                 int sucessHit = (int) Math.random() * maxPercent;
+                                 swordHitRate = 50;
+                                 int sucessHit = ThreadLocalRandom.current().nextInt(0,maxPercent);
                                  if (sucessHit <= swordHitRate) {
                                         currentRoom.getRoster().removeCharacter(x);
                                         System.out.println("You killed the zombie.");
+                                        zombie.reduceNumZombies();
+                                        if(zombie.getNumZombies()==0){
+                                        	zombie.kill();
+                                        } else {
+                                        	System.out.println("There are/is " + zombie.getNumZombies() + " left.");
+                                        }
                                  }else {
                                         int damageDone = ((Zombie) x).zombieDamage();
                                         user.removeHealth(damageDone);
-                                        System.out.println("You missed and the zombie dealt " + damageDone + " damage");
+                                        currentRoom.getRoster().removeCharacter(x);
+                                        System.out.println("You missed and the zombie dealt " + damageDone + " damage before you finally killed it.");
+                                        zombie.reduceNumZombies();
+                                        if(zombie.getNumZombies()==0){
+                                        	zombie.kill();
+                                        } else {
+                                        	System.out.println("There are/is " + zombie.getNumZombies() + " left.");
+                                        }
                                  }
                            }else {
                                  System.out.println("You don't have a sword...");
-                                 //see last comment
-                                 System.out.println("What would you like to do now?");
                            }
-                    }else if (command.getFourthWord() == "crossbow") {
+                    }else if (command.getFourthWord().equalsIgnoreCase("crossbow")) {
                            if (user.getInventory().hasItem("crossbow")) {
                                  currentRoom.getRoster().removeCharacter(x);
                                  System.out.println("You killed the zombie.");
-                                 }else {
-                                 System.out.println("You don't have a crossbow...");
-                                 //see last comment
-                                 System.out.println("What would you like to do now?");
+                                 zombie.reduceNumZombies();
+                                 if(zombie.getNumZombies()==0){
+                                 	zombie.kill();
+                                 } else {
+                                 	System.out.println("There are/is " + zombie.getNumZombies() + " left.");
+                                 }
+                           }else {
+                               System.out.println("You don't have a crossbow...");
                            }
-                    }else if (command.getFourthWord() == "gun" || command.getFourthWord() == "handgun") {
+                    }else if (command.getFourthWord().equalsIgnoreCase("gun") || command.getFourthWord().equalsIgnoreCase("handgun")) {
                            if (user.getInventory().hasItem("gun")) {
                                  currentRoom.getRoster().removeCharacter(x);
                                  System.out.println("You killed the zombie.");
-                                 }else {
-                                 System.out.println("You don't have a gun...");
-                                 //see last comment
-                                 System.out.println("What would you like to do now?");
-                           }
+                                 zombie.reduceNumZombies();
+                                 if(zombie.getNumZombies()==0){
+                                 	zombie.kill();
+                                 } else {
+                                 	System.out.println("There are/is " + zombie.getNumZombies() + " left.");
+                                 } 
+                           }else {
+                                	 System.out.println("You don't have a gun...");
+                                 }
                     }
              }else {
                     System.out.println("There are no zombies here...");
@@ -70,66 +105,96 @@ public abstract class Assault {
        }
        
        //this method is assuming that the player has already typed "attack henchman with ___"
-       public static void attackHenchman(Room currentRoom, Player user, Command command) {
+       public static void attackHenchman(Room currentRoom, Player user, Command command, Henchman hench) {
              Character x = currentRoom.getRoster().getCharacterString("henchman");
+             Henchman henchman = hench;
+             
              if (currentRoom.getRoster().hasCharacter(x)) {
                     if (command.getFourthWord().equalsIgnoreCase("knife")) {
                            if (user.getInventory().hasItem("knife")) {
                                  knifeHitRate = 30;
-                                 int sucessHit = (int) Math.random() * maxPercent;
+                                 int sucessHit = ThreadLocalRandom.current().nextInt(0,maxPercent);
                                  if (sucessHit <= knifeHitRate) {
-                                        int damageDone = ((Henchman) x).henchmenDamage();
+                                        int damageDone = henchman.henchmanDamage();
                                         user.removeHealth(damageDone);
                                         currentRoom.getRoster().removeCharacter(x);
                                         System.out.println("You killed the henchman, but took " + damageDone + " damage.");
-                                        }else {
-                                        user.kill();
+                                        henchman.reduceNumHenchman();
+                                        if(henchman.getNumHenchman()==0){
+                                        	henchman.kill();
+                                        } else {
+                                        	System.out.println("There are/is " + henchman.getNumHenchman() + " left.");
+                                        }
+                                 }else {
                                         System.out.println("You missed and the henchman killed you.");
+                                        user.kill();
                                  }
                            }else {
                                  System.out.println("You don't have a knife...");
-                                 //should you die if you attack with weapon but don't have that weapon?
-                                 System.out.println("What would you like to do now?");
                            }
                     }else if (command.getFourthWord().equalsIgnoreCase("sword")) {
                            if (user.getInventory().hasItem("sword")) {
                                  swordHitRate = 50;
-                                 int sucessHit = (int) Math.random() * maxPercent;
+                                 int sucessHit = ThreadLocalRandom.current().nextInt(0,maxPercent);
                                  if (sucessHit <= swordHitRate) {
                                         currentRoom.getRoster().removeCharacter(x);
                                         System.out.println("You killed the henchman.");
-                                        }else {
-                                        user.kill();
+                                        henchman.reduceNumHenchman();
+                                        if(henchman.getNumHenchman()==0){
+                                        	henchman.kill();
+                                        } else {
+                                        	System.out.println("There are/is " + henchman.getNumHenchman() + " left.");
+                                        }
+                                 }else {
                                         System.out.println("You missed and the henchman killed you.");
+                                        user.kill();
                                  }
-                    }else {
-                           System.out.println("You don't have a sword...");
-                           System.out.println("What would you like to do now?");
-                    }
+                           	}else {
+                           		System.out.println("You don't have a sword...");
+                           	}
                     }else if (command.getFourthWord().equalsIgnoreCase("crossbow")) {
                            if (user.getInventory().hasItem("crossbow")) {
-                                 crossbowHitRate = 70;
-                                 int sucessHit = (int) Math.random() * maxPercent;
+                                 crossbowHitRate = 60;
+                                 int sucessHit = ThreadLocalRandom.current().nextInt(0,maxPercent);
                                  if (sucessHit <= crossbowHitRate) {
                                         currentRoom.getRoster().removeCharacter(x);
                                         System.out.println("You killed the henchman.");
-                                        }else {
-                                        int damageDone = ((Henchman) x).henchmenDamage();
+                                        henchman.reduceNumHenchman();
+                                        if(henchman.getNumHenchman()==0){
+                                        	henchman.kill();
+                                        } else {
+                                        	System.out.println("There are/is " + henchman.getNumHenchman() + " left.");
+                                        }
+                                 }else {
+                                        int damageDone = henchman.henchmanDamage();
+                                        currentRoom.getRoster().removeCharacter(x);
+                                        System.out.println("You missed and the henchman did " + damageDone + " damage before you could kill him.");
                                         user.removeHealth(damageDone);
-                                        System.out.println("You missed and the henchman did " + damageDone + " damage.");
+                                        henchman.reduceNumHenchman();
+                                        if(henchman.getNumHenchman()==0){
+                                        	henchman.kill();
+                                        } else {
+                                        	System.out.println("There are/is " + henchman.getNumHenchman() + " left.");
+                                        }
                                  }
                            }else {
                                  System.out.println("You don't have a crossbow...");
-                                 System.out.println("What would you like to do now?");
                            }
                     }else if (command.getFourthWord().equalsIgnoreCase("gun") || command.getFourthWord().equalsIgnoreCase("handgun")) {
                            if (user.getInventory().hasItem("gun")) {
                                  currentRoom.getRoster().removeCharacter(x);
                                  System.out.println("You killed the henchman");
+                                 henchman.reduceNumHenchman();
+                                 if(henchman.getNumHenchman()==0){
+                                 	henchman.kill();
+                                 } else {
+                                 	System.out.println("There are/is " + henchman.getNumHenchman() + " left.");
+                                 }
+                           }else {
+                          		System.out.println("You don't have a gun...");
                            }
                     }else {
                            System.out.println("You can't attack the henchman with that!");
-                           System.out.println("What do you want to do now?");
                     }
              }else {
                     System.out.println("There are no henchmen here...");

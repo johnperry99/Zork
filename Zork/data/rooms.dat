@@ -6,7 +6,7 @@ Characters: sasha-
 Room Name: Kitchen
 Room Description:  You are in the kitchen. You see some food, a knife, and a bag.<br>Realizing the bag will be of use to you, you take it, along with the food and knife.<br>There are two doorways, one leading east and the other leading south.<br>
 Exits: E-Armory, S-Living Room, U-Bedroom
-Items: food-2, knife-2, bag-0
+Items: food-0, knife-0, bag-0
 Characters: Carol-
 Room Name: Armory
 Room Description: You are in the armory.<br>There is a wide range of weapons you can take.<br>Unfortunately, you can't take all of them.<br>Your eyes rest on a particular gun, sword and crossbow.<br>You can take a maximum of two weapons, or challenge yourself and only take one...<br>...or none and only use a knife.<br>
@@ -34,15 +34,15 @@ Exits: W-Front of House, E-Outside Gate
 Items: car-1000
 Characters:
 Room Name: Outside Gate
-Room Description: You are outside of the gate that leads to Alexandria.<br>The forest is to the east.<br>
+Room Description: You are outside of the gate that leads to Alexandria.<br>The forest is to the east, that is the direction you want to go now.<br>
 Exits: E-Forest Section 1, W-Alexandria Entrance
 Items:
 Characters:
 Room Name: Forest Section 1
 Room Description: You are in the west section of the forest.<br>Your car has been parked nearby, cleverly hidden.<br>Just before you begin to walk, you notice a sign ahead.<br>
-Exits: W-Outside Gate, E-Forest Section 4, N-Forest Section 3, S-Forest Section 2
+Exits: E-Forest Section 4, N-Forest Section 3, S-Forest Section 2
 Items: sign-500
-Characters: zombie-
+Characters: zombie-, zombie-
 Room Name: Forest Section 2
 Room Description: You are in the southwest section of the forest.<br>The Alexandria compound can be seen in the distance.<br>
 Exits: N-Forest Section 1, E-Forest Section 5
@@ -57,20 +57,20 @@ Room Name: Forest Section 4
 Room Description: You are in the center of the forest.<br>The forest continues to the north and south.<br>A clearing can also be seen to the east.<br>
 Exits: W-Forest Section 1, N-Forest Section 6, S-Forest Section 5, E-Clearing
 Items:
-Characters: zombie-
+Characters: zombie-, zombie-, zombie-
 Room Name: Forest Section 5
 Room Description: You are in the southeast section of the forest.<br>The center of the forest is to the north.<br>Also, a barn is barely visible to the east.<br>
-Exits: N-Forest Section 4, W-Forest Section 2, E-Barn Outside
+Exits: N-Forest Section 4, W-Forest Section 2, E-Barn (Outside)
 Items:
-Characters: zombie-
+Characters: henchman-
 Room Name: Forest Section 6
 Room Description: You are in the northeast section of the forest.<br>The center of the forest is to the south.<br>A small house is barely visible to the east.<br>
 Exits: W-Forest Section 3, E-House (Outside), S-Forest Section 4
 Items:
-Characters: zombie-
+Characters: zombie-, zombie-
 Room Name: House (Outside)
 Room Description: You see a house nearby to the north and notice a sign in front of it.<br>
-Exits: W-Forest Section 6, E-Field Section 1
+Exits: W-Forest Section 6, E-Field Section 1, N-House (Inside)
 Items: sign-500
 Characters:
 Room Name: House (Inside)
@@ -87,27 +87,27 @@ Room Name: Barn (Inside)
 Room Description: Naturally, the barn is pitch black as there are no windows.<br>You sure hope there isn't a zombie horse.<br>
 Exits: N-Barn (Outside)
 Items:
-Characters: zombie-
+Characters: zombie-, zombie-
 Room Name: Clearing
 Room Description: You have approached a clearing and don't see zombies for once.<br>The zombie-infested forest is to the west and a field to the east.<br>
 Exits: W-Forest Section 4, E-Field Section 2
 Items:
-Characters: henchman-
+Characters: henchman-, henchman-
 Room Name: Field Section 1
 Room Description: You have entered the northern section of the field.<br>The field continues to the south.<br>A house is also visible to the west.<br>
 Exits: W-House (Outside), S-Field Section 2
 Items:
-Characters: zombie-
+Characters: zombie-, zombie-
 Room Name: Field Section 2
 Room Description: You have entered the center of the field.<br>The field goes to the north and south.<br>To the east you see some sort of compound.<br>Your heart starts beating fast as you realize...<br>It's the Saviours Compound.<br>
 Exits: N-Field Section 1, W-Clearing, S-Field Section 3, E-Outside Saviours Compound
 Items:
-Characters: henchman-, henchman-
+Characters: henchman-, henchman-, henchman-
 Room Name: Field Section 3
 Room Description: You have entered the southern section of the field.<br>The field continues to the north.<br>A house is also visible to the west.<br>
 Exits: W-House2, N-Field Section 2
 Items:
-Characters: zombie-
+Characters: zombie-, zombie-
 Room Name: Outside Saviours Compound
 Room Description: You have made the difficult decision of infiltrating the Saviours's compound.<br>You know that there is not way you are going back without Maggie.<br>
 Exits: W-Field Section 2, E-Inside Saviours Compound

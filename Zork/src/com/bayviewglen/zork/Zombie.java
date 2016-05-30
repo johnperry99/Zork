@@ -110,13 +110,13 @@ public class Zombie extends Character{
 		return lose;
 	}
 	
-	public String toString(){
+	public void zombiePhrase(){
 		if(getNumZombies()==1){
-			return "There is a zombie nearby, all alone...poor zombie. #ForeverAlone";
+			System.out.println("There is a zombie nearby, all alone...poor zombie. #ForeverAlone");
 		} else if(getNumZombies()>1){
-			return "There are " + getNumZombies() + "nearby. Watch out!";
+			System.out.println("There are " + getNumZombies() + " zombies nearby. Watch out!");
 		}
-		return "";
+
 		
 	}
 
