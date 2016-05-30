@@ -2,18 +2,19 @@ package com.bayviewglen.zork;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Zombie extends Character{
+public class Zombie extends Character {
 	private int numZombies;
-	
-	public Zombie (int numZombies){ //constructs the zombie class
+
+	public Zombie(int numZombies) { // constructs the zombie class
 		this.numZombies = numZombies;
 	}
-	
-	public int getNumZombies() { //returns current number of zombies
+
+	public int getNumZombies() { // returns current number of zombies
 		return numZombies;
 	}
-	
-	public int zombieMovement() { //returns number of steps each zombie takes per round
+
+	public int zombieMovement() { // returns number of steps each zombie takes
+									// per round
 		final int MIN_MOVEMENT_ZOMBIE = 2;
 		final int MAX_MOVEMENT_ZOMBIE = 4;
 
@@ -21,103 +22,129 @@ public class Zombie extends Character{
 		return zRandMovement;
 	}
 
-	public int zombieDamage() throws InterruptedException { //returns amount of dmg dealt by zombie(s)
+	public int zombieDamage() throws InterruptedException { // returns amount of
+															// dmg dealt by
+															// zombie(s)
 		final int MIN_DAMAGE = 10;
 		final int MAX_DAMAGE = 15;
-		boolean takeDamage = runAway(0, 0, getNumZombies());
+		boolean takeDamage = runAway(getNumZombies());
 
 		if (takeDamage) {
 			int damageTaken = ThreadLocalRandom.current().nextInt(MIN_DAMAGE, MAX_DAMAGE);
 			Thread.sleep(500);
-			System.out.println("The zombie(s) caught up with you and attacked, dealing " + damageTaken*getNumZombies() + " damage.");
+			System.out.println("The zombie(s) caught up with you and attacked, dealing " + damageTaken * getNumZombies()
+					+ " damage.");
 			return damageTaken;
 		} else {
 			return 0;
 		}
 	}
-	
-	public void reduceNumZombies(){
+
+	public void reduceNumZombies() {
 		numZombies--;
 	}
+	public int zombieDamageAttack(){
+		final int MIN_DAMAGE = 10;
+		final int MAX_DAMAGE = 15;
+		int damageTaken = ThreadLocalRandom.current().nextInt(MIN_DAMAGE, MAX_DAMAGE);
+		return damageTaken;
+	}
 
-	public int playerMovement() { //returns number of steps the player takes per round
+	public int playerMovement() { // returns number of steps the player takes
+									// per round
 		final int MIN_MOVEMENT_PLAYER = 1;
 		final int MAX_MOVEMENT_PLAYER = 6;
 
 		int pRandMovement = ThreadLocalRandom.current().nextInt(MIN_MOVEMENT_PLAYER, MAX_MOVEMENT_PLAYER);
 		return pRandMovement;
 	}
-	
-	//returns false if you escaped and true if you didn't
-	public boolean runAway(int zombieMovement, int playerMovement, int numZomb) throws InterruptedException {
-		int raceLength = 30;
-		int totalPMovement = 0;
-		boolean lose = false;
-		int[] totalZMovement = new int[numZomb];
-		String[] raceParticipants = new String[numZomb + 1];
 
-		for (int i = 0; i < raceParticipants.length; i++) {
+	// returns false if you escaped and true if you didn't
+	public boolean runAway(int numZomb) throws InterruptedException {
+		String[] names = new String[numZombies + 1];
+		boolean isWinner = false;
+		String winner = null;
+		int[] placeInRace = new int[numZombies + 1];
+		for (int i = 0; i < placeInRace.length; i++) {
+			placeInRace[i] = 0;
+		}
+		for (int i = 0; i < names.length; i++) {
 			if (i == 0) {
-				raceParticipants[i] = "YOU";
+				names[i] = "YOU";
 			} else {
-				raceParticipants[i] = "Zombie #" + i;
+				names[i] = "Zombie " + i;
 			}
 		}
+		try {
+			Thread.sleep(700);
+		} catch (InterruptedException e2) {
 
-		for (int i = 0; i < numZomb; i++) {
-			totalZMovement[i] = 0;
+			e2.printStackTrace();
+		}
+		System.out.println("\n\tRUN!!!");
+		try {
+			Thread.sleep(700);
+		} catch (InterruptedException e2) {
+			e2.printStackTrace();
 		}
 
-		for (int i = 0; i <= raceLength; i++) {
-
-			for (int j = 0; j < numZomb + 1; j++) {
-				System.out.println("--------------------------------------------------------------------------");
-				int position = totalPMovement + 1;
-				System.out.printf("%-20s %" + position + "d %n", raceParticipants[j], (j + 1));
-				System.out.println("--------------------------------------------------------------------------");
+		while (!isWinner) {
+			System.out.print(
+					"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+			for (int j = 0; j < placeInRace.length; j++) {
+				int x = placeInRace[j] + 1;
+				System.out.printf("%-30s|%" + x + "s%n", names[j], "x");
+				System.out.println(
+						"------------------------------------------------------------------------------------------------------------------------------------");
 			}
-			System.out.println("\n");
-			for (int k = 0; k < raceParticipants.length; k++) {
-				totalPMovement += playerMovement;
-				totalZMovement[k] += zombieMovement;
-				Thread.sleep(30);
-				if (totalPMovement >= raceLength) {
-					for (int l = 0; l < raceParticipants.length; l++) {
-						System.out
-								.println("--------------------------------------------------------------------------");
-						int position = totalPMovement + 1;
-						System.out.printf("%-20s %" + position + "d %n", raceParticipants[l], (l + 1));
-						System.out
-								.println("--------------------------------------------------------------------------");
+
+			for (int j = 0; j < names.length; j++) {
+				if (j == 0) {
+					placeInRace[j] += playerMovement();
+				} else {
+					placeInRace[j] += zombieMovement();
+				}
+				try {
+					Thread.sleep(40);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				if (placeInRace[j] >= 100) {
+					winner = names[j];
+					placeInRace[j] = 100;
+					
+						
+							
+					System.out.print(
+							"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+					for (int k = 0; k < placeInRace.length; k++) {
+						int x = placeInRace[k] + 1;
+						System.out.printf("%-30s|%" + x + "d%n", names[k], placeInRace[k]);
+						System.out.println(
+								"------------------------------------------------------------------------------------------------------------------------------------");
+						if(winner.equalsIgnoreCase("you")){
+							return false;
+						}else{
+							return true;
+						}
 					}
-					lose = false;
-					Thread.sleep(500);
-					System.out.println("You escaped from the zombies without harm.");
-				} else if (totalZMovement[k] >= raceLength) {
-					for (int l = 1; l < raceParticipants.length; l++) {
-						System.out
-								.println("--------------------------------------------------------------------------");
-						int position = totalZMovement[l] + 1;
-						System.out.printf("%-20s %" + position + "d %n", raceParticipants[l], (l + 1));
-						System.out.println("--------------------------------------------------------------------------");
-					}
-					lose = true;
-					// prints out stuff in zombie damage so it can say "You took
-					// ___ damage"
+
 				}
 			}
+
 		}
-		return lose;
+		return true;
+		
+
 	}
-	
-	public void zombiePhrase(){
-		if(getNumZombies()==1){
+
+	public void zombiePhrase() {
+		if (getNumZombies() == 1) {
 			System.out.println("There is a zombie nearby, all alone...poor zombie. #ForeverAlone");
-		} else if(getNumZombies()>1){
+		} else if (getNumZombies() > 1) {
 			System.out.println("There are " + getNumZombies() + " zombies nearby. Watch out!");
 		}
 
-		
 	}
 
 }
