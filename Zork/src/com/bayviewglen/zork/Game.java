@@ -295,12 +295,17 @@ class Game {
 	}
 	
 	private void eat(Command command) {
-		if(command.hasSecondWord() && command.getSecondWord().equalsIgnoreCase("food")
-		   && user.getInventory().hasItem("food") || currentRoom.getInventory().hasItem("food")){
+		if(command.hasSecondWord() && (command.getSecondWord().equalsIgnoreCase("food")
+		   || command.getSecondWord().equalsIgnoreCase("pizza"))
+		   && user.getInventory().hasItem("pizza") || currentRoom.getInventory().hasItem("pizza")){
 			if(user.getHealth()<=50){
 				user.addHealth(50);
-				System.out.println("You ate the food. It tasted delicious");
-			}else {
+				System.out.println("You ate the pizza. It tasted delicious");
+			}else if(user.getHealth()>50 && user.getHealth()<100) {
+				user.setHealth(100);
+				System.out.println("You ate the pizza. It tasted delicious");
+				
+			} else {
 				System.out.println("Do you really think you should be eating at a time like this?");
 				System.out.println("At least wait until you can heal health with it.\n(Food heals a lot of health.)");
 			}
