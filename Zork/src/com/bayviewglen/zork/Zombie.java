@@ -27,23 +27,22 @@ public class Zombie extends Character {
 															// zombie(s)
 		final int MIN_DAMAGE = 10;
 		final int MAX_DAMAGE = 15;
-		boolean takeDamage = runAway(getNumZombies());
 
-		if (takeDamage) {
+
+		
 			int damageTaken = ThreadLocalRandom.current().nextInt(MIN_DAMAGE, MAX_DAMAGE);
 			Thread.sleep(500);
-			System.out.println("The zombie(s) caught up with you and attacked, dealing " + damageTaken * getNumZombies()
-					+ " damage.");
+			System.out.println("A zombie caught up with you and attacked, dealing " + damageTaken
+					+ " damage before you could escape.");
 			return damageTaken;
-		} else {
-			return 0;
-		}
+		
 	}
 
 	public void reduceNumZombies() {
 		numZombies--;
 	}
-	public int zombieDamageAttack(){
+
+	public int zombieDamageAttack() {
 		final int MIN_DAMAGE = 10;
 		final int MAX_DAMAGE = 15;
 		int damageTaken = ThreadLocalRandom.current().nextInt(MIN_DAMAGE, MAX_DAMAGE);
@@ -53,14 +52,14 @@ public class Zombie extends Character {
 	public int playerMovement() { // returns number of steps the player takes
 									// per round
 		final int MIN_MOVEMENT_PLAYER = 1;
-		final int MAX_MOVEMENT_PLAYER = 6;
+		final int MAX_MOVEMENT_PLAYER = 5;
 
 		int pRandMovement = ThreadLocalRandom.current().nextInt(MIN_MOVEMENT_PLAYER, MAX_MOVEMENT_PLAYER);
 		return pRandMovement;
 	}
 
 	// returns false if you escaped and true if you didn't
-	public boolean runAway(int numZomb) throws InterruptedException {
+	public boolean runAway(int numZomb, Player user) throws InterruptedException {
 		String[] names = new String[numZombies + 1];
 		boolean isWinner = false;
 		String winner = null;
@@ -75,12 +74,7 @@ public class Zombie extends Character {
 				names[i] = "Zombie " + i;
 			}
 		}
-		try {
-			Thread.sleep(700);
-		} catch (InterruptedException e2) {
 
-			e2.printStackTrace();
-		}
 		System.out.println("\n\tRUN!!!");
 		try {
 			Thread.sleep(700);
@@ -112,9 +106,6 @@ public class Zombie extends Character {
 				if (placeInRace[j] >= 100) {
 					winner = names[j];
 					placeInRace[j] = 100;
-					
-						
-							
 					System.out.print(
 							"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 					for (int k = 0; k < placeInRace.length; k++) {
@@ -122,19 +113,21 @@ public class Zombie extends Character {
 						System.out.printf("%-30s|%" + x + "d%n", names[k], placeInRace[k]);
 						System.out.println(
 								"------------------------------------------------------------------------------------------------------------------------------------");
-						if(winner.equalsIgnoreCase("you")){
+					}
+						if (winner.equalsIgnoreCase("YOU")) {
+							System.out.println("You got away!");
 							return false;
-						}else{
+						} else {
+							user.removeHealth(zombieDamage());
 							return true;
 						}
-					}
+					
 
 				}
 			}
 
 		}
 		return true;
-		
 
 	}
 
