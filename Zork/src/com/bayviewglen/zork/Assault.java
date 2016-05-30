@@ -61,7 +61,7 @@ public abstract class Assault {
                                         	System.out.println("There are/is " + zombie.getNumZombies() + " left.");
                                         }
                                  }else {
-                                        int damageDone = ((Zombie) x).zombieDamage();
+                                        int damageDone = zomb.zombieDamage();
                                         user.removeHealth(damageDone);
                                         currentRoom.getRoster().removeCharacter(x);
                                         System.out.println("You missed and the zombie dealt " + damageDone + " damage before you finally killed it.");
