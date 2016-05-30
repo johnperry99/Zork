@@ -31,6 +31,8 @@ class Game {
 	private static boolean finished = false;
 	private boolean firstTime = true;
 	private boolean gameDone = false;
+	private boolean forceQuit;
+	private Quit quit;
 	// This is a MASTER object that contains all of the rooms and is easily
 	// accessible.
 	// The key will be the name of the room -> no spaces (Use all caps and
@@ -148,13 +150,17 @@ class Game {
 			Command command = parser.getCommand();
 			finished = processCommand(command);
 			if (gameDone) {
-				quit();
+				quit = new Quit(finished, false);
+				quit.getFinished();
+				finished = quit.isFinished();
 			}
 
 		}
 		if (gameDone) {
 			System.out.println("\nWell well well, look at you. Finished the game. Was it hard?\n"
 					+ "Do you know that there are multiple endings? Play again and try to find them!");
+		} else if(forceQuit){
+			System.out.println("Thanks for playing! Come play again soon!");
 		} else {
 			System.out.println("You are dead: GAME OVER.");
 		}
@@ -206,10 +212,15 @@ class Game {
 				|| commandWord.equalsIgnoreCase("u") || commandWord.equalsIgnoreCase("d"))
 			goRoom(command);
 		else if (commandWord.equalsIgnoreCase("quit")) {
-			if (command.hasSecondWord())
-				System.out.println("Quit what?");
-			else
-				return true; // signal that we want to quit
+			if (command.hasSecondWord()){
+				System.out.println("If you mean quit game, enter \"quit\".");
+			} else{
+				quit = new Quit(finished, true);
+				quit.ask();
+				forceQuit = quit.gameNotComplete();
+				finished = quit.isFinished();
+				return finished; // signal that we want to quit
+			}
 		} else if (commandWord.equalsIgnoreCase("eat"))
 			eat(command);
 		else if (commandWord.equalsIgnoreCase("inventory") || commandWord.equalsIgnoreCase("i")
@@ -475,6 +486,9 @@ class Game {
 			if (currentRoom.getRoomName().equals("Inside Saviours Compound")) {
 				gameDone = true;
 				Ending.ending(user);
+				quit = new Quit(finished, false);
+				quit.getFinished();
+				finished = quit.isFinished();
 			}
 			if (currentRoom.getRoomName().equals("Kitchen") && !user.getInventory().hasItem("bag")) {
 				user.addToInventoryCapacity(39);
@@ -525,10 +539,6 @@ class Game {
 		} else {
 			System.out.println("There is no " + command.getSecondWord() + " here...");
 		}
-	}
-
-	public static void quit() {
-		finished = true;
 	}
 
 }

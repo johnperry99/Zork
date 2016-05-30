@@ -15,8 +15,7 @@ public class Ending {
 			while (playing) {
 				firstChoice(user);
 			}
-			Thread.sleep(2000);
-			Game.quit();
+			Thread.sleep(2000);			
 
 		}
 	}
