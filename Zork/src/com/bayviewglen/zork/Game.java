@@ -209,7 +209,7 @@ class Game {
 				return true; // signal that we want to quit
 		} else if (commandWord.equalsIgnoreCase("eat"))
 			eat(command);
-		else if (commandWord.equalsIgnoreCase("inventory") || commandWord.equalsIgnoreCase("i"))
+		else if (commandWord.equalsIgnoreCase("information") || commandWord.equalsIgnoreCase("i"))
 			user.displayInventory();
 		else if (commandWord.equalsIgnoreCase("look"))
 			System.out.println(currentRoom.longDescription());
@@ -420,7 +420,6 @@ class Game {
 			currentRoom = nextRoom;
 			if (currentRoom.isFirstTime()) {
 				System.out.println(currentRoom.longDescription());
-				System.out.println("Current Health:  " + user.getHealth());
 			} else {
 				System.out.println(currentRoom.shortDescription());
 			}
