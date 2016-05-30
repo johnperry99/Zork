@@ -13,6 +13,7 @@ public class CharacterRoster {
 		super();
 		roster = new ArrayList<Character>();
 	}
+	
 
 
 
