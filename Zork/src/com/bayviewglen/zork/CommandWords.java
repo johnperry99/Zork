@@ -21,7 +21,7 @@ class CommandWords {
 			"henchman", "henchmen", "saviour", "saviours", "saviour henchmen", "saviour henchman", "zombie", "zombies" };
 
 	/**
-	 * Constructor - initialise the command words.
+	 * Constructor - initialize the command words.
 	 */
 	public CommandWords() {
 		// nothing to do at the moment...
