@@ -26,7 +26,6 @@ class Room
     private Inventory inv;
     private CharacterRoster roster;
     private boolean firstTime = true;
-    private int inventoryCapacity = 9999999;
     
     public boolean isFirstTime() {
 		return firstTime;
@@ -35,8 +34,6 @@ class Room
 	public Room(String description) 
     {
         this.description = description;
-        exits = new HashMap<String, Room>();
-        inv = new Inventory();
         roster = new CharacterRoster();
         //addInv();
     }
@@ -93,7 +90,7 @@ class Room
      */
     public String shortDescription()
     {
-        return roomName +"\n\n" + exits;
+        return roomName +"\n\n" + exitString();
     }
     /*public String ultraShortDescription(){
     	return roomName + "\n\n" + exits;
@@ -107,7 +104,7 @@ class Room
     public String longDescription()
     {
     	
-        return roomName +"\n\n" + description + "\n" + exitString();
+        return roomName +"\n\n" + description + "\n\n" + exitString();
     }
 
     /**

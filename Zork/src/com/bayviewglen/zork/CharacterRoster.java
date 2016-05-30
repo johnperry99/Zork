@@ -63,4 +63,8 @@ public class CharacterRoster {
 		int k = roster.indexOf(x);
 		return roster.get(k);
 	}
+	
+	public int getSize(){
+		return roster.size();
+	}
 }

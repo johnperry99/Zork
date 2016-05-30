@@ -12,11 +12,13 @@ package com.bayviewglen.zork;
 
 class CommandWords {
 	// a constant array that holds all valid command words
-	private static final String validCommands[] = { "go", "move", "walk", "run", "save", "quit", "help", "eat", "move", "look", "shine", "jump",
-			"sit down", "stand up", "talk", "attack", "shoot", "kill", "open", "close", "take", "take all",
-			"inventory", "i", "north", "east", "west", "south", "up", "down" };
-	private static final String validNouns[] = { "bag", "note", "car", "gun", "handgun", "knife", "crossbow", "desk", "chair", "table", "door", "sign",
-			"food", "book", "person", "sword", "inventory", "flashlight", "zombies", "zombie", "Rick", "Daryl", "Sasha", "Carol", "Carl", "Maggie" };
+	private static final String validCommands[] = { "go", "move", "walk", "run", "save", "quit", "help", "eat", "move", "look", "read", "shine", "jump",
+			"sit down", "stand up", "talk", "attack", "shoot", "kill", "open", "close", "take", "all", "everything", "turn on", "drive", "get in",
+			"inventory", "i", "north", "east", "west", "south", "up", "down", "n", "e", "w", "s", "u", "d" };
+	
+	private static final String validNouns[] = { "bag", "note", "car", "gun", "knife", "crossbow", "desk", "chair", "table", "door", "sign",
+			"food", "book", "person", "sword", "inventory", "flashlight", "zombies", "zombie", "Rick", "Daryl", "Sasha", "Carol", "Carl", "Maggie",
+			"henchman", "henchmen", "saviour", "saviours", "saviour henchmen", "saviour henchman", "zombie", "zombies" };
 
 	/**
 	 * Constructor - initialise the command words.
@@ -38,7 +40,7 @@ class CommandWords {
 		return false;
 	}
 
-	public static boolean isNoun(String str) {
+	public boolean isNoun(String str) {
 		for (int i = 0; i < validNouns.length; i++) {
 			if (validNouns[i].equalsIgnoreCase(str))
 				return true;

@@ -26,7 +26,11 @@ class Game {
 	private Parser parser;
 	private Room currentRoom;
 	private Player user;
-	private boolean finished = false;
+	private Zombie zombie;
+	private Henchman henchman;
+	private static boolean finished = false;
+	private boolean firstTime = true;
+	private boolean gameDone = false;
 	// This is a MASTER object that contains all of the rooms and is easily
 	// accessible.
 	// The key will be the name of the room -> no spaces (Use all caps and
@@ -139,12 +143,21 @@ class Game {
 		// execute them until the game is over.
 
 		
-		while (!finished) {
+		while (!finished && user.isAlive()) {
 			Command command = parser.getCommand();
 			finished = processCommand(command);
+			if(gameDone){
+				quit();
+			}
+			
 		}
-		System.out.println("Thank you for playing.  Good bye.");
-			Thread.sleep(1000);
+		if(gameDone){
+			System.out.println("\nWell well well, look at you. Finished the game. Was it hard?\n"
+					+ "Do you know that there are multiple endings? Play again and try to find them!");
+		} else{
+			System.out.println("You are dead: GAME OVER.");
+		}
+			Thread.sleep(2000);
 	}
 
 	/**
@@ -154,11 +167,11 @@ class Game {
 	private void printWelcome() throws InterruptedException {
 		System.out.println();
 		System.out.print("Welcome to ZORK:");
-		Thread.sleep(2000);
-		System.out.println(" THE WALKING DEAD");
-		Thread.sleep(2000);
-		System.out.println("This is a new take on the original Zork game, but set in the Walking dead universe!");
 		Thread.sleep(1000);
+		System.out.println(" THE WALKING DEAD");
+		Thread.sleep(1500);
+		System.out.println("This is a new take on the original Zork game, but set in The Walking Dead universe!");
+		Thread.sleep(2000);
 		System.out.println("Enter 'help' to see acceptable commands and your objective.");
 		Thread.sleep(2000);
 		System.out.println();
@@ -169,8 +182,9 @@ class Game {
 	/**
 	 * Given a command, process (that is: execute) the command. If this command
 	 * ends the game, true is returned, otherwise false is returned.
+	 * @throws InterruptedException 
 	 */
-	private boolean processCommand(Command command) {
+	private boolean processCommand(Command command) throws InterruptedException {
 		if (command.isUnknown()) {
 			System.out.println("I don't know what you mean...");
 			return false;
@@ -183,7 +197,10 @@ class Game {
 				|| commandWord.equalsIgnoreCase("walk") || commandWord.equalsIgnoreCase("run")
 				|| commandWord.equalsIgnoreCase("north") || commandWord.equalsIgnoreCase("south")
 				|| commandWord.equalsIgnoreCase("west") || commandWord.equalsIgnoreCase("east")
-				|| commandWord.equalsIgnoreCase("up") || commandWord.equalsIgnoreCase("down"))
+				|| commandWord.equalsIgnoreCase("up") || commandWord.equalsIgnoreCase("down")
+				|| commandWord.equalsIgnoreCase("n") || commandWord.equalsIgnoreCase("s")
+				|| commandWord.equalsIgnoreCase("e") || commandWord.equalsIgnoreCase("w")
+				|| commandWord.equalsIgnoreCase("u") || commandWord.equalsIgnoreCase("d"))
 			goRoom(command);
 		else if (commandWord.equalsIgnoreCase("quit")) {
 			if (command.hasSecondWord())
@@ -191,27 +208,39 @@ class Game {
 			else
 				return true; // signal that we want to quit
 		} else if (commandWord.equalsIgnoreCase("eat"))
-			System.out.println("Do you really think you should be eating at a time like this?");
+			eat(command);
 		else if (commandWord.equalsIgnoreCase("inventory") || commandWord.equalsIgnoreCase("i"))
 			user.displayInventory();
 		else if (commandWord.equalsIgnoreCase("look"))
-			System.out.println(currentRoom.getDescription());
+			System.out.println(currentRoom.longDescription());
 		else if (commandWord.equalsIgnoreCase("kill") || commandWord.equalsIgnoreCase("attack"))
 			validAttackCommand(command);
 		else if (commandWord.equalsIgnoreCase("shoot")) {
 			if (user.hasItem("gun") || user.hasItem("crossbow"))
 				validAttackCommand(command);
 			else
-				System.out.println("You don't have a gun!");
+				System.out.println("You don't have a gun or crossbow!");
 		} else if (commandWord.equalsIgnoreCase("take")) {
-			if (!command.hasSecondWord() || !CommandWords.isNoun(command.getSecondWord()))
+			if (!command.hasSecondWord())
 				System.out.println("Take what?");
+			else if (command.getSecondWord().equals("all") || command.getSecondWord().equals("everything"))
+				System.out.println("Please take one item at a time, as you may not be able to carry everything.");
 			else if (command.getSecondWord().equals(currentRoom.getInventory().getItemString(command.getSecondWord())))
 				takeItems(command, user.getInventory(), currentRoom.getInventory());
+			else if (command.getSecondWord().equals(user.getInventory().getItemString(command.getSecondWord())))
+				System.out.println("You already have that!");
 			else
 				System.out.println("There isn't an item of that sort here...");
+		} else if (commandWord.equalsIgnoreCase("read")){
+			if (!command.hasSecondWord())
+				System.out.println("Read what?");
+			else if (command.getSecondWord().equals(currentRoom.getInventory().getItemString(command.getSecondWord()))
+					|| command.getSecondWord().equals(user.getInventory().getItemString(command.getSecondWord())))
+				read(command);
+			else
+				System.out.println("There's nothing to read...");
 		} else
-			System.out.println("I don't understand.");
+			System.out.println("What do you mean?");
 
 		return false;
 
@@ -219,32 +248,37 @@ class Game {
 
 	// implementations of user commands:
 
-	private void validAttackCommand(Command command) {
+	private void validAttackCommand(Command command) throws InterruptedException {
 		if (!command.hasSecondWord()) {
 			System.out.println("What do you want to attack?");
 		} else if (!command.hasFourthWord()) {
-			System.out.println("What do you want to attack " + command.getSecondWord() + " with?");
+				System.out.println("What do you want to attack a '" + command.getSecondWord() + "' with?");
 		} else {
 			attack(currentRoom.getRoster(), command);
 		}
 
 	}
 
-	private void attack(CharacterRoster roster, Command command) {
-		if (roster.hasCharacter(command.getSecondWord())) {
+	private void attack(CharacterRoster roster, Command command) throws InterruptedException {
+		if (roster.hasCharacter(command.getSecondWord()) || roster.hasCharacter("zombie")
+			|| roster.hasCharacter("henchman")) {
 
-			if (command.getSecondWord().equalsIgnoreCase("Zombie")
-					|| command.getSecondWord().equalsIgnoreCase("Zombies")) {
-				Assault.attackZombie(currentRoom, user, command);
-			} else if (command.getSecondWord().equalsIgnoreCase("Henchman")
-					|| command.getSecondWord().equalsIgnoreCase("Henchmen")) {
-				Assault.attackHenchman(currentRoom, user, command);
+			if (command.getSecondWord().equalsIgnoreCase("zombie")
+					|| command.getSecondWord().equalsIgnoreCase("zombies")) {
+				Assault.attackZombie(currentRoom, user, command, zombie);
+			} else if (command.getSecondWord().equalsIgnoreCase("henchman")
+					|| command.getSecondWord().equalsIgnoreCase("henchmen")
+					|| command.getSecondWord().equalsIgnoreCase("saviour henchman")
+					|| command.getSecondWord().equalsIgnoreCase("saviour henchmen")
+					|| command.getSecondWord().equalsIgnoreCase("saviour")
+					|| command.getSecondWord().equalsIgnoreCase("saviours")) {
+				Assault.attackHenchman(currentRoom, user, command, henchman);
 			} else if (command.getSecondWord().equalsIgnoreCase("It") || command.getSecondWord().equalsIgnoreCase("Him")
 					|| command.getSecondWord().equalsIgnoreCase("Her")) {
 				if (currentRoom.getRoster().hasCharacter("zombie")) {
-					Assault.attackZombie(currentRoom, user, command);
+					Assault.attackZombie(currentRoom, user, command, zombie);
 				} else if (currentRoom.getRoster().hasCharacter("henchman")) {
-					Assault.attackHenchman(currentRoom, user, command);
+					Assault.attackHenchman(currentRoom, user, command, henchman);
 				} else {
 					System.out.println("You can't attack an ally!");
 				}
@@ -258,13 +292,72 @@ class Game {
 		}
 
 	}
+	
+	private void eat(Command command) {
+		if(command.hasSecondWord() && command.getSecondWord().equalsIgnoreCase("food")
+		   && user.getInventory().hasItem("food") || currentRoom.getInventory().hasItem("food")){
+			if(user.getHealth()<=50){
+				user.addHealth(50);
+				System.out.println("You ate the food. It tasted delicious");
+			}else {
+				System.out.println("Do you really think you should be eating at a time like this?");
+				System.out.println("At least wait until you can heal health with it.\n(Food heals a lot of health.)");
+			}
+			
+		} else if(!command.hasSecondWord()){
+			System.out.println("Eat What?");
+		
+		}else {
+			System.out.println("Do you really think you should be eating at a time like this?");
+		}
+	}
+	
+	private void read(Command command) throws InterruptedException {
+		if(command.getSecondWord().equalsIgnoreCase("note")){
+			if(firstTime==false){
+				System.out.println("\"There's something very important that you need to know.");
+				System.out.println("We're all very sorry to say this but... Glenn... Your wife, Maggy, has been kidnapped.");
+				System.out.println("We know you are going to go look for her, but we strongly advise against it.");
+				System.out.println("If anything you should wait a few days for us to plan out how we are going to find her.\"");
+			} else {
+				System.out.println("There's some very important that you need to know.");
+				System.out.println("We're all very sorry to say this but... Glenn... Your wife, Maggy, has been kidnapped.");
+				System.out.println("We know you are going to go look for her, but we strongly advise against it.");
+				System.out.println("If anything you should wait a few days for us to plan out how we are going to find her.");
+				Thread.sleep(5000);
+				System.out.println("\nYour heart begins to beat rapidly, your breath shortens,");
+				System.out.println("and it takes all your strength to stop yourself from passing out.");
+				System.out.println("You immediately decide to leave the safety of your home, Alexandria, and search for your wife.");
+				firstTime = false;
+			}
+		} else if (command.getSecondWord().equalsIgnoreCase("sign")){
+			if(currentRoom.getRoomName().equals("Forest Section 1")){
+				System.out.println("Beware... Zombies and enemies are everwhere.");
+				System.out.println("If you ever happen to encounter the Saviour Compound, immediately turn back...");
+				System.out.println("...Or you will die.");
+			}else if(currentRoom.getRoomName().equals("House (Outside)")){
+				System.out.println("Bob's abandoned home.");
+				System.out.println("Take what you need and leave, before it's too late.");
+			}else{
+				System.out.println("Uncle Jeffrey's abandoned barn.");
+				System.out.println("Take what you need and leave, before it's too late");
+			}
+		} else {
+			System.out.println("There's nothing to read...");
+		}
+
+	}
 
 	/**
 	 * Print out some help information. Here we print some stupid, cryptic
 	 * message and a list of the command words.
 	 */
 	private void printHelp() {
-		System.out.println(""); // prints the objective of saving Maggie ONLY after you read note
+		System.out.println("Read the note for your objective.");
+		System.out.println("Max number of words per command: 4");
+		System.out.println("Avoid using words like 'the', 'a', 'this', 'your', 'my', etc...\n");
+		System.out.println("Hint: You can just enter the first letter of the direction you want to go.\n(eg. 'e' instead of 'east'");
+		System.out.println("Enter i or inventory to display your inventory\n");
 		System.out.println("Your command words are:");
 		parser.showCommands();
 	}
@@ -272,19 +365,51 @@ class Game {
 	/**
 	 * Try to go to one direction. If there is an exit, enter the new room,
 	 * otherwise print an error message.
+	 * @throws InterruptedException 
 	 */
-	private void goRoom(Command command) {
+	private void goRoom(Command command) throws InterruptedException {
 		String direction;
 		if (!command.hasSecondWord() && (command.getCommandWord().equalsIgnoreCase("go")
-				|| command.getCommandWord().equalsIgnoreCase("move") || command.getCommandWord().equalsIgnoreCase("run")
-				|| command.getCommandWord().equalsIgnoreCase("walk"))) {
+			|| command.getCommandWord().equalsIgnoreCase("move") || command.getCommandWord().equalsIgnoreCase("run")
+			|| command.getCommandWord().equalsIgnoreCase("walk"))) {
 			// if there is no second word, we don't know where to go...
 			System.out.println("Where would you like to go?");
 			return;
 		} else if (!command.hasSecondWord()) {
-			direction = command.getCommandWord();
+			String dir = command.getCommandWord();
+			if(dir.equalsIgnoreCase("n")){
+				direction = "north";
+			} else if(dir.equalsIgnoreCase("s")){
+				direction = "south";
+			} else if(dir.equalsIgnoreCase("w")){
+				direction = "west";
+			} else if(dir.equalsIgnoreCase("e")){
+				direction = "east";
+			} else if(dir.equalsIgnoreCase("d")){
+				direction = "down";
+			} else if(dir.equalsIgnoreCase("u")){
+				direction = "up";
+			} else{
+				direction = dir;
+			}
+			
 		} else {
-			direction = command.getSecondWord();
+			String dir = command.getSecondWord();
+			if(dir.equalsIgnoreCase("n")){
+				direction = "north";
+			} else if(dir.equalsIgnoreCase("s")){
+				direction = "south";
+			} else if(dir.equalsIgnoreCase("w")){
+				direction = "west";
+			} else if(dir.equalsIgnoreCase("e")){
+				direction = "east";
+			} else if(dir.equalsIgnoreCase("d")){
+				direction = "down";
+			} else if(dir.equalsIgnoreCase("u")){
+				direction = "up";
+			} else {
+				direction = dir;
+			}
 		}
 		// Try to leave current room.
 		Room nextRoom = currentRoom.nextRoom(direction);
@@ -295,24 +420,56 @@ class Game {
 			currentRoom = nextRoom;
 			if (currentRoom.isFirstTime()) {
 				System.out.println(currentRoom.longDescription());
+				System.out.println("Current Health:  " + user.getHealth());
 			} else {
 				System.out.println(currentRoom.shortDescription());
 			}
 			currentRoom.removeFirstTime();
+			if(currentRoom.getRoomName().equals("Inside Saviours Compound")){
+				gameDone = true;
+				Ending.ending(user);
+			}
+			if(currentRoom.getRoomName().equals("Kitchen") && !user.getInventory().hasItem("bag")){
+				user.addToInventoryCapacity(39);
+				Item x = currentRoom.getInventory().getItem("bag");
+				user.getInventory().addItem(x);
+				currentRoom.getInventory().removeItem(x);
+			}
+			if(currentRoom.getRoomName().equals("Kitchen") && !user.getInventory().hasItem("knife") && !user.getInventory().hasItem("food")){
+				Item k = currentRoom.getInventory().getItem("food");
+				Item y = currentRoom.getInventory().getItem("knife");
+				user.getInventory().addItem(k);
+				user.getInventory().addItem(y);
+				currentRoom.getInventory().removeItem(k);
+				currentRoom.getInventory().removeItem(y);
+			}
+			if(currentRoom.getRoster().hasCharacter("henchman")){
+				henchman = new Henchman(currentRoom.getRoster().getSize());
+				if(currentRoom.getRoomName().equals("Outside Saviours Compound")){
+					henchman.lastPhrase();
+				} else {
+					henchman.randomPhrase();
+				}
+			}
+			if(currentRoom.getRoster().hasCharacter("zombie")){
+				zombie = new Zombie(currentRoom.getRoster().getSize());
+				zombie.zombiePhrase();
+			}
 		}
 	}
 
 	private void takeItems(Command command, Inventory player, Inventory room) {
-		Item temp = room.getItem(command.getSecondWord());
-		if (currentRoom.getInventory().hasItem("bag")) {
-			if (temp.equals(currentRoom.getInventory().getItem("bag"))) {
-				user.addToInventoryCapacity(40);
-			}
+		if(command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("and")){
+			System.out.println("Please take one item at a time.");
+			return;
 		}
+		Item temp = room.getItem(command.getSecondWord());
+		
 		int x = temp.getWeight() + player.calculateWeight();
-		if (room.hasItem(command.getSecondWord()) && x < user.capacity()) {
+		if (room.hasItem(command.getSecondWord()) && x <= user.capacity()) {
 			System.out.println("Taken.");
 			player.addItem(temp);
+			user.addWeight(temp.getWeight());
 			room.removeItem(temp);
 
 		} else if (x > user.capacity()) {
@@ -321,7 +478,7 @@ class Game {
 			System.out.println("There is no " + command.getSecondWord() + " here...");
 		}
 	}
-	public void quit(){
+	public static void quit(){
 		finished = true;
 	}
 

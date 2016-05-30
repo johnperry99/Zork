@@ -7,13 +7,13 @@ public class Character {
 	
 	public Character(String name){
 		this.name = name;
-		boolean alive = true;
+		alive = true;
 	}
 	public Character(){
 		super();
-		boolean alive = true;
+		alive = true;
 	}
-	public boolean getState(){
+	public boolean isAlive(){
 		return alive;
 	}
 	public void kill(){

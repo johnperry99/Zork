@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Inventory {
 
 	private ArrayList<Item> itemsInInventory;
-	
 
 	public Inventory() {
 		itemsInInventory = new ArrayList<Item>();
@@ -14,7 +13,13 @@ public class Inventory {
 
 	public Inventory(ArrayList<Item> list) {
 		itemsInInventory = new ArrayList<Item>();
-		
+
+	}
+	public void setInventory(ArrayList<Item> i){
+		itemsInInventory = i;
+	}
+	public void setInventory(Inventory x){
+		itemsInInventory = x.getInventory();
 	}
 
 	public ArrayList<Item> getInventory() {
@@ -24,7 +29,7 @@ public class Inventory {
 	public String toString() {
 		String items = "";
 		for (Item s : itemsInInventory) {
-			items += " " + s.getName() +"\n";
+			items += " " + s.getName() + "\n";
 		}
 		return "Inventory:\n" + items;
 	}
@@ -38,6 +43,14 @@ public class Inventory {
 			itemsInInventory.remove(item);
 		} catch (Exception ex) {
 			System.out.println(item.getName() + " is not a valid object in an inventory.");
+		}
+	}
+
+	public void removeItem(String item) {
+		for (int i = 0; i < itemsInInventory.size(); i++) {
+			if (itemsInInventory.get(i).getName().equals(item)){
+				itemsInInventory.remove(i);
+			}
 		}
 	}
 
@@ -64,21 +77,23 @@ public class Inventory {
 			if (x.getName().equalsIgnoreCase(word)) {
 				return x;
 			}
-			
+
 		}
 		return null;
 	}
-	public String getItemString(String word){
-		for (Item x: itemsInInventory){
-			if(x.getName().equalsIgnoreCase(word)){
+
+	public String getItemString(String word) {
+		for (Item x : itemsInInventory) {
+			if (x.getName().equalsIgnoreCase(word)) {
 				return x.getName();
 			}
 		}
 		return null;
 	}
-	public int calculateWeight(){
+
+	public int calculateWeight() {
 		int weight = 0;
-		for(Item x: itemsInInventory){
+		for (Item x : itemsInInventory) {
 			weight += x.getWeight();
 		}
 		return weight;
