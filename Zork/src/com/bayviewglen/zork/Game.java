@@ -497,8 +497,8 @@ class Game {
 				currentRoom.getInventory().removeItem(x);
 			}
 			if (currentRoom.getRoomName().equals("Kitchen") && !user.getInventory().hasItem("knife")
-					&& !user.getInventory().hasItem("food")) {
-				Item k = currentRoom.getInventory().getItem("food");
+					&& !user.getInventory().hasItem("pizza")) {
+				Item k = currentRoom.getInventory().getItem("pizza");
 				Item y = currentRoom.getInventory().getItem("knife");
 				user.getInventory().addItem(k);
 				user.getInventory().addItem(y);
