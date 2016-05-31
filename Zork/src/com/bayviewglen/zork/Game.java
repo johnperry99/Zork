@@ -316,7 +316,7 @@ class Game {
 			if (user.getHealth() <= 50) {
 				user.addHealth(50);
 				System.out.println("You ate the pizza. It tasted delicious");
-				System.out.println("You now have " + user.getHealth() + " health");
+				System.out.println("You now have " + user.getHealth() + " health.");
 			} else if (user.getHealth() > 50 && user.getHealth() < 100) {
 				user.setHealth(100);
 				System.out.println("You ate the pizza. It tasted delicious");
