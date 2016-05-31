@@ -34,6 +34,7 @@ class Game {
 	private boolean gameDone = false;
 	private boolean forceQuit;
 	private Quit quit;
+	private boolean inCar = false;
 	// This is a MASTER object that contains all of the rooms and is easily
 	// accessible.
 	// The key will be the name of the room -> no spaces (Use all caps and
@@ -271,8 +272,17 @@ class Game {
 		} else if (command.getCommandWord().equals("turn")) {
 			if(!command.hasSecondWord())
 				System.out.println("What do you mean by turn?");
-			else if(command.getSecondWord().equals("on"))
+			else if(command.getSecondWord().equalsIgnoreCase("on") || command.getSecondWord().equalsIgnoreCase("off"))
 				flashlight(command);
+			else
+				System.out.println("Turn what?");
+		} else if(commandWord.equalsIgnoreCase("drive") || (command.hasSecondWord() && (commandWord.equalsIgnoreCase("get")
+				 || commandWord.equalsIgnoreCase("turn")))){
+			if(commandWord.equalsIgnoreCase("drive") && !(command.hasSecondWord()))
+				System.out.println("Drive what?");
+			else if((commandWord.equalsIgnoreCase("drive") || (commandWord.equalsIgnoreCase("get")
+					|| commandWord.equalsIgnoreCase("turn")) && command.hasSecondWord()))
+				drive(command);
 			else
 				System.out.println("What?");
 		} else {
@@ -336,6 +346,32 @@ class Game {
 			System.out.println("That character is not here!");
 		}
 
+	}
+	
+	private void drive(Command command) {
+		if(user.getInventory().hasItem("key") && currentRoom.getInventory().hasItem("car")
+		  && ((command.getSecondWord().equalsIgnoreCase("on")
+		  && command.getThirdWord().equalsIgnoreCase("car")) || (command.getSecondWord().equalsIgnoreCase("in")
+		  && command.getThirdWord().equalsIgnoreCase("car"))
+		  || (command.getSecondWord().equalsIgnoreCase("car")))){
+			System.out.println("You approach the car and enter it. You then start the engine with the key.");
+			System.out.println("You can now leave Alexandria by going east...");
+		} else if(!(user.getInventory().hasItem("key")) && currentRoom.getInventory().hasItem("car")
+		  && ((command.getSecondWord().equalsIgnoreCase("on")
+		  && command.getThirdWord().equalsIgnoreCase("car")) || (command.getSecondWord().equalsIgnoreCase("in")
+		  && command.getThirdWord().equalsIgnoreCase("car"))
+		  || (command.getSecondWord().equalsIgnoreCase("car")))){
+			System.out.println("You don't have the key to turn on the car...");
+		} else if(!(currentRoom.getInventory().hasItem("car"))
+		  && ((command.getSecondWord().equalsIgnoreCase("on")
+		  && command.getThirdWord().equalsIgnoreCase("car")) || (command.getSecondWord().equalsIgnoreCase("in")
+		  && command.getThirdWord().equalsIgnoreCase("car"))
+		  || (command.getSecondWord().equalsIgnoreCase("car")))){
+			System.out.println("There is no car here...");
+		} else {
+			System.out.println("What?");
+		}
+			
 	}
 
 	private void eat(Command command) {
