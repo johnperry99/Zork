@@ -1,6 +1,6 @@
 package com.bayviewglen.zork;
 
 public interface Depletable {
-	public boolean getState();
+	public boolean noAmmo();
 	
 }
