@@ -419,7 +419,7 @@ class Game {
 			} else {
 				System.out.println("There's some very important that you need to know.");
 				System.out.println(
-						"We're all very sorry to say this but... Glenn... Your wife, Maggy, has been kidnapped.");
+						"We're all very sorry to say this but... Glenn... Your wife, Maggy, has been kidnapped by the Saviours.");
 				System.out.println("We know you are going to go look for her, but we strongly advise against it.");
 				System.out.println(
 						"If anything you should wait a few days for us to plan out how we are going to find her.");
