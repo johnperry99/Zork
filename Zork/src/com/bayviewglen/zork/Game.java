@@ -516,12 +516,15 @@ class Game {
 		// Try to leave current room.
 		Room nextRoom = currentRoom.nextRoom(direction);
 
-		if (nextRoom == null || (currentRoom.getRoomName().equals("Alexandria Entrance")
-			&& !(inCar))) {
-			if(currentRoom.getRoomName().equals("Alexandria Entrance"))
+		if (nextRoom == null) {
+			System.out.println("You can't go that way!");
+		}
+		else if(currentRoom.getRoomName().equals("Alexandria Entrance")
+			&& !(inCar) && direction.equals("east")) {
+		
 				System.out.println("You're gonna WALK all the way to the forest? Bad idea.");
-			else
-				System.out.println("You can't go that way!");
+		
+				
 		} else if (currentRoom.getRoster().hasCharacter("zombie") || currentRoom.getRoster().hasCharacter("henchman")) {
 			if (currentRoom.getRoster().hasCharacter("zombie")) {
 				zombie.runAway(currentRoom.getRoster().getSize(), user);
