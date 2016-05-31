@@ -530,7 +530,7 @@ class Game {
 				finished = quit.isFinished();
 			}
 			if (currentRoom.getRoomName().equals("Kitchen") && !user.getInventory().hasItem("bag")) {
-				user.addToInventoryCapacity(39);
+				user.addToInventoryCapacity(30);
 				Item x = currentRoom.getInventory().getItem("bag");
 				user.getInventory().addItem(x);
 				currentRoom.getInventory().removeItem(x);
