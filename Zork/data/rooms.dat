@@ -16,11 +16,11 @@ Characters:
 Room Name: Living Room
 Room Description: You are in the living room.<br>There is a door at the south end of the room.<br>It leads outside.<br>
 Exits: N-Kitchen, S-Front of House
-Items: 
+Items: key-2
 Characters:
 Room Name: Front of House
 Room Description: You are in front of your house.<br>You see Alexandria's farm to the west and its entrance to the east.<br>
-Exits: W-Farm, E-Alexandria Entrance
+Exits: N-Living Room, W-Farm, E-Alexandria Entrance
 Items: 
 Characters: Daryl-
 Room Name: Farm
