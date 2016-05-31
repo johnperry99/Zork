@@ -15,7 +15,7 @@ public class Ending {
 			while (playing) {
 				firstChoice(user);
 			}
-			Thread.sleep(2000);			
+			Thread.sleep(2000);
 
 		}
 	}
@@ -37,8 +37,8 @@ public class Ending {
 					+ "\nYou exit the room and see another room to the north that you wisely decide not to enter.");
 			secondChoice(user);
 		} else {
-			System.out
-					.println("The saviour notices you before you get halfway across the room and shoots you.\nGAME OVER");
+			System.out.println(
+					"The saviour notices you before you get halfway across the room and shoots you.\nGAME OVER");
 			Thread.sleep(3000);
 			System.out.println("\nStarting from previous checkpoint.");
 			Thread.sleep(2000);
@@ -143,7 +143,7 @@ public class Ending {
 					+ "\nyou hear a loud bang...complete darkness."
 					+ "\nWhen you wake up he has disappeared and Maggie is nowhere to be found.\nGAME OVER");
 			user.getInventory().setInventory(originalInv);
-			Thread.sleep(3000);			
+			Thread.sleep(3000);
 			System.out.println("Resuming from last checkpoint");
 			Thread.sleep(2000);
 		}
@@ -159,12 +159,12 @@ public class Ending {
 			System.out.println("\nYou decide that sparing him will teach him a lesson in messing with you.\n"
 					+ "That day you prove that being human is still possible.");
 			playing = false;
-			
+
 		} else {
 			System.out.println("\nYou dangle the knife by your side. \n\"This is for all of the lives you've ruined. "
 					+ "\nAnd now I want you to die knowing you failed to ruin mine.\"");
 			playing = false;
-			
+
 		}
 
 	}
@@ -211,7 +211,7 @@ public class Ending {
 		boolean valid = false;
 		System.out.println("Please enter your selection:");
 		for (String s : x) {
-			System.out.println(" "+ s);
+			System.out.println(" " + s);
 		}
 		System.out.print("> ");
 		while (!valid) {
