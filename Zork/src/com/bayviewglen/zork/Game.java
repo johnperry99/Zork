@@ -133,7 +133,11 @@ class Game {
 			e.printStackTrace();
 		}
 		parser = new Parser();
-		user = new Player();
+		int hp = 100;
+		Inventory inven = new Inventory();
+		int invCapacity = 10;
+		int currWeight = 0;
+		user = new Player(inven, hp, invCapacity, currWeight);
 	}
 
 	/**

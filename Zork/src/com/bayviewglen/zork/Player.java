@@ -7,29 +7,18 @@ public class Player extends Character{
 	private Inventory inv = new Inventory();
     private int health = 100;
     private int inventoryCapacity = 10;
-    private boolean flashlightShining;
     private int currentWeight;
     
     
    
-	public Player(Inventory inv, int health, int inventoryCapacity, boolean flashlightShining, int currentWeight) {
+	public Player(Inventory inv, int health, int inventoryCapacity, int currentWeight) {
 		super();
 		this.inv = inv;
 		this.health = health;
 		this.inventoryCapacity = inventoryCapacity;
-		this.flashlightShining = flashlightShining;
 		this.currentWeight = currentWeight;
 	}
-	public Player(){
-		 flashlightShining = false;
-		 currentWeight = 0;
-	}
-	public boolean isFlashlightOn() {
-		return flashlightShining;
-	}
-	public void setFlashlightOn(boolean flashlightOn) {
-		this.flashlightShining = flashlightOn;
-	}
+	
 	public void displayInventory(){
     	System.out.println(inv);
     	System.out.println("Current Capacity: " + inventoryCapacity);
