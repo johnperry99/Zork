@@ -4,7 +4,7 @@ Exits: D-Kitchen
 Items: note-0
 Characters: sasha-
 Room Name: Kitchen
-Room Description:  You are in the kitchen. You see some food (a pizza...yum), a knife, and a bag on the counter.<br>Realizing the bag will be of use to you, you take it, along with the food and knife.<br>There are two doorways, one leading east and the other leading south.<br>
+Room Description:  You are in the kitchen. You see some food (a pizza...yum), a knife, and a bag on the counter.<br>Realizing the bag will be of use to you, you take it, along with the food and knife.<br>Carol walks in and glances at you with sympathetic eyes.<br>There are also two doorways, one leading east and the other leading south.<br>
 Exits: E-Armory, S-Living Room, U-Bedroom
 Items: pizza-0, knife-0, bag-0
 Characters: Carol-
@@ -19,12 +19,12 @@ Exits: N-Kitchen, S-Front of House
 Items: key-2
 Characters:
 Room Name: Front of House
-Room Description: You are in front of your house.<br>You see Alexandria's farm to the west and its entrance to the east.<br>
+Room Description: You are in front of your house.<br>You see Alexandria's farm to the west and its entrance to the east.<br>Ahead of you, the hunter of the group, Daryl, is fixing his bike while smoking a cigarette.<br> You shake with disapproval: DON'T SMOKE KIDS! 
 Exits: N-Living Room, W-Farm, E-Alexandria Entrance
 Items: 
 Characters: Daryl-
 Room Name: Farm
-Room Description: You are in the farm of Alexandria.<br>
+Room Description: You are in the farm of Alexandria. You see Rick and his son Carl talking.<br>It seems Rick is showing his son how to plant potatoes. Amazing.
 Exits: E-Front of House
 Items:
 Characters: Rick-, Carl-
