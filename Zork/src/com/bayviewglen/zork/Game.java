@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Class Game - the main class of the "Zork" game.
@@ -227,7 +228,15 @@ class Game {
 				|| commandWord.equalsIgnoreCase("information"))
 			user.displayInventory();
 		else if (commandWord.equalsIgnoreCase("look"))
-			System.out.println(currentRoom.longDescription());
+			if(user.getInventory().hasItem("flashlight") && Flashlight.flashLightState()
+			   && ((currentRoom.getRoomName().equals("House (Inside"))
+			   ||((currentRoom.getRoomName().equals("Barn (Inside)")))))
+				System.out.println(currentRoom.longDescription());
+			else if(!((currentRoom.getRoomName().equals("House (Inside"))
+					   && !((currentRoom.getRoomName().equals("Barn (Inside)")))))
+				System.out.println(currentRoom.longDescription());
+			else
+				System.out.println("You can't see!");
 		else if (commandWord.equalsIgnoreCase("kill") || commandWord.equalsIgnoreCase("attack"))
 			validAttackCommand(command);
 		else if (commandWord.equalsIgnoreCase("shoot")) {
@@ -237,10 +246,11 @@ class Game {
 				System.out.println("You don't have a gun or crossbow!");
 		} else if (commandWord.equalsIgnoreCase("take")) {
 			if (!command.hasSecondWord())
-				System.out.println("Take what?");
+				System.out.println("What would you like to take?");
 			else if (command.getSecondWord().equals("all") || command.getSecondWord().equals("everything"))
 				System.out.println("Please take one item at a time, as you may not be able to carry everything.");
-			else if (command.getSecondWord().equals(currentRoom.getInventory().getItemString(command.getSecondWord())))
+			else if (command.getSecondWord().equals(currentRoom.getInventory().getItemString(command.getSecondWord()))
+					|| (currentRoom.getInventory().hasItem("flashlight")))
 				takeItems(command, user.getInventory(), currentRoom.getInventory());
 			else if (command.getSecondWord().equals(user.getInventory().getItemString(command.getSecondWord())))
 				System.out.println("You already have that!");
@@ -254,8 +264,22 @@ class Game {
 				read(command);
 			else
 				System.out.println("There's nothing to read...");
-		} else
-			System.out.println("What do you mean?");
+		} else if (command.getCommandWord().equals("turn")) {
+			if(!command.hasSecondWord())
+				System.out.println("What do you mean by turn?");
+			else
+				flashlight(command);
+		} else {
+			int select = ThreadLocalRandom.current().nextInt(0,4);
+			if(select == 0)
+				System.out.println("What do you mean?");
+			else if(select == 1)
+				System.out.println("Can you speak clearer? Start with an action or direction.");
+			else if(select == 2)
+				System.out.println("I don't understand...");
+			else if(select == 3)
+				System.out.println("Huh? Speak up!");
+		}
 
 		return false;
 
@@ -444,11 +468,12 @@ class Game {
 		// Try to leave current room.
 		Room nextRoom = currentRoom.nextRoom(direction);
 
-		if (nextRoom == null)
+		if (nextRoom == null){
 			System.out.println("You can't go that way!");
-		else if (currentRoom.getRoster().hasCharacter("zombie") || currentRoom.getRoster().hasCharacter("henchman")) {
+		} else if (currentRoom.getRoster().hasCharacter("zombie") || currentRoom.getRoster().hasCharacter("henchman")) {
 			if (currentRoom.getRoster().hasCharacter("zombie")) {
-				boolean takeDamage = zombie.runAway(currentRoom.getRoster().getSize(), user);
+				zombie.runAway(currentRoom.getRoster().getSize(), user);
+				System.out.println("You have " + user.getHealth() + " health.");
 				if (user.getHealth() > 0) {
 					currentRoom = nextRoom;
 					if (currentRoom.isFirstTime()) {
@@ -459,15 +484,27 @@ class Game {
 					currentRoom.removeFirstTime();
 					if (currentRoom.getRoster().hasCharacter("henchman")) {
 						henchman = new Henchman(currentRoom.getRoster().getSize());
-						if (currentRoom.getRoomName().equals("Outside Saviours Compound")) {
-							henchman.lastPhrase();
+						if((((currentRoom.getRoomName().equals("House (Inside"))
+						   || ((currentRoom.getRoomName().equals("Barn (Inside)")))))
+						   && (Flashlight.flashLightState()==false)){
+							System.out.println("...");
 						} else {
-							henchman.randomPhrase();
+							if (currentRoom.getRoomName().equals("Outside Saviours Compound")) {
+								henchman.lastPhrase();
+							} else {
+								henchman.randomPhrase();
+							}
 						}
 					}
 					if (currentRoom.getRoster().hasCharacter("zombie")) {
 						zombie = new Zombie(currentRoom.getRoster().getSize());
-						zombie.zombiePhrase();
+						if((((currentRoom.getRoomName().equals("House (Inside"))
+							||((currentRoom.getRoomName().equals("Barn (Inside)"))))
+							&& (Flashlight.flashLightState()==false))){
+									System.out.println("...");
+						} else {
+								   zombie.zombiePhrase();
+						}
 					}
 				} else {
 					user.kill();
@@ -509,27 +546,42 @@ class Game {
 			}
 			if (currentRoom.getRoster().hasCharacter("henchman")) {
 				henchman = new Henchman(currentRoom.getRoster().getSize());
-				if (currentRoom.getRoomName().equals("Outside Saviours Compound")) {
-					henchman.lastPhrase();
+				if(((currentRoom.getRoomName().equals("House (Inside)"))
+				   || ((currentRoom.getRoomName().equals("Barn (Inside)"))))
+				   && (Flashlight.flashLightState()==false)){
+					System.out.println("...");
 				} else {
-					henchman.randomPhrase();
+					if (currentRoom.getRoomName().equals("Outside Saviours Compound")) {
+						henchman.lastPhrase();
+					} else {
+						henchman.randomPhrase();
+					}
 				}
 			}
 			if (currentRoom.getRoster().hasCharacter("zombie")) {
 				zombie = new Zombie(currentRoom.getRoster().getSize());
-				zombie.zombiePhrase();
+				if(((currentRoom.getRoomName().equals("House (Inside)"))
+					||((currentRoom.getRoomName().equals("Barn (Inside)"))))
+					&& (Flashlight.flashLightState()==false)){
+							System.out.println("...");
+				} else {
+						   zombie.zombiePhrase();
+				}
 			}
 		}
 	}
 	
 	private void flashlight(Command command) {
-		if (command.getCommandWord().equals("turn")) {
+		if (user.getInventory().hasItem("flashlight") && command.getCommandWord().equals("turn")) {
 			if (command.getSecondWord().equals("on")) {
 				Flashlight.turnItOn(command, currentRoom);
-			}
-			if (command.getSecondWord().equals("off")) {
+			} else if (command.getSecondWord().equals("off")) {
 				Flashlight.turnItOff(command, currentRoom);
+			} else {
+				System.out.println("Turn what?");
 			}
+		} else {
+			System.out.println("You don't have anything to turn on/off.");
 		}
 	}
 
@@ -538,10 +590,18 @@ class Game {
 			System.out.println("Please take one item at a time.");
 			return;
 		}
-		Item temp = room.getItem(command.getSecondWord());
-
+		Item temp;
+		String secondWord = command.getSecondWord();
+		if (command.getSecondWord().equalsIgnoreCase("item") || 
+				   command.getSecondWord().equalsIgnoreCase("object") || command.getSecondWord().equalsIgnoreCase("flashlight")){
+			temp = room.getItem("flashlight");
+			secondWord = ("flashlight");
+		} else {
+			temp = room.getItem(command.getSecondWord());
+		}
+		
 		int x = temp.getWeight() + player.calculateWeight();
-		if (room.hasItem(command.getSecondWord()) && x <= user.capacity()) {
+		if (room.hasItem(secondWord) && x <= user.capacity()) {
 			System.out.println("Taken.");
 			player.addItem(temp);
 			user.addWeight(temp.getWeight());
@@ -550,7 +610,7 @@ class Game {
 		} else if (x > user.capacity()) {
 			System.out.println("You can't carry that much!");
 		} else {
-			System.out.println("There is no " + command.getSecondWord() + " here...");
+			System.out.println("There is no " + secondWord + " here...");
 		}
 	}
 

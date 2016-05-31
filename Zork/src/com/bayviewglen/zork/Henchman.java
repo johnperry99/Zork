@@ -41,7 +41,7 @@ public class Henchman extends Character {
 
 	public int henchmanDamage() {
 		final int MIN_DAMAGE = 10;
-		final int MAX_DAMAGE = 30;
+		final int MAX_DAMAGE = 26;
 
 		int damage = ThreadLocalRandom.current().nextInt(MIN_DAMAGE, MAX_DAMAGE);
 		return damage;

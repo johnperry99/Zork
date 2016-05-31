@@ -54,7 +54,7 @@ Exits: S-Forest Section 1, E-Forest Section 6
 Items:
 Characters: henchman-
 Room Name: Forest Section 4
-Room Description: You are in the center of the forest.<br>The forest continues to the north and south.<br>A clearing can also be seen to the east.<br>
+Room Description: You are in the center of the forest.<br>The forest continues to the north and south.<br>A clearing can also be seen to the east.<br>You also notice a object on the ground...
 Exits: W-Forest Section 1, N-Forest Section 6, S-Forest Section 5, E-Clearing
 Items: flashlight-5
 Characters: zombie-, zombie-, zombie-

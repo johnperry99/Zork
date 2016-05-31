@@ -26,7 +26,7 @@ public class Zombie extends Character {
 															// dmg dealt by
 															// zombie(s)
 		final int MIN_DAMAGE = 10;
-		final int MAX_DAMAGE = 15;
+		final int MAX_DAMAGE = 21;
 
 
 		
