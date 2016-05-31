@@ -275,7 +275,8 @@ class Game {
 		} else if (command.getCommandWord().equals("turn")) {
 			if (!command.hasSecondWord())
 				System.out.println("What do you mean by turn?");
-			else if (command.getSecondWord().equalsIgnoreCase("on") || command.getSecondWord().equalsIgnoreCase("off"))
+			else if (!(currentRoom.getRoomName().equals("Alexandria Entrance")) && command.getSecondWord().equalsIgnoreCase("on") 
+					 || command.getSecondWord().equalsIgnoreCase("off"))
 				flashlight(command);
 			else
 				System.out.println("Turn what?");
@@ -360,6 +361,7 @@ class Game {
 				|| (command.getSecondWord().equalsIgnoreCase("car")))) {
 			System.out.println("You approach the car and enter it. You then start the engine with the key.");
 			System.out.println("You can now leave Alexandria by going east...");
+			inCar = true;
 		} else if (!(user.getInventory().hasItem("key")) && currentRoom.getInventory().hasItem("car")
 				&& ((command.getSecondWord().equalsIgnoreCase("on") && command.getThirdWord().equalsIgnoreCase("car"))
 						|| (command.getSecondWord().equalsIgnoreCase("in")
@@ -514,8 +516,12 @@ class Game {
 		// Try to leave current room.
 		Room nextRoom = currentRoom.nextRoom(direction);
 
-		if (nextRoom == null) {
-			System.out.println("You can't go that way!");
+		if (nextRoom == null || (currentRoom.getRoomName().equals("Alexandria Entrance")
+			&& !(inCar))) {
+			if(currentRoom.getRoomName().equals("Alexandria Entrance"))
+				System.out.println("You're gonna WALK all the way to the forest? Bad idea.");
+			else
+				System.out.println("You can't go that way!");
 		} else if (currentRoom.getRoster().hasCharacter("zombie") || currentRoom.getRoster().hasCharacter("henchman")) {
 			if (currentRoom.getRoster().hasCharacter("zombie")) {
 				zombie.runAway(currentRoom.getRoster().getSize(), user);

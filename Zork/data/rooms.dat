@@ -61,7 +61,7 @@ Characters: zombie-, zombie-, zombie-
 Room Name: Forest Section 5
 Room Description: You are in the southeast section of the forest.<br>The center of the forest is to the north.<br>Also, a barn is barely visible to the east.<br>You also find some ammo someone dropped a while ago.<br>
 Exits: N-Forest Section 4, W-Forest Section 2, E-Barn (Outside)
-Items: ammo-0
+Items: gun ammo-0
 Characters: henchman-
 Room Name: Forest Section 6
 Room Description: You are in the northeast section of the forest.<br>The center of the forest is to the south.<br>A small house is barely visible to the east.<br>
@@ -76,7 +76,7 @@ Characters:
 Room Name: House (Inside)
 Room Description: You enter the house and notice that the lights don't work.<br>Uh-oh...Hope you brought a flashlight!<br>
 Exits: S-House (Outside)
-Items: ammo-0, ammo-0
+Items: gun ammo-0, gun ammo-0
 Characters: henchman-
 Room Name: Barn (Outside)
 Room Description: You see a barn nearby to the south and consider entering.<br>You also consider the potential valuables you could find,<br> and potential dangers... A zombie horse?<br>
@@ -86,7 +86,7 @@ Characters:
 Room Name: Barn (Inside)
 Room Description: Naturally, the barn is pitch black as there are no windows.<br>You sure hope there isn't a zombie horse.<br>
 Exits: N-Barn (Outside)
-Items: ammo-0
+Items: crossbow ammo-0
 Characters: zombie-, zombie-
 Room Name: Clearing
 Room Description: You have approached a clearing and don't see zombies for once.<br>The zombie-infested forest is to the west and a field to the east.<br>
