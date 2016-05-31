@@ -524,7 +524,10 @@ class Game {
 		
 				System.out.println("You're gonna WALK all the way to the forest? Bad idea.");
 		
-				
+		}else if(currentRoom.getRoomName().equals("Front of House") 
+				&& (inCar) && direction.equals("north")) {
+		
+					System.out.println("9/10 doctors recommend not driving into your house!");
 		} else if (currentRoom.getRoster().hasCharacter("zombie") || currentRoom.getRoster().hasCharacter("henchman")) {
 			if (currentRoom.getRoster().hasCharacter("zombie")) {
 				zombie.runAway(currentRoom.getRoster().getSize(), user);
