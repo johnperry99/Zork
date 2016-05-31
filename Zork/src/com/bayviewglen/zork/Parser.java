@@ -70,6 +70,8 @@ class Parser {
 
 		if (commands.isCommand(word1) && commands.isNoun(word2) && commands.isNoun(word4))
 			return new Command(word1, word2, word3, word4);
+		else if (commands.isCommand(word1) && commands.isCommand(word2) && commands.isNoun(word3))
+			return new Command(word1, word2, word3, null);
 		else if (commands.isCommand(word1) && commands.isCommand(word2))
 			return new Command(word1, word2, null, null);
 		else if (commands.isCommand(word1) && commands.isNoun(word2))

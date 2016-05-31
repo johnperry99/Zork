@@ -21,6 +21,7 @@ public class Flashlight extends Item {
 					System.out.println("Why is your flashlight turned on???");
 				}else {
 				System.out.println("I'm not sure why you turned it on, it's not dark here...but ok.");
+				flashlightShining = true;
 				}
 			}
 		}else {
@@ -42,6 +43,7 @@ public class Flashlight extends Item {
 				if (flashlightShining) {
 					System.out.println("You turned off the flashlight.");
 					System.out.println("Good thing too, because its not dark outside and you were wasting battery!");
+					flashlightShining = false;
 				}else {
 					System.out.println("Your flashlight is already turned off.");
 				}

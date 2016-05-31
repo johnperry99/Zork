@@ -271,8 +271,10 @@ class Game {
 		} else if (command.getCommandWord().equals("turn")) {
 			if(!command.hasSecondWord())
 				System.out.println("What do you mean by turn?");
-			else
+			else if(command.getSecondWord().equals("on"))
 				flashlight(command);
+			else
+				System.out.println("What?");
 		} else {
 			int select = ThreadLocalRandom.current().nextInt(0,4);
 			if(select == 0)
