@@ -91,6 +91,6 @@ class Command {
 		return (fourthWord != null);
 	}
 	public boolean isNoun(String word){
-		return isNoun(word);
+		return CommandWords.isNoun(word);
 	}
 }

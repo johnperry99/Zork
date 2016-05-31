@@ -14,7 +14,7 @@ class CommandWords {
 	// a constant array that holds all valid command words
 	private static final String validCommands[] = { "go", "move", "walk", "run", "save", "quit", "help", "eat", "move", "look", "read",
 			 "get", "talk", "attack", "shoot", "kill", "open", "close", "take", "pick", "all", "everything", "turn", "on", "drive", "in",
-			"off", "inventory", "i", "north", "east", "west", "south", "up", "down", "n", "e", "w", "s", "u", "d", "info", "information" };
+			"off", "inventory", "i", "north", "east", "west", "south", "up", "down", "n", "e", "w", "s", "u", "d", "info", "information", "drop" };
 	
 	private static final String validNouns[] = { "bag", "note", "car", "gun", "knife", "crossbow", "key", "sign",
 			"food", "pizza", "book", "person", "sword", "inventory", "flashlight", "object", "item", "Rick", "Daryl", "Sasha", "Carol", "Carl", "Maggie",
@@ -40,7 +40,7 @@ class CommandWords {
 		return false;
 	}
 
-	public boolean isNoun(String str) {
+	public static boolean isNoun(String str) {
 		for (int i = 0; i < validNouns.length; i++) {
 			if (validNouns[i].equalsIgnoreCase(str))
 				return true;
