@@ -316,9 +316,11 @@ class Game {
 			if (user.getHealth() <= 50) {
 				user.addHealth(50);
 				System.out.println("You ate the pizza. It tasted delicious");
+				System.out.println("You now have " + user.getHealth() + " health");
 			} else if (user.getHealth() > 50 && user.getHealth() < 100) {
 				user.setHealth(100);
 				System.out.println("You ate the pizza. It tasted delicious");
+				System.out.println("You now have 100 health!");
 
 			} else {
 				System.out.println("Do you really think you should be eating at a time like this?");
@@ -516,6 +518,17 @@ class Game {
 			if (currentRoom.getRoster().hasCharacter("zombie")) {
 				zombie = new Zombie(currentRoom.getRoster().getSize());
 				zombie.zombiePhrase();
+			}
+		}
+	}
+	
+	private void flashlight(Command command) {
+		if (command.getCommandWord().equals("turn")) {
+			if (command.getSecondWord().equals("on")) {
+				Flashlight.turnItOn(command, currentRoom);
+			}
+			if (command.getSecondWord().equals("off")) {
+				Flashlight.turnItOff(command, currentRoom);
 			}
 		}
 	}
