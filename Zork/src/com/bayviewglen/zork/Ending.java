@@ -6,8 +6,9 @@ import java.util.Scanner;
 public class Ending {
 	static boolean playing = true;
 	static Scanner input = new Scanner(System.in);
-
+	private static Inventory originalInv;
 	public static void ending(Player user) throws InterruptedException {
+		originalInv = user.getInventory();
 		while (playing) {
 			System.out.println("\nAs you gaze around the massive, maze-like compound, you once again "
 					+ "\nacknowledge the great difficulty of this task. You immediately push the thought aside."
@@ -99,7 +100,7 @@ public class Ending {
 
 	private static void theShowdownPartOne(Player user) throws InterruptedException {
 		String choice;
-		Inventory originalInv = user.getInventory();
+		
 		System.out.println("\nYou continue going east and enter a room with a large man. He has a baseball bat wrapped "
 				+ "\nin barbed wire in one hand and a large assault rifle in the other. ");
 		Thread.sleep(1000);
