@@ -534,13 +534,6 @@ class Game {
 
 		if (nextRoom == null) {
 			System.out.println("You can't go that way!");
-		}else if (nextRoom.getRoomName().equalsIgnoreCase("Inside Saviours Compound")){
-			if(!user.hasItem("sword")){
-				System.out.println("You should bring a better melee weapon before entering!");
-			}
-			if(!user.hasItem("gun") && (!user.hasItem("crossbow"))){
-				System.out.println("You should bring some sort of shooting weapon before entering!");
-			}
 		}
 		else if (currentRoom.getRoomName().equals("Alexandria Entrance") && !(inCar) && direction.equals("east")) {
 

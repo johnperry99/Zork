@@ -9,7 +9,7 @@ public class Player extends Character {
 	private int inventoryCapacity = 10;
 	private int currentWeight;
 	private int gunAmmo = 5;
-	private int crossbowAmmo = 10;
+	private int crossbowAmmo = 8;
 
 	public Player(Inventory inv, int health, int inventoryCapacity, int currentWeight) {
 		super();
