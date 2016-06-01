@@ -362,7 +362,7 @@ class Game {
 								&& command.getThirdWord().equalsIgnoreCase("car"))
 				|| (command.getSecondWord().equalsIgnoreCase("car")))) {
 			System.out.println("You approach the car and enter it. You then start the engine with the key.");
-			System.out.println("You can now leave Alexandria by going east...");
+			System.out.println("Where would you like to drive with the car.");
 			inCar = true;
 		} else if (!(user.getInventory().hasItem("key")) && currentRoom.getInventory().hasItem("car")
 				&& ((command.getSecondWord().equalsIgnoreCase("on") && command.getThirdWord().equalsIgnoreCase("car"))
