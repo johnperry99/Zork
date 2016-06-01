@@ -26,7 +26,8 @@ public class Player extends Character {
 		System.out.println("Current Health:  " + health);
 		if(inv.hasItem("gun")){
 			System.out.println("Gun Ammunition:" + gunAmmo +" bullets.");
-		}else if(inv.hasItem("crossbow")){
+		}
+		if(inv.hasItem("crossbow")){
 			System.out.println("Crossbow Ammunition:\n" + crossbowAmmo + " arrows.");
 		}
 	}
