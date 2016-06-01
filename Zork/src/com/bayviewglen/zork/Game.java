@@ -2,6 +2,7 @@ package com.bayviewglen.zork;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
@@ -23,7 +24,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * the parser returns.
  */
 
-class Game {
+class Game implements Serializable{
 	private Parser parser;
 	private Room currentRoom;
 	private Player user;
