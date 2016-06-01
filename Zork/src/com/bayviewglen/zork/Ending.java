@@ -1,9 +1,10 @@
 package com.bayviewglen.zork;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Ending {
+public class Ending implements Serializable {
 	static boolean playing = true;
 	static Scanner input = new Scanner(System.in);
 	private static Inventory originalInv;
