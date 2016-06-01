@@ -24,6 +24,11 @@ public class Player extends Character {
 		System.out.println("Current Capacity: " + inventoryCapacity);
 		System.out.println("Current Weight: " + currentWeight);
 		System.out.println("Current Health:  " + health);
+		if(inv.hasItem("gun")){
+			System.out.println("Gun Ammunition:\n" + gunAmmo +" bullets.");
+		}else if(inv.hasItem("crossbow")){
+			System.out.println("Crossbow Ammunition:\n" + crossbowAmmo + " arrows.");
+		}
 	}
 
 	public Inventory getInventory() {
@@ -37,6 +42,18 @@ public class Player extends Character {
 
 	public void addCrossbowAmmo(int x) {
 		crossbowAmmo += x;
+	}
+	public void removeGunAmmo(int x){
+		gunAmmo-= x;
+	}
+	public void removeCrossbowAmmo(int x){
+		crossbowAmmo-= x;
+	}
+	public int getGunAmmo(){
+		return gunAmmo;
+	}
+	public int getCrossbowAmmo(){
+		return crossbowAmmo;
 	}
 
 	public void addToInventoryCapacity(int x) {
