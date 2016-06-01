@@ -13,8 +13,8 @@ package com.bayviewglen.zork;
 class CommandWords {
 	// a constant array that holds all valid command words
 	private static final String validCommands[] = { "go", "move", "walk", "run", "save", "quit", "help", "eat", "move", "look", "read",
-			 "get", "talk", "attack", "shoot", "kill", "take", "pick", "turn", "drive", "info", "information", "drop",
-			 "inventory", "i", "north", "east", "west", "south", "up", "down", "n", "e", "w", "s", "u", "d", "on", "off", "in" };
+			 "get", "in", "talk", "attack", "shoot", "kill", "take", "pick", "turn", "on", "off", "drive", "info", "information", "drop",
+			 "inventory", "i", "north", "east", "west", "south", "up", "down", "n", "e", "w", "s", "u", "d" };
 	
 	private static final String validNouns[] = { "bag", "note", "car", "gun", "knife", "crossbow", "key", "sign", "ammo", "all", "everything",
 			"food", "pizza", "book", "person", "sword", "inventory", "flashlight", "object", "item", "Rick", "Daryl", "Sasha", "Carol", "Carl", "Maggie",
