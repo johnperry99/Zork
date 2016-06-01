@@ -85,6 +85,7 @@ public abstract class Assault {
 				if (user.getInventory().hasItem("crossbow") && user.getCrossbowAmmo() > 0) {
 					currentRoom.getRoster().removeCharacter(x);
 					System.out.println("You killed the zombie.");
+					System.out.println("You have " + user.getCrossbowAmmo() + " arrows left");
 					user.removeCrossbowAmmo(1);
 					zombie.reduceNumZombies();
 					if (zombie.getNumZombies() == 0) {
@@ -105,6 +106,7 @@ public abstract class Assault {
 					currentRoom.getRoster().removeCharacter(x);
 					user.removeGunAmmo(1);
 					System.out.println("You killed the zombie.");
+					System.out.println("You have " + user.getGunAmmo() + " bullets left");
 					zombie.reduceNumZombies();
 					if (zombie.getNumZombies() == 0) {
 						zombie.kill();
@@ -182,6 +184,7 @@ public abstract class Assault {
 					if (sucessHit <= crossbowHitRate) {
 						currentRoom.getRoster().removeCharacter(x);
 						System.out.println("You killed the henchman.");
+						System.out.println("You have " + user.getCrossbowAmmo() + " arrows left");
 						user.removeCrossbowAmmo(1);
 						henchman.reduceNumHenchman();
 						if (henchman.getNumHenchman() == 0) {
@@ -213,6 +216,7 @@ public abstract class Assault {
 				if (user.getInventory().hasItem("gun")) {
 					currentRoom.getRoster().removeCharacter(x);
 					System.out.println("You killed the henchman");
+					System.out.println("You have " + user.getGunAmmo() + " bullets left");
 					henchman.reduceNumHenchman();
 					user.removeGunAmmo(1);
 					if (henchman.getNumHenchman() == 0) {

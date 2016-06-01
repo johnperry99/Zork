@@ -662,7 +662,7 @@ class Game {
 		}
 		if (command.getSecondWord().equalsIgnoreCase("ammo")) {
 			if (currentRoom.getInventory().hasItem("crossbow ammo")) {
-				user.addCrossbowAmmo(5);
+				user.addCrossbowAmmo(7);
 			} else if (currentRoom.getInventory().hasItem("gun ammo")) {
 				user.addGunAmmo(5);
 			} else {

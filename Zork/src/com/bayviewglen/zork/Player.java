@@ -8,7 +8,7 @@ public class Player extends Character {
 	private int health = 100;
 	private int inventoryCapacity = 10;
 	private int currentWeight;
-	private int gunAmmo = 10;
+	private int gunAmmo = 5;
 	private int crossbowAmmo = 10;
 
 	public Player(Inventory inv, int health, int inventoryCapacity, int currentWeight) {
@@ -25,7 +25,7 @@ public class Player extends Character {
 		System.out.println("Current Weight: " + currentWeight);
 		System.out.println("Current Health:  " + health);
 		if(inv.hasItem("gun")){
-			System.out.println("Gun Ammunition:\n" + gunAmmo +" bullets.");
+			System.out.println("Gun Ammunition:" + gunAmmo +" bullets.");
 		}else if(inv.hasItem("crossbow")){
 			System.out.println("Crossbow Ammunition:\n" + crossbowAmmo + " arrows.");
 		}
