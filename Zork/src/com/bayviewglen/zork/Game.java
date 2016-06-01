@@ -139,7 +139,7 @@ class Game implements Serializable {
 			writeObject(objectOutput);
 			objectOutput.close();
 			fileOutput.close();
-			System.out.println("Game Saved");
+			System.out.println("Game Saved.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} // try catch
@@ -225,12 +225,49 @@ class Game implements Serializable {
 	 * @throws InterruptedException
 	 */
 	public void play() throws InterruptedException {
+		Scanner input = new Scanner(System.in);
 		printWelcome();
+		System.out.println();
+		System.out.println("Enter a number:");
+		System.out.println();
+		System.out.println("1. NEW GAME");
+		System.out.println("2. CONTINUE");
+		boolean numEntered = false;
+		boolean newGame = true;
+		
+		while(numEntered == false){
+			try{
+				int val = Integer.parseInt(input.nextLine());
+				if(val==1){
+					numEntered = true;
+					
+				} else if(val==2){
+					numEntered = true;
+					newGame = false;
+				} else {
+					System.out.println("Please enter one of the numbers listed above.");
+				} 
+			} catch(Exception ex){
+				System.out.println("Please enter a valid integer.");
+			}
+		}
+		
+		if(!newGame){
+			loadGame();
+		} else {
+			System.out.println("Enter 'help' to see acceptable commands and your objective.");
+			Thread.sleep(1000);
+			System.out.println("Directions you can travel are North (n), South (s), East (e), West (w), Up (u), and Down (d).");
+		}
+		Thread.sleep(2000);
+		System.out.println();
+		System.out.println(currentRoom.longDescription());
+		currentRoom.removeFirstTime();
 
 		// Enter the main command loop. Here we repeatedly read commands and
 		// execute them until the game is over.
 		
-		while (!finished && user.isAlive()) {
+		while (!finished && user.isAlive()) {			
 			Command command = parser.getCommand();
 			finished = processCommand(command);
 			if (gameDone) {
@@ -263,15 +300,7 @@ class Game implements Serializable {
 		System.out.println(" THE WALKING DEAD");
 		Thread.sleep(1500);
 		System.out.println("This is a new take on the original Zork game, but set in The Walking Dead universe!");
-		Thread.sleep(2000);
-		System.out.println("Enter 'help' to see acceptable commands and your objective.");
 		Thread.sleep(1000);
-		System.out.println(
-				"Directions you can travel are North (n), South (s), East (e), West (w), Up (u), and Down (d).");
-		Thread.sleep(2000);
-		System.out.println();
-		System.out.println(currentRoom.longDescription());
-		currentRoom.removeFirstTime();
 	}
 
 	/**
@@ -292,12 +321,7 @@ class Game implements Serializable {
 		} else if (command.getCommandWord().equalsIgnoreCase("save")) {
 			save();
 			
-			
-
-		} else if(commandWord.equalsIgnoreCase("load")){
-			loadGame();
-		}
-		else if (commandWord.equalsIgnoreCase("go") || commandWord.equalsIgnoreCase("move")
+		} else if (commandWord.equalsIgnoreCase("go") || commandWord.equalsIgnoreCase("move")
 		
 				|| commandWord.equalsIgnoreCase("walk") || commandWord.equalsIgnoreCase("run")
 				|| commandWord.equalsIgnoreCase("north") || commandWord.equalsIgnoreCase("south")
