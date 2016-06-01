@@ -76,9 +76,9 @@ class Parser implements Serializable{
 		else if (commands.isCommand(word1) && commands.isCommand(word2))
 			return new Command(word1, word2, null, null);
 		else if (commands.isCommand(word1) && commands.isNoun(word2))
-			return new Command(word1, word2, null, null);
+			return new Command(word1, word2, null, null);	
 		else
-			return new Command(word1, null, null, null);
+			return new Command(word1, word2, word3, word4);
 	}
 
 	/**

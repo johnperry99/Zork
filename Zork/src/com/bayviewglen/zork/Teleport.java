@@ -3,21 +3,23 @@ package com.bayviewglen.zork;
 import java.util.HashMap;
 
 public class Teleport {
-	public static void teleportTo(Room currentRoom, Command command, HashMap<String, Room> masterRoomMap){
+	public static Room teleportTo(Room currentRoom, Command command, HashMap<String, Room> masterRoomMap){
 		String destinationRoom = "";
 		if(command.hasSecondWord()){
-			destinationRoom += command.getSecondWord();
+			destinationRoom += command.getSecondWord().toUpperCase() + "_";
 		}
 		if(command.hasThirdWord()){
-			destinationRoom+= command.getThirdWord();
+			destinationRoom+= command.getThirdWord().toUpperCase() + "_";
 		}
 		if(command.hasFourthWord()){
-			destinationRoom+= command.getFourthWord();
+			destinationRoom+= command.getFourthWord().toUpperCase();
 		}
 		if(validRoom(masterRoomMap, destinationRoom)){
-			currentRoom = masterRoomMap.get(destinationRoom);
+			return masterRoomMap.get(destinationRoom);
+		}else{
+			System.out.println("Not a valid room.");
 		}
-		
+		return null;
 	}
 	
 	public static boolean validRoom(HashMap<String, Room> masterRoomMap, String destinationRoom){

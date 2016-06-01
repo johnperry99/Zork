@@ -158,7 +158,8 @@ class Game implements Serializable {
 				System.out.println(currentRoom.longDescription());
 			} else {
 				System.out.println(currentRoom.shortDescription());
-			}if (currentRoom.getRoster().hasCharacter("henchman")) {
+			}
+			if (currentRoom.getRoster().hasCharacter("henchman")) {
 				henchman = new Henchman(currentRoom.getRoster().getSize());
 				if (((currentRoom.getRoomName().equals("House (Inside)"))
 						|| ((currentRoom.getRoomName().equals("Barn (Inside)"))))
@@ -182,7 +183,7 @@ class Game implements Serializable {
 					zombie.zombiePhrase();
 				}
 			}
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -234,30 +235,31 @@ class Game implements Serializable {
 		System.out.println("2. CONTINUE");
 		boolean numEntered = false;
 		boolean newGame = true;
-		
-		while(numEntered == false){
-			try{
+
+		while (numEntered == false) {
+			try {
 				int val = Integer.parseInt(input.nextLine());
-				if(val==1){
+				if (val == 1) {
 					numEntered = true;
-					
-				} else if(val==2){
+
+				} else if (val == 2) {
 					numEntered = true;
 					newGame = false;
 				} else {
 					System.out.println("Please enter one of the numbers listed above.");
-				} 
-			} catch(Exception ex){
+				}
+			} catch (Exception ex) {
 				System.out.println("Please enter a valid integer.");
 			}
 		}
-		
-		if(!newGame){
+
+		if (!newGame) {
 			loadGame();
 		} else {
 			System.out.println("Enter 'help' to see acceptable commands and your objective.");
 			Thread.sleep(1000);
-			System.out.println("Directions you can travel are North (n), South (s), East (e), West (w), Up (u), and Down (d).");
+			System.out.println(
+					"Directions you can travel are North (n), South (s), East (e), West (w), Up (u), and Down (d).");
 		}
 		Thread.sleep(2000);
 		System.out.println();
@@ -266,8 +268,8 @@ class Game implements Serializable {
 
 		// Enter the main command loop. Here we repeatedly read commands and
 		// execute them until the game is over.
-		
-		while (!finished && user.isAlive()) {			
+
+		while (!finished && user.isAlive()) {
 			Command command = parser.getCommand();
 			finished = processCommand(command);
 			if (gameDone) {
@@ -320,9 +322,55 @@ class Game implements Serializable {
 			printHelp();
 		} else if (command.getCommandWord().equalsIgnoreCase("save")) {
 			save();
+
+		} else if (command.getCommandWord().equals("&&t")) {
+			Room temp = Teleport.teleportTo(currentRoom, command, masterRoomMap);
+			if (temp != null) {
+				currentRoom = temp;
+				System.out.println(currentRoom.getRoomName() + "\n" + currentRoom.longDescription());
+				if (currentRoom.getRoomName().equals("Kitchen") && !user.getInventory().hasItem("bag")) {
+					user.addToInventoryCapacity(30);
+					Item x = currentRoom.getInventory().getItem("bag");
+					user.getInventory().addItem(x);
+					currentRoom.getInventory().removeItem(x);
+				}
+				if (currentRoom.getRoomName().equals("Kitchen") && !user.getInventory().hasItem("knife")
+						&& !user.getInventory().hasItem("pizza")) {
+					Item k = currentRoom.getInventory().getItem("pizza");
+					Item y = currentRoom.getInventory().getItem("knife");
+					user.getInventory().addItem(k);
+					user.getInventory().addItem(y);
+					currentRoom.getInventory().removeItem(k);
+					currentRoom.getInventory().removeItem(y);
+				}
+				if (currentRoom.getRoster().hasCharacter("henchman")) {
+					henchman = new Henchman(currentRoom.getRoster().getSize());
+					if (((currentRoom.getRoomName().equals("House (Inside)"))
+							|| ((currentRoom.getRoomName().equals("Barn (Inside)"))))
+							&& (Flashlight.flashLightState() == false)) {
+						System.out.println("...");
+					} else {
+						if (currentRoom.getRoomName().equals("Outside Saviours Compound")) {
+							henchman.lastPhrase();
+						} else {
+							henchman.randomPhrase();
+						}
+					}
+				}
+				if (currentRoom.getRoster().hasCharacter("zombie")) {
+					zombie = new Zombie(currentRoom.getRoster().getSize());
+					if (((currentRoom.getRoomName().equals("House (Inside)"))
+							|| ((currentRoom.getRoomName().equals("Barn (Inside)"))))
+							&& (Flashlight.flashLightState() == false)) {
+						System.out.println("...");
+					} else {
+						zombie.zombiePhrase();
+					}
+				}
+			}
 			
 		} else if (commandWord.equalsIgnoreCase("go") || commandWord.equalsIgnoreCase("move")
-		
+
 				|| commandWord.equalsIgnoreCase("walk") || commandWord.equalsIgnoreCase("run")
 				|| commandWord.equalsIgnoreCase("north") || commandWord.equalsIgnoreCase("south")
 				|| commandWord.equalsIgnoreCase("west") || commandWord.equalsIgnoreCase("east")
@@ -818,6 +866,10 @@ class Game implements Serializable {
 		} else {
 			System.out.println("You cannot drop an item that is not in your inventory!");
 		}
+	}
+
+	public void setRoom(Room room) {
+		currentRoom = room;
 	}
 
 }
