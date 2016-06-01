@@ -376,6 +376,12 @@ class Game implements Serializable {
 				System.out.println("You already have that!");
 			else
 				System.out.println("There isn't an item of that sort here...");
+			
+		}else if (commandWord.equalsIgnoreCase("talk")) {
+				if (!command.hasSecondWord())
+					System.out.println("Talk to who?");
+				else 
+					talk(command);
 
 		} else if (commandWord.equalsIgnoreCase("pick")) {
 			if (command.hasSecondWord() && command.hasThirdWord() && command.getSecondWord().equals("up")) {
@@ -768,6 +774,33 @@ class Game implements Serializable {
 			System.out.println("You don't have anything to turn on/off.");
 		}
 	}
+	
+	private void talk(Command command) {
+			if (currentRoom.getRoster().hasCharacter("Sasha") && command.getSecondWord().equalsIgnoreCase("Sasha")
+					|| command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Sasha")) {
+				System.out.println("Sasha: ...You should read this note... I'm sorry.");
+			}
+			else if (currentRoom.getRoster().hasCharacter("Carol") && command.getSecondWord().equalsIgnoreCase("Carol")
+					|| command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Carol")) {
+				System.out.println("Carol: Hey... I know you're very upset... but you really should wait for us to come up with a good plan to save Maggy.");
+			}
+			else if (currentRoom.getRoster().hasCharacter("Carl") && command.getSecondWord().equalsIgnoreCase("Carl")
+					|| command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Carl")) {
+				System.out.println("Carl: SAVE MAGGY! FOR GLORYYYYY!!!");
+			}
+			else if (currentRoom.getRoster().hasCharacter("Rick") && command.getSecondWord().equalsIgnoreCase("Rick")
+					|| command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Rick")) {
+				System.out.println("Rick: In the forest you might find some ammo packs. You can also probably find ammo in abandoned ");
+			}
+			else if (currentRoom.getRoster().hasCharacter("Daryl") && command.getSecondWord().equalsIgnoreCase("Daryl")
+					|| command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Daryl")) {
+				System.out.println("Daryl: You leaving already? Hey, here's a tip. You can run away from the zombies if you have to, "
+						+ "but running away from a Saviour henchman will get you killed.");
+			}
+			else {
+				System.out.println("Either that person doesn't exist or is not in this room.");
+			}
+		}
 
 	private void takeItems(Command command, Inventory player, Inventory room) {
 		if (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("and")) {
