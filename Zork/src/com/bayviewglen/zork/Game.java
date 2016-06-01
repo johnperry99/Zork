@@ -678,6 +678,8 @@ class Game {
 			Item x = user.getInventory().getItem(command.getSecondWord());
 			currentRoom.getInventory().addItem(x);
 			user.getInventory().removeItem(x);
+			user.removeWeight(x.getWeight());
+			
 			System.out.println("You dropped the " + x.getName() + " here.");
 		} else {
 			System.out.println("You cannot drop an item that is not in your inventory!");
