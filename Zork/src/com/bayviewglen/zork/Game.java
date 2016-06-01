@@ -206,8 +206,9 @@ class Game {
 		}
 
 		String commandWord = command.getCommandWord();
-		if (commandWord.equalsIgnoreCase("help"))
+		if (commandWord.equalsIgnoreCase("help")){
 			printHelp();
+		}
 		else if (commandWord.equalsIgnoreCase("go") || commandWord.equalsIgnoreCase("move")
 				|| commandWord.equalsIgnoreCase("walk") || commandWord.equalsIgnoreCase("run")
 				|| commandWord.equalsIgnoreCase("north") || commandWord.equalsIgnoreCase("south")
@@ -215,8 +216,9 @@ class Game {
 				|| commandWord.equalsIgnoreCase("up") || commandWord.equalsIgnoreCase("down")
 				|| commandWord.equalsIgnoreCase("n") || commandWord.equalsIgnoreCase("s")
 				|| commandWord.equalsIgnoreCase("e") || commandWord.equalsIgnoreCase("w")
-				|| commandWord.equalsIgnoreCase("u") || commandWord.equalsIgnoreCase("d"))
+				|| commandWord.equalsIgnoreCase("u") || commandWord.equalsIgnoreCase("d")){
 			goRoom(command);
+		}
 		else if (commandWord.equalsIgnoreCase("quit")) {
 			if (command.hasSecondWord()) {
 				System.out.println("If you mean quit game, enter \"quit\".");
@@ -227,12 +229,13 @@ class Game {
 				finished = quit.isFinished();
 				return finished; // signal that we want to quit
 			}
-		} else if (commandWord.equalsIgnoreCase("eat"))
+		} else if (commandWord.equalsIgnoreCase("eat")){
 			eat(command);
-		else if (commandWord.equalsIgnoreCase("inventory") || commandWord.equalsIgnoreCase("i")
-				|| commandWord.equalsIgnoreCase("information"))
+		}else if (commandWord.equalsIgnoreCase("inventory") || commandWord.equalsIgnoreCase("i")
+				|| commandWord.equalsIgnoreCase("information")){
 			user.displayInventory();
-		else if (commandWord.equalsIgnoreCase("look"))
+			currentRoom.displayInventory();
+		}else if (commandWord.equalsIgnoreCase("look")){
 			if (user.getInventory().hasItem("flashlight") && Flashlight.flashLightState()
 					&& ((currentRoom.getRoomName().equals("House (Inside"))
 							|| ((currentRoom.getRoomName().equals("Barn (Inside)")))))
@@ -242,7 +245,7 @@ class Game {
 				System.out.println(currentRoom.longDescription());
 			else
 				System.out.println("You can't see!");
-		else if (commandWord.equalsIgnoreCase("kill") || commandWord.equalsIgnoreCase("attack"))
+		}else if (commandWord.equalsIgnoreCase("kill") || commandWord.equalsIgnoreCase("attack"))
 			validAttackCommand(command);
 		else if (commandWord.equalsIgnoreCase("shoot")) {
 			if (user.hasItem("gun") || user.hasItem("crossbow"))

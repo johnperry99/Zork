@@ -153,4 +153,10 @@ class Room
 	public CharacterRoster getRoster(){
 		return roster;
 	}
+	public void displayInventory(){
+		System.out.println("\nItems in this area:");
+		for(Item s : getInventory().getInventoryList()){
+			System.out.println(s);
+		}
+	}
 }
