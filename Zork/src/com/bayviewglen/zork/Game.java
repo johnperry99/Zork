@@ -1,7 +1,12 @@
 package com.bayviewglen.zork;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -24,7 +29,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * the parser returns.
  */
 
-class Game implements Serializable{
+class Game implements Serializable {
 	private Parser parser;
 	private Room currentRoom;
 	private Player user;
@@ -126,6 +131,49 @@ class Game implements Serializable{
 	/**
 	 * Create the game and initialise its internal map.
 	 */
+	private void save() {
+		try {
+			File saveFile = new File("data/Save.dat");
+			FileOutputStream fileOutput = new FileOutputStream(saveFile);
+			ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
+			writeObject(objectOutput);
+			objectOutput.close();
+			fileOutput.close();
+			System.out.println("Game Saved");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} // try catch
+	}
+
+	private void loadGame() {
+		try {
+			File saveFile = new File("data/Save.dat");
+			FileInputStream fileInput = new FileInputStream(saveFile);
+			ObjectInputStream objectInput = new ObjectInputStream(fileInput);
+			readObject(objectInput);
+			objectInput.close();
+			fileInput.close();
+			System.out.println("Game Loaded");
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void writeObject(java.io.ObjectOutputStream stream) throws IOException {
+		stream.writeObject(currentRoom);
+		stream.writeObject(masterRoomMap);
+		stream.writeObject(user);
+	}
+
+	@SuppressWarnings("unchecked")
+	private void readObject(java.io.ObjectInputStream stream) throws IOException, ClassNotFoundException {
+		currentRoom = (Room) stream.readObject();
+		masterRoomMap = (HashMap<String, Room>) stream.readObject();
+		user = (Player) stream.readObject();
+	}
+
 	public Game() {
 		try {
 			initRooms("data/Rooms.dat");
@@ -152,7 +200,7 @@ class Game implements Serializable{
 
 		// Enter the main command loop. Here we repeatedly read commands and
 		// execute them until the game is over.
-
+		loadGame();
 		while (!finished && user.isAlive()) {
 			Command command = parser.getCommand();
 			finished = processCommand(command);
@@ -189,7 +237,8 @@ class Game implements Serializable{
 		Thread.sleep(2000);
 		System.out.println("Enter 'help' to see acceptable commands and your objective.");
 		Thread.sleep(1000);
-		System.out.println("Directions you can travel are North (n), South (s), East (e), West (w), Up (u), and Down (d).");
+		System.out.println(
+				"Directions you can travel are North (n), South (s), East (e), West (w), Up (u), and Down (d).");
 		Thread.sleep(2000);
 		System.out.println();
 		System.out.println(currentRoom.longDescription());
@@ -211,6 +260,9 @@ class Game implements Serializable{
 		String commandWord = command.getCommandWord();
 		if (commandWord.equalsIgnoreCase("help")) {
 			printHelp();
+		} else if (command.getCommandWord().equalsIgnoreCase("save")) {
+			save();
+
 		} else if (commandWord.equalsIgnoreCase("go") || commandWord.equalsIgnoreCase("move")
 				|| commandWord.equalsIgnoreCase("walk") || commandWord.equalsIgnoreCase("run")
 				|| commandWord.equalsIgnoreCase("north") || commandWord.equalsIgnoreCase("south")
@@ -265,17 +317,16 @@ class Game implements Serializable{
 				System.out.println("You already have that!");
 			else
 				System.out.println("There isn't an item of that sort here...");
-			
-		}else if(commandWord.equalsIgnoreCase("pick")){
-			if(command.hasSecondWord() && command.hasThirdWord() && command.getSecondWord().equals("up")){
+
+		} else if (commandWord.equalsIgnoreCase("pick")) {
+			if (command.hasSecondWord() && command.hasThirdWord() && command.getSecondWord().equals("up")) {
 				command.setCommandWord("pick up");
 				command.setSecondWord(command.getThirdWord());
 				takeItems(command, user.getInventory(), currentRoom.getInventory());
-			}else{
+			} else {
 				System.out.println("What?");
 			}
-		}
-		else if (commandWord.equalsIgnoreCase("read")) {
+		} else if (commandWord.equalsIgnoreCase("read")) {
 			if (!command.hasSecondWord())
 				System.out.println("Read what?");
 			else if (command.getSecondWord().equals(currentRoom.getInventory().getItemString(command.getSecondWord()))
@@ -535,8 +586,7 @@ class Game implements Serializable{
 
 		if (nextRoom == null) {
 			System.out.println("You can't go that way!");
-		}
-		else if (currentRoom.getRoomName().equals("Alexandria Entrance") && !(inCar) && direction.equals("east")) {
+		} else if (currentRoom.getRoomName().equals("Alexandria Entrance") && !(inCar) && direction.equals("east")) {
 
 			System.out.println("You're gonna WALK all the way to the forest? Bad idea.");
 
@@ -596,7 +646,7 @@ class Game implements Serializable{
 			}
 			currentRoom.removeFirstTime();
 			if (currentRoom.getRoomName().equals("Inside Saviours Compound")) {
-				if(user.getInventory().hasItem("sword")){
+				if (user.getInventory().hasItem("sword")) {
 					gameDone = true;
 				}
 				Ending.ending(user);
