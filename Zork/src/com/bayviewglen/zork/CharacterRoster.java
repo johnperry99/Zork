@@ -1,8 +1,9 @@
 package com.bayviewglen.zork;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CharacterRoster {
+public class CharacterRoster implements Serializable{
 	private ArrayList<Character>roster;
 	
 	public CharacterRoster(ArrayList<Character> list) {

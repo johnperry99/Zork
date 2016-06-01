@@ -1,6 +1,8 @@
 package com.bayviewglen.zork;
 
-public class Gun extends Item implements Depletable{
+import java.io.Serializable;
+
+public class Gun extends Item implements Depletable, Serializable{
 	private int ammo;
 
 	public Gun() {

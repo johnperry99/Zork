@@ -1,6 +1,8 @@
 package com.bayviewglen.zork;
 
-public class Flashlight extends Item {
+import java.io.Serializable;
+
+public class Flashlight extends Item implements Serializable{
 
 	static boolean flashlightShining = false;
 

@@ -1,6 +1,8 @@
 package com.bayviewglen.zork;
 
-public class Crossbow extends Item implements Depletable{
+import java.io.Serializable;
+
+public class Crossbow extends Item implements Depletable, Serializable{
 	private int ammo;
 
 	public Crossbow() {

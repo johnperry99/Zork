@@ -1,6 +1,8 @@
 package com.bayviewglen.zork;
 
-public class Zork {
+import java.io.Serializable;
+
+public class Zork implements Serializable{
 
 	public static void main(String[] args) throws InterruptedException {
 		Game game = new Game();

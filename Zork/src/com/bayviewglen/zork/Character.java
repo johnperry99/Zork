@@ -1,6 +1,8 @@
 package com.bayviewglen.zork;
 
-public class Character {
+import java.io.Serializable;
+
+public class Character implements Serializable{
 	private boolean alive;
 	private String name;
 	

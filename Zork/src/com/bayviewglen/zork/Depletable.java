@@ -1,6 +1,8 @@
 package com.bayviewglen.zork;
 
-public interface Depletable {
+import java.io.Serializable;
+
+public interface Depletable{
 	public boolean noAmmo();
 	
 }

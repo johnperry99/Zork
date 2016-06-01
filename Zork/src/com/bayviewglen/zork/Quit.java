@@ -1,8 +1,9 @@
 package com.bayviewglen.zork;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Quit {
+public class Quit implements Serializable{
 	private boolean finished;
 	private boolean forceQuit;
 	

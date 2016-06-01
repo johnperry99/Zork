@@ -1,5 +1,7 @@
 package com.bayviewglen.zork;
 
+import java.io.Serializable;
+
 /**
  * Class Command - Part of the "Zork" game.
  * 
@@ -21,7 +23,7 @@ package com.bayviewglen.zork;
  * should probably be changed to be an item rather than a String.
  */
 
-class Command {
+class Command implements Serializable{
 	private String commandWord;
 	private String secondWord;
 	private String thirdWord;

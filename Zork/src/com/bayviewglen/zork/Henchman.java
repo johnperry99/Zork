@@ -1,9 +1,10 @@
 package com.bayviewglen.zork;
 
+import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
 //wasn't really sure what to do for this one...
-public class Henchman extends Character {
+public class Henchman extends Character implements Serializable{
 	private int numHenchman;
 	
 	public Henchman(int numHenchman){

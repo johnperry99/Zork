@@ -1,8 +1,9 @@
 package com.bayviewglen.zork;
 
+import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Zombie extends Character {
+public class Zombie extends Character implements Serializable{
 	private int numZombies;
 
 	public Zombie(int numZombies) { // constructs the zombie class

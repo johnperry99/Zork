@@ -1,8 +1,9 @@
 package com.bayviewglen.zork;
 
+import java.io.Serializable;
 import java.util.concurrent.ThreadLocalRandom;
 
-public abstract class Assault {
+public abstract class Assault implements Serializable{
 
 	public static int maxPercent = 100;
 	public static int gunHitRate = 100;

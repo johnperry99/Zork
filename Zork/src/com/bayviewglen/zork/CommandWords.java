@@ -10,7 +10,9 @@ package com.bayviewglen.zork;
  * This class is part of the "Zork" game.
  */
 
-class CommandWords {
+import java.io.Serializable;
+
+class CommandWords implements Serializable{
 	// a constant array that holds all valid command words
 	private static final String validCommands[] = { "go", "move", "walk", "run", "save", "quit", "help", "eat", "move", "look", "read",
 			 "get", "in", "talk", "attack", "shoot", "kill", "take", "pick", "turn", "on", "off", "drive", "info", "information", "drop",

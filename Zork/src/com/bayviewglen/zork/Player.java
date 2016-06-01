@@ -1,8 +1,9 @@
 package com.bayviewglen.zork;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Player extends Character {
+public class Player extends Character implements Serializable{
 
 	private Inventory inv = new Inventory();
 	private int health = 100;
