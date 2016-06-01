@@ -298,7 +298,7 @@ class Game {
 			if (select == 0)
 				System.out.println("What do you mean?");
 			else if (select == 1)
-				System.out.println("Can you speak clearer? Start with an action or direction.");
+				System.out.println("Can you speak clearer? Start with a command word (enter 'help' to see them).");
 			else if (select == 2)
 				System.out.println("I don't understand...");
 			else if (select == 3)
@@ -422,7 +422,7 @@ class Game {
 			} else {
 				System.out.println("There's some very important that you need to know.");
 				System.out.println(
-						"We're all very sorry to say this but... Glenn... Your wife, Maggy, has been kidnapped.");
+						"We're all very sorry to say this but... Glenn... Your wife, Maggy, has been kidnapped by the Saviours.");
 				System.out.println("We know you are going to go look for her, but we strongly advise against it.");
 				System.out.println(
 						"If anything you should wait a few days for us to plan out how we are going to find her.");
@@ -435,8 +435,9 @@ class Game {
 			}
 		} else if (command.getSecondWord().equalsIgnoreCase("sign")) {
 			if (currentRoom.getRoomName().equals("Forest Section 1")) {
-				System.out.println("Beware... Zombies and enemies are everwhere.");
-				System.out.println("If you ever happen to encounter the Saviour Compound, immediately turn back...");
+				System.out.println("Beware... Zombies and enemies are everwhere. You may be able to leave an area with zombies-");
+				System.out.println("but there is a chance they'll damage you. *You won't always kill an enemy and go unharmed*");
+				System.out.println("If you ever happen to encounter the Saviour Compound, procede with caution...");
 				System.out.println("...Or you will die.");
 			} else if (currentRoom.getRoomName().equals("House (Outside)")) {
 				System.out.println("Bob's abandoned home.");
@@ -461,7 +462,7 @@ class Game {
 		System.out.println("Avoid using words like 'the', 'a', 'this', 'your', 'my', etc...\n");
 		System.out.println(
 				"Hint: You can just enter the first letter of the direction you want to go.\n(eg. 'e' instead of 'east'");
-		System.out.println("Enter i or inventory to display your inventory\n");
+		System.out.println("Enter i, info, information, or inventory to display your stats/inventory\n");
 		System.out.println("Your command words are:");
 		parser.showCommands();
 	}
@@ -680,6 +681,8 @@ class Game {
 			Item x = user.getInventory().getItem(command.getSecondWord());
 			currentRoom.getInventory().addItem(x);
 			user.getInventory().removeItem(x);
+			user.removeWeight(x.getWeight());
+			
 			System.out.println("You dropped the " + x.getName() + " here.");
 		} else {
 			System.out.println("You cannot drop an item that is not in your inventory!");
