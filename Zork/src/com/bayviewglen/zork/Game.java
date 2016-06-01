@@ -432,8 +432,9 @@ class Game {
 			}
 		} else if (command.getSecondWord().equalsIgnoreCase("sign")) {
 			if (currentRoom.getRoomName().equals("Forest Section 1")) {
-				System.out.println("Beware... Zombies and enemies are everwhere.");
-				System.out.println("If you ever happen to encounter the Saviour Compound, immediately turn back...");
+				System.out.println("Beware... Zombies and enemies are everwhere. You may be able to leave an area with zombies-");
+				System.out.println("but there is a chance they'll damage you. *You won't always kill an enemy and go unharmed*");
+				System.out.println("If you ever happen to encounter the Saviour Compound, procede with caution...");
 				System.out.println("...Or you will die.");
 			} else if (currentRoom.getRoomName().equals("House (Outside)")) {
 				System.out.println("Bob's abandoned home.");

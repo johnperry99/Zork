@@ -16,7 +16,7 @@ class CommandWords {
 			 "get", "talk", "attack", "shoot", "kill", "open", "close", "take", "pick", "all", "everything", "turn", "on", "drive", "in",
 			"off", "inventory", "i", "north", "east", "west", "south", "up", "down", "n", "e", "w", "s", "u", "d", "info", "information", "drop" };
 	
-	private static final String validNouns[] = { "bag", "note", "car", "gun", "knife", "crossbow", "key", "sign",
+	private static final String validNouns[] = { "bag", "note", "car", "gun", "knife", "crossbow", "key", "sign", "ammo",
 			"food", "pizza", "book", "person", "sword", "inventory", "flashlight", "object", "item", "Rick", "Daryl", "Sasha", "Carol", "Carl", "Maggie",
 			"henchman", "henchmen", "saviour", "saviours", "saviour henchmen", "saviour henchman", "zombie", "zombies" };
 

@@ -9,7 +9,7 @@ Exits: E-Armory, S-Living Room, U-Bedroom
 Items: pizza-0, knife-0, bag-0
 Characters: Carol-
 Room Name: Armory
-Room Description: You are in the armory.<br>There is a wide range of weapons you can take.<br>Unfortunately, you can't take all of them.<br>Your eyes rest on a particular gun, sword and crossbow.<br>You can take a maximum of two weapons...
+Room Description: You are in the armory.<br>There is a wide range of weapons you can take.<br>Unfortunately, you can't take all of them.<br>Weapons you may take include a particular gun, a sword and a crossbow.<br>You can take a maximum of two weapons...
 Exits: W-Kitchen
 Items: gun-10, sword-20, crossbow-20
 Characters:
@@ -39,7 +39,7 @@ Exits: E-Forest Section 1, W-Alexandria Entrance
 Items:
 Characters:
 Room Name: Forest Section 1
-Room Description: You are in the west section of the forest.<br>Your car has been parked nearby, cleverly hidden.<br>Just before you begin to walk, you notice a sign ahead.<br>
+Room Description: You are in the west section of the forest.<br>Your car has been parked nearby, cleverly hidden.<br>Just before you begin to walk, you notice a sign with writing on it...<br>
 Exits: E-Forest Section 4, N-Forest Section 3, S-Forest Section 2
 Items: sign-500
 Characters: zombie-, zombie-
