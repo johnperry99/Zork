@@ -453,6 +453,11 @@ class Game implements Serializable {
 				flashlight(command);
 			else
 				System.out.println("Turn what?");
+		} else if (commandWord.equalsIgnoreCase("talk")) {
+            if (!command.hasSecondWord())
+                  System.out.println("Talk to who?");
+            else 
+                  talk(command);
 		} else if (commandWord.equalsIgnoreCase("drive") || command.hasSecondWord()
 				&& (commandWord.equalsIgnoreCase("get") || commandWord.equalsIgnoreCase("turn"))) {
 			if (commandWord.equalsIgnoreCase("drive") && !(command.hasSecondWord()))
@@ -550,8 +555,43 @@ class Game implements Serializable {
 		} else {
 			System.out.println("What?");
 		}
-
 	}
+	
+	private void talk(Command command) {
+        if (currentRoom.getRoster().hasCharacter("Sasha") && command.getSecondWord().equalsIgnoreCase("Sasha")
+                     || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Sasha"))) {
+               System.out.println("Sasha: \"Take this note and read it... I'm really sorry.\"");
+        }
+        else if (currentRoom.getRoster().hasCharacter("Carol") && command.getSecondWord().equalsIgnoreCase("Carol")
+                     || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Carol"))) {
+               System.out.println("Carol: \"Hey... I know you're very upset... but you really should wait for us to come up with a good plan to save Maggy.\"");
+        }
+        else if (currentRoom.getRoster().hasCharacter("Carl") && command.getSecondWord().equalsIgnoreCase("Carl")
+                     || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Carl"))) {
+               System.out.println("Carl: \"Sorry about Maggy, man. Just don't do anything crazy.\"");
+        }
+        else if (currentRoom.getRoster().hasCharacter("Rick") && command.getSecondWord().equalsIgnoreCase("Rick")
+                     || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Rick"))) {
+               System.out.println("Rick: \"Remember: in the forest you might find some ammo packs. You may also find some in abandoned buildings.\"");
+        }
+        else if (currentRoom.getRoster().hasCharacter("Daryl") && command.getSecondWord().equalsIgnoreCase("Daryl")
+                     || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Daryl"))) {
+               System.out.println("Daryl: Hey man, here's a tip. If you ever encounter a Saviour henchman, kill them immediately, "
+                            + "because running away from them will get you killed.");
+        }
+        else if (currentRoom.getRoster().hasCharacter("zombie") && command.getSecondWord().equalsIgnoreCase("zombie")
+                || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("zombie"))) {
+        	  System.out.println("The zombie said \"hi\".");
+        }
+        else if (currentRoom.getRoster().hasCharacter("henchman") && (command.getSecondWord().equalsIgnoreCase("henchman")
+                || command.getSecondWord().equalsIgnoreCase("henchmen") || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("henchmen"))
+                || command.getThirdWord().equalsIgnoreCase("henchmen"))) {
+        	  System.out.println("Saviour");
+        }
+        else {
+               System.out.println("Either that person doesn't exist or is not in this area.");
+        }
+ }
 
 	private void eat(Command command) {
 		if (command.hasSecondWord()
