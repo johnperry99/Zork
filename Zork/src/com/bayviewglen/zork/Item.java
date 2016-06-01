@@ -24,6 +24,9 @@ public class Item {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public String toString(){
+		return name;
+	}
 	
 }
 	

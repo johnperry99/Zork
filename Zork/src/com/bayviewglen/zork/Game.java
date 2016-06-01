@@ -206,18 +206,18 @@ class Game {
 		}
 
 		String commandWord = command.getCommandWord();
-		if (commandWord.equalsIgnoreCase("help"))
+		if (commandWord.equalsIgnoreCase("help")) {
 			printHelp();
-		else if (commandWord.equalsIgnoreCase("go") || commandWord.equalsIgnoreCase("move")
+		} else if (commandWord.equalsIgnoreCase("go") || commandWord.equalsIgnoreCase("move")
 				|| commandWord.equalsIgnoreCase("walk") || commandWord.equalsIgnoreCase("run")
 				|| commandWord.equalsIgnoreCase("north") || commandWord.equalsIgnoreCase("south")
 				|| commandWord.equalsIgnoreCase("west") || commandWord.equalsIgnoreCase("east")
 				|| commandWord.equalsIgnoreCase("up") || commandWord.equalsIgnoreCase("down")
 				|| commandWord.equalsIgnoreCase("n") || commandWord.equalsIgnoreCase("s")
 				|| commandWord.equalsIgnoreCase("e") || commandWord.equalsIgnoreCase("w")
-				|| commandWord.equalsIgnoreCase("u") || commandWord.equalsIgnoreCase("d"))
+				|| commandWord.equalsIgnoreCase("u") || commandWord.equalsIgnoreCase("d")) {
 			goRoom(command);
-		else if (commandWord.equalsIgnoreCase("quit")) {
+		} else if (commandWord.equalsIgnoreCase("quit")) {
 			if (command.hasSecondWord()) {
 				System.out.println("If you mean quit game, enter \"quit\".");
 			} else {
@@ -227,12 +227,13 @@ class Game {
 				finished = quit.isFinished();
 				return finished; // signal that we want to quit
 			}
-		} else if (commandWord.equalsIgnoreCase("eat"))
+		} else if (commandWord.equalsIgnoreCase("eat")) {
 			eat(command);
-		else if (commandWord.equalsIgnoreCase("inventory") || commandWord.equalsIgnoreCase("i")
-				|| commandWord.equalsIgnoreCase("information"))
+		} else if (commandWord.equalsIgnoreCase("inventory") || commandWord.equalsIgnoreCase("i")
+				|| commandWord.equalsIgnoreCase("information")) {
 			user.displayInventory();
-		else if (commandWord.equalsIgnoreCase("look"))
+			currentRoom.displayInventory();
+		} else if (commandWord.equalsIgnoreCase("look")) {
 			if (user.getInventory().hasItem("flashlight") && Flashlight.flashLightState()
 					&& ((currentRoom.getRoomName().equals("House (Inside"))
 							|| ((currentRoom.getRoomName().equals("Barn (Inside)")))))
@@ -242,7 +243,7 @@ class Game {
 				System.out.println(currentRoom.longDescription());
 			else
 				System.out.println("You can't see!");
-		else if (commandWord.equalsIgnoreCase("kill") || commandWord.equalsIgnoreCase("attack"))
+		} else if (commandWord.equalsIgnoreCase("kill") || commandWord.equalsIgnoreCase("attack"))
 			validAttackCommand(command);
 		else if (commandWord.equalsIgnoreCase("shoot")) {
 			if (user.hasItem("gun") || user.hasItem("crossbow"))
@@ -275,13 +276,14 @@ class Game {
 		} else if (command.getCommandWord().equals("turn")) {
 			if (!command.hasSecondWord())
 				System.out.println("What do you mean by turn?");
-			else if (!(currentRoom.getRoomName().equals("Alexandria Entrance")) && command.getSecondWord().equalsIgnoreCase("on") 
-					 || command.getSecondWord().equalsIgnoreCase("off"))
+			else if (!(currentRoom.getRoomName().equals("Alexandria Entrance"))
+					&& command.getSecondWord().equalsIgnoreCase("on")
+					|| command.getSecondWord().equalsIgnoreCase("off"))
 				flashlight(command);
 			else
 				System.out.println("Turn what?");
-		} else if (commandWord.equalsIgnoreCase("drive") || (command.hasSecondWord()
-				&& (commandWord.equalsIgnoreCase("get") || commandWord.equalsIgnoreCase("turn")))) {
+		} else if (commandWord.equalsIgnoreCase("drive") || command.hasSecondWord()
+				&& (commandWord.equalsIgnoreCase("get") || commandWord.equalsIgnoreCase("turn"))) {
 			if (commandWord.equalsIgnoreCase("drive") && !(command.hasSecondWord()))
 				System.out.println("Drive what?");
 			else if ((commandWord.equalsIgnoreCase("drive")
@@ -432,8 +434,10 @@ class Game {
 			}
 		} else if (command.getSecondWord().equalsIgnoreCase("sign")) {
 			if (currentRoom.getRoomName().equals("Forest Section 1")) {
-				System.out.println("Beware... Zombies and enemies are everwhere. You may be able to leave an area with zombies-");
-				System.out.println("but there is a chance they'll damage you. *You won't always kill an enemy and go unharmed*");
+				System.out.println(
+						"Beware... Zombies and enemies are everwhere. You may be able to leave an area with zombies-");
+				System.out.println(
+						"but there is a chance they'll damage you. *You won't always kill an enemy and go unharmed*");
 				System.out.println("If you ever happen to encounter the Saviour Compound, procede with caution...");
 				System.out.println("...Or you will die.");
 			} else if (currentRoom.getRoomName().equals("House (Outside)")) {
@@ -519,16 +523,13 @@ class Game {
 
 		if (nextRoom == null) {
 			System.out.println("You can't go that way!");
-		}
-		else if(currentRoom.getRoomName().equals("Alexandria Entrance")
-			&& !(inCar) && direction.equals("east")) {
-		
-				System.out.println("You're gonna WALK all the way to the forest? Bad idea.");
-		
-		}else if(currentRoom.getRoomName().equals("Front of House") 
-				&& (inCar) && direction.equals("north")) {
-		
-					System.out.println("9/10 doctors recommend not driving into your house!");
+		} else if (currentRoom.getRoomName().equals("Alexandria Entrance") && !(inCar) && direction.equals("east")) {
+
+			System.out.println("You're gonna WALK all the way to the forest? Bad idea.");
+
+		} else if (currentRoom.getRoomName().equals("Front of House") && (inCar) && direction.equals("north")) {
+
+			System.out.println("9/10 doctors recommend not driving into your house!");
 		} else if (currentRoom.getRoster().hasCharacter("zombie") || currentRoom.getRoster().hasCharacter("henchman")) {
 			if (currentRoom.getRoster().hasCharacter("zombie")) {
 				zombie.runAway(currentRoom.getRoster().getSize(), user);
@@ -658,6 +659,15 @@ class Game {
 		} else {
 			temp = room.getItem(command.getSecondWord());
 		}
+		if (command.getSecondWord().equalsIgnoreCase("ammo")) {
+			if (currentRoom.getInventory().hasItem("crossbow ammo")) {
+				user.addCrossbowAmmo(5);
+			} else if (currentRoom.getInventory().hasItem("gun ammo")) {
+				user.addGunAmmo(5);
+			} else {
+				System.out.println("There is no ammo here!");
+			}
+		}
 
 		int x = temp.getWeight() + player.calculateWeight();
 		if (room.hasItem(secondWord) && x <= user.capacity()) {
@@ -679,7 +689,7 @@ class Game {
 			currentRoom.getInventory().addItem(x);
 			user.getInventory().removeItem(x);
 			user.removeWeight(x.getWeight());
-			
+
 			System.out.println("You dropped the " + x.getName() + " here.");
 		} else {
 			System.out.println("You cannot drop an item that is not in your inventory!");

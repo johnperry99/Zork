@@ -33,6 +33,9 @@ public class Inventory {
 		}
 		return "Inventory:\n" + items;
 	}
+	public ArrayList<Item>getInventoryList(){
+		return itemsInInventory;
+	}
 
 	public void addItem(Item item) {
 		itemsInInventory.add(item);
