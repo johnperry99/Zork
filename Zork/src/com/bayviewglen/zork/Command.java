@@ -93,4 +93,16 @@ class Command {
 	public boolean isNoun(String word){
 		return CommandWords.isNoun(word);
 	}
+	public void setCommandWord(String s){
+		commandWord = s;
+	}
+	public void setSecondWord(String s){
+		secondWord = s;
+	}
+	public void setThirdWord(String s){
+		thirdWord = s;
+	}
+	public void setFourthWord(String s){
+		fourthWord = s;
+	}
 }
