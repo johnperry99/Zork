@@ -295,7 +295,7 @@ class Game {
 			if (select == 0)
 				System.out.println("What do you mean?");
 			else if (select == 1)
-				System.out.println("Can you speak clearer? Start with an action or direction.");
+				System.out.println("Can you speak clearer? Start with a command word (enter 'help' to see them).");
 			else if (select == 2)
 				System.out.println("I don't understand...");
 			else if (select == 3)
@@ -459,7 +459,7 @@ class Game {
 		System.out.println("Avoid using words like 'the', 'a', 'this', 'your', 'my', etc...\n");
 		System.out.println(
 				"Hint: You can just enter the first letter of the direction you want to go.\n(eg. 'e' instead of 'east'");
-		System.out.println("Enter i or inventory to display your inventory\n");
+		System.out.println("Enter i, info, information, or inventory to display your stats/inventory\n");
 		System.out.println("Your command words are:");
 		parser.showCommands();
 	}

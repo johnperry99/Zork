@@ -5,7 +5,7 @@ package com.bayviewglen.zork;
  * Date:    July 1999
  * 
  * This class holds an enumeration of all command words known to the game.
- * It is used to recognise commands as they are typed in.
+ * It is used to recognize commands as they are typed in.
  *
  * This class is part of the "Zork" game.
  */
@@ -13,12 +13,12 @@ package com.bayviewglen.zork;
 class CommandWords {
 	// a constant array that holds all valid command words
 	private static final String validCommands[] = { "go", "move", "walk", "run", "save", "quit", "help", "eat", "move", "look", "read",
-			 "get", "talk", "attack", "shoot", "kill", "open", "close", "take", "pick", "all", "everything", "turn", "on", "drive", "in",
-			"off", "inventory", "i", "north", "east", "west", "south", "up", "down", "n", "e", "w", "s", "u", "d", "info", "information", "drop" };
+			 "get", "talk", "attack", "shoot", "kill", "take", "pick", "turn", "drive", "info", "information", "drop",
+			 "inventory", "i", "north", "east", "west", "south", "up", "down", "n", "e", "w", "s", "u", "d" };
 	
-	private static final String validNouns[] = { "bag", "note", "car", "gun", "knife", "crossbow", "key", "sign", "ammo",
+	private static final String validNouns[] = { "bag", "note", "car", "gun", "knife", "crossbow", "key", "sign", "ammo", "all", "everything", "in",
 			"food", "pizza", "book", "person", "sword", "inventory", "flashlight", "object", "item", "Rick", "Daryl", "Sasha", "Carol", "Carl", "Maggie",
-			"henchman", "henchmen", "saviour", "saviours", "saviour henchmen", "saviour henchman", "zombie", "zombies" };
+			"henchman", "henchmen", "saviour", "saviours", "saviour henchmen", "saviour henchman", "zombie", "zombies", "on", "off" };
 
 	/**
 	 * Constructor - initialize the command words.
