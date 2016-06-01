@@ -15,8 +15,13 @@ import java.io.Serializable;
 class CommandWords implements Serializable{
 	// a constant array that holds all valid command words
 	private static final String validCommands[] = { "go", "move", "walk", "run", "save", "quit", "help", "eat", "move", "look", "read",
+<<<<<<< HEAD
 			 "get", "in", "talk", "attack", "shoot", "kill", "take", "pick", "turn", "on", "off", "talk", "drive", "info", "information", "drop",
 			 "inventory", "i", "north", "east", "west", "south", "up", "down", "n", "e", "w", "s", "u", "d" };
+=======
+			 "get", "in", "talk", "attack", "shoot", "kill", "take", "pick", "turn", "on", "off", "drive", "info", "information", "drop",
+			 "inventory", "i", "north", "east", "west", "south", "up", "down", "n", "e", "w", "s", "u", "d", "&&t" };
+>>>>>>> refs/remotes/origin/master
 	
 	private static final String validNouns[] = { "bag", "note", "car", "gun", "knife", "crossbow", "key", "sign", "ammo", "all", "everything",
 			"food", "pizza", "book", "person", "sword", "inventory", "flashlight", "object", "item", "Rick", "Daryl", "Sasha", "Carol", "Carl", "Maggie",
@@ -58,7 +63,9 @@ class CommandWords implements Serializable{
 			if(i%10==0){
 				System.out.println("");
 			}
+			if(validCommands[i] != "&&t"){
 			System.out.print(validCommands[i] + "  ");
+			}
 		}
 		System.out.println();
 
