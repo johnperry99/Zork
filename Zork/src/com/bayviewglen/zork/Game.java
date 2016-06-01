@@ -187,6 +187,8 @@ class Game {
 		System.out.println("This is a new take on the original Zork game, but set in The Walking Dead universe!");
 		Thread.sleep(2000);
 		System.out.println("Enter 'help' to see acceptable commands and your objective.");
+		Thread.sleep(1000);
+		System.out.println("Directions you can travel are North (n), South (s), East (e), West (w), Up (u), and Down (d).");
 		Thread.sleep(2000);
 		System.out.println();
 		System.out.println(currentRoom.longDescription());
@@ -362,7 +364,7 @@ class Game {
 								&& command.getThirdWord().equalsIgnoreCase("car"))
 				|| (command.getSecondWord().equalsIgnoreCase("car")))) {
 			System.out.println("You approach the car and enter it. You then start the engine with the key.");
-			System.out.println("You can now leave Alexandria by going east...");
+			System.out.println("Where would you like to drive with the car.");
 			inCar = true;
 		} else if (!(user.getInventory().hasItem("key")) && currentRoom.getInventory().hasItem("car")
 				&& ((command.getSecondWord().equalsIgnoreCase("on") && command.getThirdWord().equalsIgnoreCase("car"))
@@ -461,11 +463,10 @@ class Game {
 		System.out.println("Read the note for your objective.");
 		System.out.println("Max number of words per command: 4");
 		System.out.println("Avoid using words like 'the', 'a', 'this', 'your', 'my', etc...\n");
-		System.out.println(
-				"Hint: You can just enter the first letter of the direction you want to go.\n(eg. 'e' instead of 'east'");
 		System.out.println("Enter i, info, information, or inventory to display your stats/inventory\n");
 		System.out.println("Your command words are:");
 		parser.showCommands();
+		System.out.println("Common command words include: go, read, take, drop, and attack/kill");
 	}
 
 	/**
