@@ -264,7 +264,17 @@ class Game {
 				System.out.println("You already have that!");
 			else
 				System.out.println("There isn't an item of that sort here...");
-		} else if (commandWord.equalsIgnoreCase("read")) {
+			
+		}else if(commandWord.equalsIgnoreCase("pick")){
+			if(command.hasSecondWord() && command.hasThirdWord() && command.getSecondWord().equals("up")){
+				command.setCommandWord("pick up");
+				command.setSecondWord(command.getThirdWord());
+				takeItems(command, user.getInventory(), currentRoom.getInventory());
+			}else{
+				System.out.println("What?");
+			}
+		}
+		else if (commandWord.equalsIgnoreCase("read")) {
 			if (!command.hasSecondWord())
 				System.out.println("Read what?");
 			else if (command.getSecondWord().equals(currentRoom.getInventory().getItemString(command.getSecondWord()))
