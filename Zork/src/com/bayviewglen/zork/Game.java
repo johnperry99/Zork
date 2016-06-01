@@ -584,7 +584,9 @@ class Game {
 			}
 			currentRoom.removeFirstTime();
 			if (currentRoom.getRoomName().equals("Inside Saviours Compound")) {
-				gameDone = true;
+				if(user.getInventory().hasItem("sword")){
+					gameDone = true;
+				}
 				Ending.ending(user);
 				quit = new Quit(finished, false);
 				quit.getFinished();

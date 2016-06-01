@@ -120,6 +120,9 @@ public class Ending {
 			theShowDownPartTwo(user, originalInv);
 		} else {
 			System.out.println("\nHe evades your pathetic attempt and kills you.\nGAME OVER");
+			if(!(user.getInventory().hasItem("sword"))){
+				playing = false;
+			}
 			Thread.sleep(3000);
 			System.out.println("\nResuming from last checkpoint");
 			Thread.sleep(2000);
@@ -144,9 +147,7 @@ public class Ending {
 					+ "\nyou hear a loud bang...complete darkness."
 					+ "\nWhen you wake up he has disappeared and Maggie is nowhere to be found.\nGAME OVER");
 			user.getInventory().setInventory(originalInv);
-			Thread.sleep(3000);
-			System.out.println("Resuming from last checkpoint");
-			Thread.sleep(2000);
+			playing = false;
 		}
 
 	}
