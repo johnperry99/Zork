@@ -154,6 +154,35 @@ class Game implements Serializable {
 			objectInput.close();
 			fileInput.close();
 			System.out.println("Game Loaded");
+			if (currentRoom.isFirstTime()) {
+				System.out.println(currentRoom.longDescription());
+			} else {
+				System.out.println(currentRoom.shortDescription());
+			}if (currentRoom.getRoster().hasCharacter("henchman")) {
+				henchman = new Henchman(currentRoom.getRoster().getSize());
+				if (((currentRoom.getRoomName().equals("House (Inside)"))
+						|| ((currentRoom.getRoomName().equals("Barn (Inside)"))))
+						&& (Flashlight.flashLightState() == false)) {
+					System.out.println("...");
+				} else {
+					if (currentRoom.getRoomName().equals("Outside Saviours Compound")) {
+						henchman.lastPhrase();
+					} else {
+						henchman.randomPhrase();
+					}
+				}
+			}
+			if (currentRoom.getRoster().hasCharacter("zombie")) {
+				zombie = new Zombie(currentRoom.getRoster().getSize());
+				if (((currentRoom.getRoomName().equals("House (Inside)"))
+						|| ((currentRoom.getRoomName().equals("Barn (Inside)"))))
+						&& (Flashlight.flashLightState() == false)) {
+					System.out.println("...");
+				} else {
+					zombie.zombiePhrase();
+				}
+			}
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
@@ -200,7 +229,7 @@ class Game implements Serializable {
 
 		// Enter the main command loop. Here we repeatedly read commands and
 		// execute them until the game is over.
-		loadGame();
+		
 		while (!finished && user.isAlive()) {
 			Command command = parser.getCommand();
 			finished = processCommand(command);
@@ -262,8 +291,14 @@ class Game implements Serializable {
 			printHelp();
 		} else if (command.getCommandWord().equalsIgnoreCase("save")) {
 			save();
+			
+			
 
-		} else if (commandWord.equalsIgnoreCase("go") || commandWord.equalsIgnoreCase("move")
+		} else if(commandWord.equalsIgnoreCase("load")){
+			loadGame();
+		}
+		else if (commandWord.equalsIgnoreCase("go") || commandWord.equalsIgnoreCase("move")
+		
 				|| commandWord.equalsIgnoreCase("walk") || commandWord.equalsIgnoreCase("run")
 				|| commandWord.equalsIgnoreCase("north") || commandWord.equalsIgnoreCase("south")
 				|| commandWord.equalsIgnoreCase("west") || commandWord.equalsIgnoreCase("east")
