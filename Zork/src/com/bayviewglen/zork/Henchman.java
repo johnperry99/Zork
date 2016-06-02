@@ -29,10 +29,13 @@ public class Henchman extends Character implements Serializable{
 									// this method when a room with any number
 									// of henchmen is entered.
 		int phraseIndex = ThreadLocalRandom.current().nextInt(1, instantiatePhrases.length);
+		int henchmanNum = ThreadLocalRandom.current().nextInt(1, numHenchman);
 		if(getNumHenchman() == 1){
-			System.out.println("You have approached a Saviour henchman... " + instantiatePhrases[phraseIndex]);
+			System.out.println("You have approached a Saviour henchman... "
+					+ "\nSaviour Henchman " + henchmanNum + ": " + instantiatePhrases[phraseIndex]);
 		} else if(getNumHenchman()>1){
-			System.out.println("You have approached " + getNumHenchman() + " Saviour henchmen... " + instantiatePhrases[phraseIndex]);
+			System.out.println("You have approached " + getNumHenchman() + " Saviour henchmen... "
+					+ "\nSaviour Henchman: " + instantiatePhrases[phraseIndex]);
 		}
 	}
 	

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -41,6 +42,7 @@ class Game implements Serializable {
 	private boolean forceQuit;
 	private Quit quit;
 	private boolean inCar = false;
+	private boolean showContinue;
 	// This is a MASTER object that contains all of the rooms and is easily
 	// accessible.
 	// The key will be the name of the room -> no spaces (Use all caps and
@@ -133,6 +135,9 @@ class Game implements Serializable {
 	 */
 	private void save() {
 		try {
+			FileWriter fw = new FileWriter("data/continue.dat");
+			fw.write("displayContinue");
+			fw.close();
 			File saveFile = new File("data/Save.dat");
 			FileOutputStream fileOutput = new FileOutputStream(saveFile);
 			ObjectOutputStream objectOutput = new ObjectOutputStream(fileOutput);
@@ -153,12 +158,9 @@ class Game implements Serializable {
 			readObject(objectInput);
 			objectInput.close();
 			fileInput.close();
-			System.out.println("Game Loaded");
-			if (currentRoom.isFirstTime()) {
-				System.out.println(currentRoom.longDescription());
-			} else {
-				System.out.println(currentRoom.shortDescription());
-			}
+			System.out.println("\nGame Loaded");
+			System.out.println("You are in: " + currentRoom.getRoomName());
+			System.out.println("If not displayed, type look to view the area's description.");
 			if (currentRoom.getRoster().hasCharacter("henchman")) {
 				henchman = new Henchman(currentRoom.getRoster().getSize());
 				if (((currentRoom.getRoomName().equals("House (Inside)"))
@@ -224,42 +226,56 @@ class Game implements Serializable {
 	 * Main play routine. Loops until end of play.
 	 * 
 	 * @throws InterruptedException
+	 * @throws FileNotFoundException 
 	 */
-	public void play() throws InterruptedException {
+	public void play() throws InterruptedException, FileNotFoundException {
 		Scanner input = new Scanner(System.in);
+		Scanner scanner = new Scanner(new File("data/continue.dat"));
+		String showContinue = scanner.nextLine();
 		printWelcome();
 		System.out.println();
-		System.out.println("Enter a number:");
-		System.out.println();
-		System.out.println("1. NEW GAME");
-		System.out.println("2. CONTINUE");
+		
 		boolean numEntered = false;
 		boolean newGame = true;
-
-		while (numEntered == false) {
-			try {
-				int val = Integer.parseInt(input.nextLine());
-				if (val == 1) {
-					numEntered = true;
-
-				} else if (val == 2) {
-					numEntered = true;
-					newGame = false;
-				} else {
-					System.out.println("Please enter one of the numbers listed above.");
+		if(showContinue.equals("displayContinue")){
+			System.out.println("Enter a number:");
+			System.out.println();
+			System.out.println("1. NEW GAME");
+			System.out.println("2. CONTINUE");
+			System.out.println("3. RESET AND START NEW GAME");
+			while (numEntered == false) {
+				System.out.print("> ");
+				try {
+					int val = Integer.parseInt(input.nextLine());
+					if (val == 1) {
+						numEntered = true;
+	
+					} else if (val == 2) {
+						numEntered = true;
+						newGame = false;
+					} else if (val == 3) {
+						numEntered = true;
+						newGame = true;
+						FileWriter fw = new FileWriter("data/continue.dat");
+						fw.write(" ");
+						fw.close();
+					} else {
+						System.out.println("\nPlease enter one of the numbers listed above.");
+					}
+				} catch (Exception ex) {
+					System.out.println("\nPlease enter a valid integer.");
 				}
-			} catch (Exception ex) {
-				System.out.println("Please enter a valid integer.");
 			}
 		}
-
+		
 		if (!newGame) {
 			loadGame();
 		} else {
-			System.out.println("Enter 'help' to see acceptable commands and your objective.");
+			System.out.println("Type \"help\" to see acceptable commands and your objective.");
 			Thread.sleep(1000);
 			System.out.println(
 					"Directions you can travel are North (n), South (s), East (e), West (w), Up (u), and Down (d).");
+			System.out.println("You can type \"save\" to save your game data and \"quit\" to stop playing.");
 		}
 		Thread.sleep(2000);
 		System.out.println();
@@ -380,7 +396,7 @@ class Game implements Serializable {
 				|| commandWord.equalsIgnoreCase("u") || commandWord.equalsIgnoreCase("d")) {
 			goRoom(command);
 		} else if (commandWord.equalsIgnoreCase("quit")) {
-			if (command.hasSecondWord()) {
+			if (command.hasSecondWord() && !(command.getSecondWord().equalsIgnoreCase("game"))) {
 				System.out.println("If you mean quit game, enter \"quit\".");
 			} else {
 				quit = new Quit(finished, true);
@@ -453,6 +469,11 @@ class Game implements Serializable {
 				flashlight(command);
 			else
 				System.out.println("Turn what?");
+		} else if (commandWord.equalsIgnoreCase("talk")) {
+            if (!command.hasSecondWord())
+                  System.out.println("Talk to who?");
+            else 
+                  talk(command);
 		} else if (commandWord.equalsIgnoreCase("drive") || command.hasSecondWord()
 				&& (commandWord.equalsIgnoreCase("get") || commandWord.equalsIgnoreCase("turn"))) {
 			if (commandWord.equalsIgnoreCase("drive") && !(command.hasSecondWord()))
@@ -546,12 +567,48 @@ class Game implements Serializable {
 						|| (command.getSecondWord().equalsIgnoreCase("in")
 								&& command.getThirdWord().equalsIgnoreCase("car"))
 				|| (command.getSecondWord().equalsIgnoreCase("car")))) {
-			System.out.println("There is no car here...");
+			System.out.println("You can't drive a car here...");
 		} else {
 			System.out.println("What?");
 		}
-
 	}
+	
+	private void talk(Command command) {
+        if (currentRoom.getRoster().hasCharacter("Sasha") && command.getSecondWord().equalsIgnoreCase("Sasha")
+                     || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Sasha"))) {
+               System.out.println("Sasha: \"Take this note and read it... I'm really sorry.\"");
+        }
+        else if (currentRoom.getRoster().hasCharacter("Carol") && command.getSecondWord().equalsIgnoreCase("Carol")
+                     || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Carol"))) {
+               System.out.println("Carol: \"Hey... I know you're very upset... "
+               		+ "\nBut you really should wait for us to come up with a good plan to save Maggy.\"");
+        }
+        else if (currentRoom.getRoster().hasCharacter("Carl") && command.getSecondWord().equalsIgnoreCase("Carl")
+                     || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Carl"))) {
+               System.out.println("Carl: \"Sorry about Maggy, man. Just don't do anything crazy.\"");
+        }
+        else if (currentRoom.getRoster().hasCharacter("Rick") && command.getSecondWord().equalsIgnoreCase("Rick")
+                     || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Rick"))) {
+               System.out.println("Rick: \"Remember: in the forest you might find some ammo packs.\nYou may also find some in abandoned buildings.\"");
+        }
+        else if (currentRoom.getRoster().hasCharacter("Daryl") && command.getSecondWord().equalsIgnoreCase("Daryl")
+                     || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Daryl"))) {
+               System.out.println("Daryl: Hey man, here's a tip. If you ever encounter a Saviour henchman,\n kill them immediately,"
+                            + "because running away from them will get you killed.");
+        }
+        else if (currentRoom.getRoster().hasCharacter("zombie") && command.getSecondWord().equalsIgnoreCase("zombie")
+                || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("zombie"))) {
+        	  System.out.println("The zombie said \"hi\".");
+        }
+        else if (currentRoom.getRoster().hasCharacter("henchman") && (command.getSecondWord().equalsIgnoreCase("henchman")
+                || command.getSecondWord().equalsIgnoreCase("henchmen") || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("henchmen"))
+                || command.getThirdWord().equalsIgnoreCase("henchmen"))) {
+        	  System.out.println("Saviour");
+        }
+        else {
+               System.out.println("Either that person doesn't exist or is not in this area.");
+        }
+ }
 
 	private void eat(Command command) {
 		if (command.hasSecondWord()
@@ -633,9 +690,10 @@ class Game implements Serializable {
 		System.out.println("Max number of words per command: 4");
 		System.out.println("Avoid using words like 'the', 'a', 'this', 'your', 'my', etc...\n");
 		System.out.println("Enter i, info, information, or inventory to display your stats/inventory\n");
+		System.out.println("*Hint: You may gain valuable information by talking to characters.*");
 		System.out.println("Your command words are:");
 		parser.showCommands();
-		System.out.println("Common command words include: go, read, take, drop, and attack/kill");
+		System.out.println("Common command words include: go, read, take, drop, and attack.");
 	}
 
 	/**
@@ -762,7 +820,7 @@ class Game implements Serializable {
 				finished = quit.isFinished();
 			}
 			if (currentRoom.getRoomName().equals("Kitchen") && !user.getInventory().hasItem("bag")) {
-				user.addToInventoryCapacity(30);
+				user.addToInventoryCapacity(39);
 				Item x = currentRoom.getInventory().getItem("bag");
 				user.getInventory().addItem(x);
 				currentRoom.getInventory().removeItem(x);
