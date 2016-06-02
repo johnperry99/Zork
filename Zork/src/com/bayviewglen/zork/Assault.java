@@ -212,7 +212,7 @@ public abstract class Assault implements Serializable{
 						if (henchman.getNumHenchman() == 0) {
 							henchman.kill();
 							System.out.println("You have killed all the saviours in the area.");
-							if(currentRoom.getRoomName().equals("Barn (Inside)")
+							if(currentRoom.getRoomName().equals("House (Inside)")
 									   || currentRoom.getRoomName().equals("Clearing"))
 										if(currentRoom.getInventory().hasItem("gun ammo"))
 											System.out.println("You notice there is usable gun ammo on the ground.");
@@ -242,7 +242,7 @@ public abstract class Assault implements Serializable{
 						if (henchman.getNumHenchman() == 0) {
 							henchman.kill();
 							System.out.println("You have killed all the saviours in the area.");
-							if(currentRoom.getRoomName().equals("Barn (Inside)")
+							if(currentRoom.getRoomName().equals("House (Inside)")
 									   || currentRoom.getRoomName().equals("Clearing"))
 										if(currentRoom.getInventory().hasItem("gun ammo"))
 											System.out.println("You notice there is usable gun ammo on the ground.");
@@ -262,7 +262,7 @@ public abstract class Assault implements Serializable{
 						if (henchman.getNumHenchman() == 0) {
 							henchman.kill();
 							System.out.println("You have killed all the saviours in the area.");
-							if(currentRoom.getRoomName().equals("Barn (Inside)")
+							if(currentRoom.getRoomName().equals("House (Inside)")
 									   || currentRoom.getRoomName().equals("Clearing"))
 										if(currentRoom.getInventory().hasItem("gun ammo"))
 											System.out.println("You notice there is usable gun ammo on the ground.");
@@ -287,7 +287,7 @@ public abstract class Assault implements Serializable{
 					if (henchman.getNumHenchman() == 0) {
 						henchman.kill();
 						System.out.println("You have killed all the saviours in the area.");
-						if(currentRoom.getRoomName().equals("Barn (Inside)")
+						if(currentRoom.getRoomName().equals("House (Inside)")
 								   || currentRoom.getRoomName().equals("Clearing"))
 									if(currentRoom.getInventory().hasItem("gun ammo"))
 										System.out.println("You notice there is usable gun ammo on the ground.");

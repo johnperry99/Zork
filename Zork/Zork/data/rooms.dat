@@ -59,7 +59,7 @@ Exits: W-Forest Section 1, N-Forest Section 6, S-Forest Section 5, E-Clearing
 Items: flashlight-5
 Characters: zombie-, zombie-, zombie-
 Room Name: Forest Section 5
-Room Description: You are in the southeast section of the forest.<br>The center of the forest is to the north.<br>Also, a barn is barely visible to the east.<br>You also find some ammo someone dropped a while ago.<br>
+Room Description: You are in the southeast section of the forest.<br>The center of the forest is to the north.<br>Also, a barn is barely visible to the east.<br>You also notice some ammo for a gun on the ground.<br>
 Exits: N-Forest Section 4, W-Forest Section 2, E-Barn (Outside)
 Items: gun ammo-0
 Characters: henchman-
@@ -91,7 +91,7 @@ Characters: zombie-, zombie-
 Room Name: Clearing
 Room Description: You have approached a clearing and don't see zombies for once.<br>The zombie-infested forest is to the west and a field to the east.<br>
 Exits: W-Forest Section 4, E-Field Section 2
-Items:
+Items: crossbow ammo-0, gun ammo-0
 Characters: henchman-, henchman-
 Room Name: Field Section 1
 Room Description: You have entered the northern section of the field.<br>The field continues to the south.<br>A house is also visible to the west.<br>
