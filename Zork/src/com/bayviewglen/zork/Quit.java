@@ -15,8 +15,10 @@ public class Quit implements Serializable{
 	public void ask(){
 		Scanner input = new Scanner(System.in);
 		boolean noSelection = true;
+		System.out.println("Are you sure you would like to quit? "
+				+ "\nBe sure to save first or all previous gaming data will be lost.");
 		while(noSelection){
-			System.out.println("Are you sure you would like to quit? All previous gaming data will be lost.");
+			System.out.print("> ");
 			String selection = input.nextLine();
 			if(selection.equalsIgnoreCase("y") || selection.equalsIgnoreCase("yes")){
 				noSelection = false;
@@ -24,8 +26,9 @@ public class Quit implements Serializable{
 			} else if (selection.equalsIgnoreCase("n") || selection.equalsIgnoreCase("no")){
 				noSelection = false;
 				getNotFinished();
+				System.out.println("What would you like to do?");
 			} else {
-				System.out.println("Please enter \"Yes\" or \"No\".");
+				System.out.println("\nPlease say if you would like to quit: \"Yes (y)\" or \"No (n)\".");
 			}
 		}
 	}

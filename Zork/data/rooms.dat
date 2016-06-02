@@ -14,17 +14,17 @@ Exits: W-Kitchen
 Items: gun-10, sword-20, crossbow-20
 Characters:
 Room Name: Living Room
-Room Description: You are in the living room.<br>A key is hanging on a rack... There is also door at the south end of the room.<br>It leads outside.<br>
+Room Description: You are in the living room.<br>A key is hanging on a rack... There is also a door at the south end of the room.<br>It leads outside.<br>
 Exits: N-Kitchen, S-Front of House
 Items: key-2
 Characters:
 Room Name: Front of House
-Room Description: You are in front of your house.<br>You see Alexandria's farm to the west and its entrance to the east.<br>Ahead of you, the hunter of the group, Daryl, is fixing his bike while smoking a cigarette.<br>You shake your head with disapproval... DON'T SMOKE KIDS! 
+Room Description: You are in front of your house.<br>You see Alexandria's farm to the west and its entrance to the east.<br>Ahead of you, the hunter of the group, Daryl, notices you and stops fixing his bike. 
 Exits: N-Living Room, W-Farm, E-Alexandria Entrance
 Items: 
 Characters: Daryl-
 Room Name: Farm
-Room Description: You are in the farm of Alexandria. You see Rick and his son Carl talking.<br>It seems Rick is showing his son how to plant potatoes. Amazing.
+Room Description: You are in the farm of Alexandria. You see Rick and his son Carl talking.<br>It seems Rick is showing his son how to plant potatoes.
 Exits: E-Front of House
 Items:
 Characters: Rick-, Carl-
