@@ -6,13 +6,13 @@ public class Teleport {
 	public static Room teleportTo(Room currentRoom, Command command, HashMap<String, Room> masterRoomMap){
 		String destinationRoom = "";
 		if(command.hasSecondWord()){
-			destinationRoom += command.getSecondWord().toUpperCase() + "_";
+			destinationRoom += command.getSecondWord().toUpperCase();
 		}
 		if(command.hasThirdWord()){
-			destinationRoom+= command.getThirdWord().toUpperCase() + "_";
+			destinationRoom+= "_" + command.getThirdWord().toUpperCase();
 		}
 		if(command.hasFourthWord()){
-			destinationRoom+= command.getFourthWord().toUpperCase();
+			destinationRoom+= "_" + command.getFourthWord().toUpperCase();
 		}
 		if(validRoom(masterRoomMap, destinationRoom)){
 			return masterRoomMap.get(destinationRoom);
