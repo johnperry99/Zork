@@ -596,8 +596,8 @@ class Game implements Serializable {
         }
         else if (currentRoom.getRoster().hasCharacter("Daryl") && command.getSecondWord().equalsIgnoreCase("Daryl")
                      || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Daryl"))) {
-               System.out.println("Daryl: Hey man, here's a tip. If you ever encounter a Saviour henchman,\n kill them immediately,"
-                            + "because running away from them will get you killed.");
+               System.out.println("Daryl: \"Hey man, here's a tip. If you ever encounter a Saviour henchman,\n kill them immediately, "
+                            + "because running away from them will get you killed.\"");
         }
         else if (currentRoom.getRoster().hasCharacter("zombie") && command.getSecondWord().equalsIgnoreCase("zombie")
                 || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("zombie"))) {
@@ -892,17 +892,21 @@ class Game implements Serializable {
 		} else {
 			temp = room.getItem(command.getSecondWord());
 		}
-		if (command.getSecondWord().equalsIgnoreCase("ammo")) {
-			if (currentRoom.getInventory().hasItem("crossbow ammo")) {
-				user.addCrossbowAmmo(7);
+		if (command.getSecondWord().equalsIgnoreCase("ammo") || (command.hasThirdWord()
+			&& command.getThirdWord().equalsIgnoreCase("ammo"))) {
+			if (user.getInventory().hasItem("crossbow") && currentRoom.getInventory().hasItem("crossbow ammo")) {
+				user.addCrossbowAmmo(4);
+				room.removeItem("crossbow ammo");
 				System.out.println("Taken.");
 				return;
-			} else if (currentRoom.getInventory().hasItem("gun ammo")) {
-				user.addGunAmmo(5);
+			} else if (user.getInventory().hasItem("gun") && currentRoom.getInventory().hasItem("gun ammo")) {
+				user.addGunAmmo(3);
 				System.out.println("Taken.");
+				room.removeItem("gun ammo");
 				return;
 			} else {
 				System.out.println("There is no ammo here!");
+				return;
 			}
 		}
 

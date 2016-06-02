@@ -1,0 +1,1 @@
+java -classpath Zork.jar com.bayviewglen.zork.Zork

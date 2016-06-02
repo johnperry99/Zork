@@ -30,6 +30,12 @@ public abstract class Assault implements Serializable{
 						if (zombie.getNumZombies() == 0) {
 							zombie.kill();
 							System.out.println("You have killed all the zombies in the area.");
+							if(currentRoom.getRoomName().equals("Barn (Inside)")
+							   || currentRoom.getRoomName().equals("Forest Section 5"))
+								if(currentRoom.getInventory().hasItem("gun ammo"))
+									System.out.println("You notice there is usable gun ammo on the ground.");
+								else if( currentRoom.getInventory().hasItem("crossbow ammo"))
+									System.out.println("You notice there is usable crossbow ammo on the ground.");
 						} else {
 							System.out.println("There are/is " + zombie.getNumZombies() + " left.");
 						}
@@ -44,6 +50,12 @@ public abstract class Assault implements Serializable{
 						if (zombie.getNumZombies() == 0) {
 							zombie.kill();
 							System.out.println("You have killed all the zombies in the area.");
+							if(currentRoom.getRoomName().equals("Barn (Inside)")
+									   || currentRoom.getRoomName().equals("Forest Section 5"))
+										if(currentRoom.getInventory().hasItem("gun ammo"))
+											System.out.println("You notice there is usable gun ammo on the ground.");
+										else if( currentRoom.getInventory().hasItem("crossbow ammo"))
+											System.out.println("You notice there is usable crossbow ammo on the ground.");
 						} else {
 							System.out.println("There are/is " + zombie.getNumZombies() + " left.");
 						}
@@ -62,6 +74,12 @@ public abstract class Assault implements Serializable{
 						if (zombie.getNumZombies() == 0) {
 							zombie.kill();
 							System.out.println("You have killed all the zombies in the area.");
+							if(currentRoom.getRoomName().equals("Barn (Inside)")
+									   || currentRoom.getRoomName().equals("Forest Section 5"))
+										if(currentRoom.getInventory().hasItem("gun ammo"))
+											System.out.println("You notice there is usable gun ammo on the ground.");
+										else if( currentRoom.getInventory().hasItem("crossbow ammo"))
+											System.out.println("You notice there is usable crossbow ammo on the ground.");
 						} else {
 							System.out.println("There are/is " + zombie.getNumZombies() + " left.");
 						}
@@ -75,6 +93,13 @@ public abstract class Assault implements Serializable{
 						zombie.reduceNumZombies();
 						if (zombie.getNumZombies() == 0) {
 							zombie.kill();
+							System.out.println("You have killed all the zombies in the area.");
+							if(currentRoom.getRoomName().equals("Barn (Inside)")
+									   || currentRoom.getRoomName().equals("Forest Section 5"))
+										if(currentRoom.getInventory().hasItem("gun ammo"))
+											System.out.println("You notice there is usable gun ammo on the ground.");
+										else if( currentRoom.getInventory().hasItem("crossbow ammo"))
+											System.out.println("You notice there is usable crossbow ammo on the ground.");
 						} else {
 							System.out.println("There are/is " + zombie.getNumZombies() + " left.");
 						}
@@ -93,6 +118,12 @@ public abstract class Assault implements Serializable{
 					if (zombie.getNumZombies() == 0) {
 						zombie.kill();
 						System.out.println("You have killed all the zombies in the area.");
+						if(currentRoom.getRoomName().equals("Barn (Inside)")
+								   || currentRoom.getRoomName().equals("Forest Section 5"))
+									if(currentRoom.getInventory().hasItem("gun ammo"))
+										System.out.println("You notice there is usable gun ammo on the ground.");
+									else if( currentRoom.getInventory().hasItem("crossbow ammo"))
+										System.out.println("You notice there is usable crossbow ammo on the ground.");
 					} else {
 						System.out.println("There are/is " + zombie.getNumZombies() + " left.");
 					}
@@ -113,6 +144,12 @@ public abstract class Assault implements Serializable{
 					if (zombie.getNumZombies() == 0) {
 						zombie.kill();
 						System.out.println("You have killed all the zombies in the area.");
+						if(currentRoom.getRoomName().equals("Barn (Inside)")
+								   || currentRoom.getRoomName().equals("Forest Section 5"))
+									if(currentRoom.getInventory().hasItem("gun ammo"))
+										System.out.println("You notice there is usable gun ammo on the ground.");
+									else if( currentRoom.getInventory().hasItem("crossbow ammo"))
+										System.out.println("You notice there is usable crossbow ammo on the ground.");
 					} else {
 						System.out.println("There are/is " + zombie.getNumZombies() + " left.");
 					}
@@ -148,6 +185,12 @@ public abstract class Assault implements Serializable{
 						if (henchman.getNumHenchman() == 0) {
 							henchman.kill();
 							System.out.println("You have killed all the saviours in the area.");
+							if(currentRoom.getRoomName().equals("House (Inside)")
+									   || currentRoom.getRoomName().equals("Clearing"))
+										if(currentRoom.getInventory().hasItem("gun ammo"))
+											System.out.println("You notice there is usable gun ammo on the ground.");
+										else if( currentRoom.getInventory().hasItem("crossbow ammo"))
+											System.out.println("You notice there is usable crossbow ammo on the ground.");
 						} else {
 							System.out.println("There are/is " + henchman.getNumHenchman() + " left.");
 						}
@@ -169,6 +212,12 @@ public abstract class Assault implements Serializable{
 						if (henchman.getNumHenchman() == 0) {
 							henchman.kill();
 							System.out.println("You have killed all the saviours in the area.");
+							if(currentRoom.getRoomName().equals("Barn (Inside)")
+									   || currentRoom.getRoomName().equals("Clearing"))
+										if(currentRoom.getInventory().hasItem("gun ammo"))
+											System.out.println("You notice there is usable gun ammo on the ground.");
+										else if( currentRoom.getInventory().hasItem("crossbow ammo"))
+											System.out.println("You notice there is usable crossbow ammo on the ground.");
 						} else {
 							System.out.println("There are/is " + henchman.getNumHenchman() + " left.");
 						}
@@ -193,6 +242,12 @@ public abstract class Assault implements Serializable{
 						if (henchman.getNumHenchman() == 0) {
 							henchman.kill();
 							System.out.println("You have killed all the saviours in the area.");
+							if(currentRoom.getRoomName().equals("Barn (Inside)")
+									   || currentRoom.getRoomName().equals("Clearing"))
+										if(currentRoom.getInventory().hasItem("gun ammo"))
+											System.out.println("You notice there is usable gun ammo on the ground.");
+										else if( currentRoom.getInventory().hasItem("crossbow ammo"))
+											System.out.println("You notice there is usable crossbow ammo on the ground.");
 						} else {
 							System.out.println("There are/is " + henchman.getNumHenchman() + " left.");
 						}
@@ -207,6 +262,12 @@ public abstract class Assault implements Serializable{
 						if (henchman.getNumHenchman() == 0) {
 							henchman.kill();
 							System.out.println("You have killed all the saviours in the area.");
+							if(currentRoom.getRoomName().equals("Barn (Inside)")
+									   || currentRoom.getRoomName().equals("Clearing"))
+										if(currentRoom.getInventory().hasItem("gun ammo"))
+											System.out.println("You notice there is usable gun ammo on the ground.");
+										else if( currentRoom.getInventory().hasItem("crossbow ammo"))
+											System.out.println("You notice there is usable crossbow ammo on the ground.");
 						} else {
 							System.out.println("There are/is " + henchman.getNumHenchman() + " left.");
 						}
@@ -226,6 +287,12 @@ public abstract class Assault implements Serializable{
 					if (henchman.getNumHenchman() == 0) {
 						henchman.kill();
 						System.out.println("You have killed all the saviours in the area.");
+						if(currentRoom.getRoomName().equals("Barn (Inside)")
+								   || currentRoom.getRoomName().equals("Clearing"))
+									if(currentRoom.getInventory().hasItem("gun ammo"))
+										System.out.println("You notice there is usable gun ammo on the ground.");
+									else if( currentRoom.getInventory().hasItem("crossbow ammo"))
+										System.out.println("You notice there is usable crossbow ammo on the ground.");
 					} else {
 						System.out.println("There are/is " + henchman.getNumHenchman() + " left.");
 					}
