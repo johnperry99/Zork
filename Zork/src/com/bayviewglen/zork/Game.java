@@ -564,7 +564,8 @@ class Game implements Serializable {
         }
         else if (currentRoom.getRoster().hasCharacter("Carol") && command.getSecondWord().equalsIgnoreCase("Carol")
                      || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Carol"))) {
-               System.out.println("Carol: \"Hey... I know you're very upset... but you really should wait for us to come up with a good plan to save Maggy.\"");
+               System.out.println("Carol: \"Hey... I know you're very upset... "
+               		+ "But you really should wait for us to come up with a good plan to save Maggy.\"");
         }
         else if (currentRoom.getRoster().hasCharacter("Carl") && command.getSecondWord().equalsIgnoreCase("Carl")
                      || (command.hasThirdWord() && command.getThirdWord().equalsIgnoreCase("Carl"))) {
