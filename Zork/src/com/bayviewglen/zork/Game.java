@@ -153,12 +153,9 @@ class Game implements Serializable {
 			readObject(objectInput);
 			objectInput.close();
 			fileInput.close();
-			System.out.println("Game Loaded");
-			if (currentRoom.isFirstTime()) {
-				System.out.println(currentRoom.longDescription());
-			} else {
-				System.out.println(currentRoom.shortDescription());
-			}
+			System.out.println("\nGame Loaded");
+			System.out.println("You are in: " + currentRoom.getRoomName());
+			System.out.println("If not displayed, type look to view the area's description.");
 			if (currentRoom.getRoster().hasCharacter("henchman")) {
 				henchman = new Henchman(currentRoom.getRoster().getSize());
 				if (((currentRoom.getRoomName().equals("House (Inside)"))
@@ -237,6 +234,7 @@ class Game implements Serializable {
 		boolean newGame = true;
 
 		while (numEntered == false) {
+			System.out.print("> ");
 			try {
 				int val = Integer.parseInt(input.nextLine());
 				if (val == 1) {
@@ -246,10 +244,10 @@ class Game implements Serializable {
 					numEntered = true;
 					newGame = false;
 				} else {
-					System.out.println("Please enter one of the numbers listed above.");
+					System.out.println("\nPlease enter one of the numbers listed above.");
 				}
 			} catch (Exception ex) {
-				System.out.println("Please enter a valid integer.");
+				System.out.println("\nPlease enter a valid integer.");
 			}
 		}
 
@@ -380,7 +378,7 @@ class Game implements Serializable {
 				|| commandWord.equalsIgnoreCase("u") || commandWord.equalsIgnoreCase("d")) {
 			goRoom(command);
 		} else if (commandWord.equalsIgnoreCase("quit")) {
-			if (command.hasSecondWord()) {
+			if (command.hasSecondWord() && !(command.getSecondWord().equalsIgnoreCase("game"))) {
 				System.out.println("If you mean quit game, enter \"quit\".");
 			} else {
 				quit = new Quit(finished, true);
@@ -551,7 +549,7 @@ class Game implements Serializable {
 						|| (command.getSecondWord().equalsIgnoreCase("in")
 								&& command.getThirdWord().equalsIgnoreCase("car"))
 				|| (command.getSecondWord().equalsIgnoreCase("car")))) {
-			System.out.println("There is no car here...");
+			System.out.println("You can't drive a car here...");
 		} else {
 			System.out.println("What?");
 		}
@@ -803,7 +801,7 @@ class Game implements Serializable {
 				finished = quit.isFinished();
 			}
 			if (currentRoom.getRoomName().equals("Kitchen") && !user.getInventory().hasItem("bag")) {
-				user.addToInventoryCapacity(30);
+				user.addToInventoryCapacity(39);
 				Item x = currentRoom.getInventory().getItem("bag");
 				user.getInventory().addItem(x);
 				currentRoom.getInventory().removeItem(x);
