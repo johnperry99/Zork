@@ -438,6 +438,9 @@ class Game implements Serializable {
 				takeItems(command, user.getInventory(), currentRoom.getInventory());
 			else if (command.getSecondWord().equals(user.getInventory().getItemString(command.getSecondWord())))
 				System.out.println("You already have that!");
+			else if (command.getSecondWord().equalsIgnoreCase("ammo")){
+				takeItems(command, user.getInventory(), currentRoom.getInventory());
+			}
 			else
 				System.out.println("There isn't an item of that sort here...");
 
@@ -892,8 +895,12 @@ class Game implements Serializable {
 		if (command.getSecondWord().equalsIgnoreCase("ammo")) {
 			if (currentRoom.getInventory().hasItem("crossbow ammo")) {
 				user.addCrossbowAmmo(7);
+				System.out.println("Taken.");
+				return;
 			} else if (currentRoom.getInventory().hasItem("gun ammo")) {
 				user.addGunAmmo(5);
+				System.out.println("Taken.");
+				return;
 			} else {
 				System.out.println("There is no ammo here!");
 			}
