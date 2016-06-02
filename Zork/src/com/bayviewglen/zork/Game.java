@@ -343,7 +343,7 @@ class Game implements Serializable {
 			Room temp = Teleport.teleportTo(currentRoom, command, masterRoomMap);
 			if (temp != null) {
 				currentRoom = temp;
-				System.out.println(currentRoom.getRoomName() + "\n" + currentRoom.longDescription());
+				System.out.println("\n" + currentRoom.longDescription());
 				if (currentRoom.getRoomName().equals("Kitchen") && !user.getInventory().hasItem("bag")) {
 					user.addToInventoryCapacity(30);
 					Item x = currentRoom.getInventory().getItem("bag");
